@@ -11,6 +11,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+- iOS 12.0+
+
 ## Installation
 
 CommonUIKitComponents is available through [CocoaPods](https://cocoapods.org). To install
@@ -18,6 +20,44 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'CommonUIKitComponents'
+```
+
+___
+## Componentes
+___
+
+#### **1. ModalViewController**
+
+![Alt text](/Resources/ModalViewController/modalViewController.gif "ModalViewController")
+
+**Compatibilidad:** Swift
+
+**_v1.0.0:_**: 
+
+- **Métodos:**
+
+```swift
+
+//Present an ModalViewController
+func showModal
+```
+
+- **Usage examples:**
+
+```swift
+let alertView = AlertView().then {
+    if #available(iOS 13.0, *) { $0.alertImage = UIImage(systemName: "pencil.circle.fill") }
+    $0.titleText = "Title"
+    $0.messageText = "Description"
+    $0.titleTextColor = .blue
+}
+
+let modalConfiguration = ModalConfiguration()
+    .setCustomView(alertView)
+    
+showModal(modalConfiguration, primaryCompletion: {
+    print("Primary button tapped")
+})
 ```
 
 ## Author

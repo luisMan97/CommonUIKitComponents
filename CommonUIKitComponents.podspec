@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+'Common UI kit components help you build the interface of your app with generic and reusable views.'
                        DESC
 
   s.homepage         = 'https://github.com/luisMan97/CommonUIKitComponents'
@@ -26,11 +26,15 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'luisMan97' => 'riveraladinojorgeluis@gmail.com' }
   s.source           = { :git => 'https://github.com/luisMan97/CommonUIKitComponents.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://www.linkedin.com/in/jorge-luis-rivera-ladino-396a01163/'
 
   s.ios.deployment_target = '12.0'
 
   s.source_files = 'CommonUIKitComponents/Classes/**/*'
+  s.swift_version = '5.0'
+  s.platforms = {
+      "ios": "12.0"
+  }
   
   # s.resource_bundles = {
   #   'CommonUIKitComponents' => ['CommonUIKitComponents/Assets/*.png']
