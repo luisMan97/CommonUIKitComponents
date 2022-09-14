@@ -1,0 +1,22 @@
+{
+  "name": "CommonUIKitComponents",
+  "version": "1.0.0",
+  "summary": "Generic and reusable views.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/luisMan97/CommonUIKitComponents",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "luisMan97": "riveraladinojorgeluis@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/luisMan97/CommonUIKitComponents.git",
+    "tag": "1.0.0"
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source_files": "CommonUIKitComponents/Classes/**/*"
+}

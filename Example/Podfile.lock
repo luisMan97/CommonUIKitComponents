@@ -1,0 +1,16 @@
+PODS:
+  - CommonUIKitComponents (1.0.0)
+
+DEPENDENCIES:
+  - CommonUIKitComponents (from `../`)
+
+EXTERNAL SOURCES:
+  CommonUIKitComponents:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CommonUIKitComponents: ed8052f1051f8bae8773b5ae73875a6afde78dd9
+
+PODFILE CHECKSUM: b214aef44a4d494c5ce6ef786484d0ab4f569f20
+
+COCOAPODS: 1.11.3

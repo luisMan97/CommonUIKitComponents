@@ -1,0 +1,6 @@
+framework module CommonUIKitComponents {
+  umbrella header "CommonUIKitComponents-umbrella.h"
+
+  export *
+  module * { export * }
+}
