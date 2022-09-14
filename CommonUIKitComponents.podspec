@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'luisMan97' => 'riveraladinojorgeluis@gmail.com' }
   s.source           = { :git => 'https://github.com/luisMan97/CommonUIKitComponents.git', :tag => s.version.to_s }
-  s.social_media_url = 'https://www.linkedin.com/in/jorge-luis-rivera-ladino-396a01163/'
+  #s.social_media_url = 'https://www.linkedin.com/in/jorge-luis-rivera-ladino-396a01163/'
 
   s.ios.deployment_target = '12.0'
 
