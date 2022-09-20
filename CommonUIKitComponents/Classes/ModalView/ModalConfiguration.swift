@@ -12,6 +12,7 @@ public class ModalConfiguration {
     
     // MARK: - Internal Properties
     
+    private(set) var alertType: AlertType
     private(set) var cornerRadius: CGFloat
     private(set) var roundOnlyTopCorners: Bool
     private(set) var customView: UIView?
@@ -38,7 +39,8 @@ public class ModalConfiguration {
     
     // MARK: - Initializers
     
-    public init(cornerRadius: CGFloat = 8,
+    public init(alertType: AlertType = .custom,
+                cornerRadius: CGFloat = 8,
                 roundOnlyTopCorners: Bool = false,
                 customView: UIView? = nil,
                 primaryActionText: String = "Aceptar",
@@ -61,6 +63,7 @@ public class ModalConfiguration {
                 closeButtonHeight: CGFloat = 20,
                 closeButtonWidth: CGFloat = 20,
                 underlineButtonsWhenHasNoBackgroundColor: Bool = false) {
+        self.alertType = alertType
         self.cornerRadius = cornerRadius
         self.roundOnlyTopCorners = roundOnlyTopCorners
         self.customView = customView
@@ -84,6 +87,11 @@ public class ModalConfiguration {
         self.closeButtonWidth = closeButtonWidth
         self.buttonsPadCornerRadius = buttonsPadCornerRadius
         self.underlineButtonsWhenHasNoBackgroundColor = underlineButtonsWhenHasNoBackgroundColor
+    }
+    
+    public func setAlertType(_ alertType: AlertType) -> ModalConfiguration {
+        self.alertType = alertType
+        return self
     }
     
     public func setCornerRadius(_ cornerRadius: CGFloat) -> ModalConfiguration {

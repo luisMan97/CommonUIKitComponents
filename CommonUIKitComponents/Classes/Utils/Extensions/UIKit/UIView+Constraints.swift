@@ -33,6 +33,13 @@ public extension UIView {
         }
     }
     
+    func updateSubViewConstraint(identifier: String, constant: CGFloat) {
+        let subView = subviews.first(where: { $0.constraintWith(identifier: identifier) != nil })
+        if let constraint = subView?.constraintWith(identifier: identifier) {
+            constraint.constant = constant
+        }
+    }
+    
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 paddingTop: CGFloat = 0,
                 bottom: NSLayoutYAxisAnchor? = nil,

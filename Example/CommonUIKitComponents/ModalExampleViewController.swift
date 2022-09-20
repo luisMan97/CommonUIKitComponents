@@ -164,9 +164,7 @@ class ModalExampleViewController: UIViewController {
     
     private func buildAlertView() -> AlertView {
         let alertView = AlertView().then {
-            if #available(iOS 13.0, *) {
-                $0.alertImage = UIImage(systemName: "pencil.circle.fill")
-            }
+            $0.alertType = .success
             $0.titleText = "title"
             $0.messageText = "description"
             $0.titleTextColor = .blue

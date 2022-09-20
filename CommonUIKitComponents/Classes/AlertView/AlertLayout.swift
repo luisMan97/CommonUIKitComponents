@@ -17,6 +17,7 @@ enum AlertLayout {
     static let titleLabelPaddingLeft: CGFloat = 24
     static let titleLabelPaddingRight: CGFloat = 24
     static let titleLabelPaddingTop: CGFloat = 34.1
+    static let titleLabelPaddingBottom: CGFloat = 32
     // messageLabel
     static let messageLabelFontSize: CGFloat = 15
     static let messageLabelPaddingTop: CGFloat = 12

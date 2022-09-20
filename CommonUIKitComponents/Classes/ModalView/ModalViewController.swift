@@ -79,31 +79,8 @@ class ModalViewController: UIViewController {
             buttonPadView.secondaryButtonHidden = true
         }
         
+        setAlertType()
         setButtonPadViewBottomConstriantIfNeeded()
-    }
-    
-    func setButtonPadViewBottomConstriantIfNeeded() {
-        guard view.windowHasNotSafeArea,
-              configuration.buttonsPadHorizontalPadding > 0 else {
-            return
-        }
-        if buttonPadView.secondaryButtonHidden {
-            guard configuration.primaryButtonColor != .clear || configuration.primaryButtonColor != containerStackViewBackgroundColor else {
-                return
-            }
-            if configuration.buttonsPadBottomPadding == 0 {
-                view.updateConstraint(identifier: "buttonPadViewBottom", constant: -16)
-            }
-        } else {
-            if configuration.buttonPadAligment == .vertical {
-                guard configuration.secondaryButtonColor != .clear && configuration.secondaryButtonColor != containerStackViewBackgroundColor else {
-                    return
-                }
-            }
-            if configuration.buttonsPadBottomPadding == 0 {
-                view.updateConstraint(identifier: "buttonPadViewBottom", constant: -16)
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -173,6 +150,42 @@ class ModalViewController: UIViewController {
         // buttonPadView
         buttonPadView.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
                              identifier: "buttonPadView")
+    }
+    
+    private func setAlertType() {
+        guard configuration.alertType != .custom else {
+            return
+        }
+        if case .success = configuration.alertType {
+            buttonPadView.primaryButtonColor = .systemGreen
+        }
+        if case .failure = configuration.alertType {
+            buttonPadView.primaryButtonColor = .systemRed
+        }
+    }
+    
+    private func setButtonPadViewBottomConstriantIfNeeded() {
+        guard view.windowHasNotSafeArea,
+              configuration.buttonsPadHorizontalPadding > 0 else {
+            return
+        }
+        if buttonPadView.secondaryButtonHidden {
+            guard configuration.primaryButtonColor != .clear || configuration.primaryButtonColor != containerStackViewBackgroundColor else {
+                return
+            }
+            if configuration.buttonsPadBottomPadding == 0 {
+                view.updateConstraint(identifier: "buttonPadViewBottom", constant: -16)
+            }
+        } else {
+            if configuration.buttonPadAligment == .vertical {
+                guard configuration.secondaryButtonColor != .clear && configuration.secondaryButtonColor != containerStackViewBackgroundColor else {
+                    return
+                }
+            }
+            if configuration.buttonsPadBottomPadding == 0 {
+                view.updateConstraint(identifier: "buttonPadViewBottom", constant: -16)
+            }
+        }
     }
     
     // MARK: - Private @objc Methods

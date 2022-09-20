@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CommonUIKitComponents: c5a3fed4fb960fdb4ca0ab9267ddb9dcefdbcc1d
+  CommonUIKitComponents: 8efaf0e11ad93cc42d78f69e933086ac3e096206
 
 PODFILE CHECKSUM: b214aef44a4d494c5ce6ef786484d0ab4f569f20
 
