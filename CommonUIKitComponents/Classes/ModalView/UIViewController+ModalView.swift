@@ -14,14 +14,18 @@ public extension UIViewController {
     ///   - configuraction: (ModalConfiguration) Model used to configure the view.
     ///   - primaryCompletion: Right button event.
     ///   - secondaryCompletion: Left button event.
+    ///   - closeTapDismissViewCompletion: Close button event.
+    ///   - backgroundTapDismissViewCompletion: Background view tap event.
     func showModal(_ configuraction: ModalConfiguration,
                    primaryCompletion: CompletionHandler? = nil,
                    secondaryCompletion: CompletionHandler? = nil,
+                   closeTapDismissViewCompletion: CompletionHandler? = nil,
                    backgroundTapDismissViewCompletion: CompletionHandler? = nil) {
         let viewController = ModalViewController()
         viewController.config(configuraction,
                               primaryCompletion: primaryCompletion,
                               secondaryCompletion: secondaryCompletion,
+                              closeTapDismissViewCompletion: closeTapDismissViewCompletion,
                               backgroundTapDismissViewCompletion: backgroundTapDismissViewCompletion)
         presentBottomModal(viewController)
     }
