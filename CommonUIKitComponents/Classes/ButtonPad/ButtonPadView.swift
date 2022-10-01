@@ -55,6 +55,12 @@ class ButtonPadView: BaseUIView {
     public var underlinePrimaryButton = false {
         didSet { if underlinePrimaryButton { primaryButton.underline() }  }
     }
+    
+    public var primaryButtonHeight: CGFloat = 0 {
+        didSet {
+            containerStackView.updateSubViewConstraint(identifier: "primaryButtonHeight", constant: primaryButtonHeight)
+        }
+    }
 
     /// Set the right button text
     public var secondaryButtonText: String = String() {
@@ -80,6 +86,12 @@ class ButtonPadView: BaseUIView {
     public var secondaryButtonHidden: Bool = false {
         didSet {
             secondaryButton.isHidden = secondaryButtonHidden
+        }
+    }
+    
+    public var secondaryButtonHeight: CGFloat = 0 {
+        didSet {
+            containerStackView.updateSubViewConstraint(identifier: "secondaryButtonHeight", constant: secondaryButtonHeight)
         }
     }
     
@@ -150,18 +162,6 @@ class ButtonPadView: BaseUIView {
                 containerStackView.insertArrangedSubview(secondaryButtonView, at: 1)
                 containerStackView.setNeedsLayout()
                 containerStackView.axis = .vertical
-                
-                primaryButton.anchor(left: leftAnchor,
-                                     paddingLeft: 34,
-                                     right: rightAnchor,
-                                     paddingRight: 34,
-                                     identifier: "primaryButton")
-                
-                secondaryButton.anchor(left: leftAnchor,
-                                       paddingLeft: 34,
-                                       right: rightAnchor,
-                                       paddingRight: 34,
-                                       identifier: "secondaryButton")
             }
         }
     }

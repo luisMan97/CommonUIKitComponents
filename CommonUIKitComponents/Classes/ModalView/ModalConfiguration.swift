@@ -23,6 +23,8 @@ public class ModalConfiguration {
     private(set) var secondaryButtonColor: UIColor?
     private(set) var primaryButtonTitleColor: UIColor?
     private(set) var secondaryButtonTitleColor: UIColor?
+    private(set) var primaryButtonHeight: CGFloat?
+    private(set) var secondaryButtonHeight: CGFloat?
     private(set) var primaryButtonCornerRadius: CGFloat
     private(set) var secondaryButtonCornerRadius: CGFloat
     private(set) var buttonPadAligment: ButtonPadAlign
@@ -46,10 +48,12 @@ public class ModalConfiguration {
                 primaryActionText: String = "Aceptar",
                 primaryButtonColor: UIColor? = .blue,
                 primaryButtonTitleColor: UIColor? = nil,
+                primaryButtonHeight: CGFloat? = nil,
                 primaryButtonCornerRadius: CGFloat = 8,
                 secondaryActionText: String? = nil,
                 secondaryButtonColor: UIColor? = .lightGray.withAlphaComponent(0.3),
                 secondaryButtonTitleColor: UIColor? = .black,
+                secondaryButtonHeight: CGFloat? = nil,
                 secondaryButtonCornerRadius: CGFloat = 8,
                 showButtons: Bool = true,
                 buttonPadAligment: ButtonPadAlign = .horizontal,
@@ -74,6 +78,8 @@ public class ModalConfiguration {
         self.secondaryActionText = secondaryActionText
         self.secondaryButtonColor = secondaryButtonColor
         self.secondaryButtonTitleColor = secondaryButtonTitleColor
+        self.primaryButtonHeight = primaryButtonHeight
+        self.secondaryButtonHeight = secondaryButtonHeight
         self.secondaryButtonCornerRadius = secondaryButtonCornerRadius
         self.showButtons = showButtons
         self.buttonPadAligment = buttonPadAligment
@@ -124,6 +130,11 @@ public class ModalConfiguration {
         return self
     }
     
+    public func setPrimaryButtonHeight(_ primaryButtonHeight: CGFloat) -> ModalConfiguration {
+        self.primaryButtonHeight = primaryButtonHeight
+        return self
+    }
+    
     public func setPrimaryButtonCornerRadius(_ primaryButtonCornerRadius: CGFloat) -> ModalConfiguration {
         self.primaryButtonCornerRadius = primaryButtonCornerRadius
         return self
@@ -141,6 +152,11 @@ public class ModalConfiguration {
     
     public func setSecondaryButtonTitleColor(_ secondaryButtonTitleColor: UIColor) -> ModalConfiguration {
         self.secondaryButtonTitleColor = secondaryButtonTitleColor
+        return self
+    }
+    
+    public func setSecondaryButtonHeight(_ secondaryButtonHeight: CGFloat) -> ModalConfiguration {
+        self.secondaryButtonHeight = secondaryButtonHeight
         return self
     }
     
@@ -184,7 +200,7 @@ public class ModalConfiguration {
         return self
     }
     
-    public func setcloseButtonPaddingRight(_ closeButtonPaddingRight: CGFloat) -> ModalConfiguration {
+    public func setCloseButtonPaddingRight(_ closeButtonPaddingRight: CGFloat) -> ModalConfiguration {
         self.closeButtonPaddingRight = closeButtonPaddingRight
         return self
     }

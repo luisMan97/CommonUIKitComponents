@@ -13,12 +13,15 @@ class ModalViewController: UIViewController {
     
     private var backgroundView = UIView()
     
-    private lazy var closeButton = UIButton().then {
-        $0.addTarget(self, action: #selector(cloaseAction), for: .touchUpInside)
+    private var closeButtonImageView = UIImageView().then {
         if #available(iOS 13.0, *) {
-            $0.setImage(UIImage(systemName: "xmark"), for: .normal)
+            $0.image = UIImage(systemName: "xmark")
             $0.tintColor = .darkGray
         }
+    }
+    
+    private lazy var closeButton = UIButton().then {
+        $0.addTarget(self, action: #selector(cloaseAction), for: .touchUpInside)
     }
     
     private let scrollView = ScrollView().then {
@@ -53,6 +56,7 @@ class ModalViewController: UIViewController {
     
     private var primaryCompletion: CompletionHandler?
     private var secondaryCompletion: CompletionHandler?
+    private var closeTapDismissViewCompletion: CompletionHandler?
     private var backgroundTapDismissViewCompletion: CompletionHandler?
     
     // MARK: - UIViewController Lyfecycle Methods
@@ -63,6 +67,8 @@ class ModalViewController: UIViewController {
         buttonPadView.underlineButtonsWhenHasNoBackgroundColor = configuration.underlineButtonsWhenHasNoBackgroundColor
         buttonPadView.alignment = configuration.buttonPadAligment
         buttonPadView.buttonsSpacing = configuration.buttonsPadSpacing
+        if let primaryButtonHeight = configuration.primaryButtonHeight { buttonPadView.primaryButtonHeight = primaryButtonHeight }
+        if let secondaryButtonHeight = configuration.secondaryButtonHeight { buttonPadView.secondaryButtonHeight = secondaryButtonHeight }
         buttonPadView.setButtons(horizontalPadding: configuration.buttonsPadHorizontalPadding,
                                  cornerRadius: configuration.buttonsPadCornerRadius,
                                  primaryButtonCornerRadius: configuration.primaryButtonCornerRadius,
@@ -89,7 +95,7 @@ class ModalViewController: UIViewController {
             customView.fixInView(contentView)
         }
         if configuration.backgroundTapDismissView {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(cloaseAction))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(backgroundViewAction))
             backgroundView.addGestureRecognizer(tap)
         }
     }
@@ -110,10 +116,12 @@ class ModalViewController: UIViewController {
     func config(_ configuration: ModalConfiguration,
                 primaryCompletion: CompletionHandler? = nil,
                 secondaryCompletion: CompletionHandler? = nil,
+                closeTapDismissViewCompletion: CompletionHandler? = nil,
                 backgroundTapDismissViewCompletion: CompletionHandler? = nil) {
         self.configuration = configuration
         self.primaryCompletion = primaryCompletion
         self.secondaryCompletion = secondaryCompletion
+        self.closeTapDismissViewCompletion = closeTapDismissViewCompletion
         self.backgroundTapDismissViewCompletion = backgroundTapDismissViewCompletion
     }
     
@@ -122,6 +130,7 @@ class ModalViewController: UIViewController {
     private func addSubViews() {
         backgroundView.fixInView(view)
         view.addSubview(containerStackView)
+        view.addSubview(closeButtonImageView)
         view.addSubview(closeButton)
          
         containerStackView.addArrangedSubview(scrollView)
@@ -133,12 +142,17 @@ class ModalViewController: UIViewController {
     
     private func addConstraints() {
         // closeButton
+        closeButtonImageView.anchor(top: containerStackView.topAnchor,
+                                    paddingTop: configuration.closeButtonPaddingTop,
+                                    right: view.rightAnchor,
+                                    paddingRight: configuration.closeButtonPaddingRight,
+                                    width: configuration.closeButtonWidth,
+                                    height: configuration.closeButtonHeight)
+        
         closeButton.anchor(top: containerStackView.topAnchor,
-                           paddingTop:  configuration.closeButtonPaddingTop,
                            right: view.rightAnchor,
-                           paddingRight: configuration.closeButtonPaddingRight,
-                           width: configuration.closeButtonWidth,
-                           height: configuration.closeButtonHeight)
+                           width: 50,
+                           height: 50)
         
         // containerStackView
         containerStackView.anchor(topGreaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor,
@@ -149,6 +163,7 @@ class ModalViewController: UIViewController {
         
         // buttonPadView
         buttonPadView.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                             paddingBottom: configuration.buttonsPadBottomPadding,
                              identifier: "buttonPadView")
     }
     
@@ -191,8 +206,13 @@ class ModalViewController: UIViewController {
     // MARK: - Private @objc Methods
     
     @objc
+    private func backgroundViewAction() {
+        dismissWithEffect(completion: backgroundTapDismissViewCompletion)
+    }
+    
+    @objc
     private func cloaseAction() {
-        dismissWithEffect()
+        dismissWithEffect(completion: closeTapDismissViewCompletion)
     }
 
 }

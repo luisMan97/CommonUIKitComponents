@@ -13,7 +13,7 @@ public class AlertView: BaseUIView {
 
     // MARK: - Private UI Properties
     
-    private var containserStackView = UIStackView().then {
+    private var containerStackView = UIStackView().then {
         $0.spacing = 0
         $0.axis = .vertical
     }
@@ -48,7 +48,7 @@ public class AlertView: BaseUIView {
     
     public var alertImageViewPaddingTop: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "alertImageViewTop", constant: alertImageViewPaddingTop)
+            containerStackView.updateSubViewConstraint(identifier: "alertImageViewTop", constant: alertImageViewPaddingTop)
         }
     }
     
@@ -90,25 +90,25 @@ public class AlertView: BaseUIView {
     
     public var titleLabelPaddingTop: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "titleLabelTop", constant: titleLabelPaddingTop)
+            containerStackView.updateSubViewConstraint(identifier: "titleLabelTop", constant: titleLabelPaddingTop)
         }
     }
     
     public var titleLabelPaddingBottom: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "titleLabelBottom", constant: -titleLabelPaddingBottom)
+            containerStackView.updateSubViewConstraint(identifier: "titleLabelBottom", constant: -titleLabelPaddingBottom)
         }
     }
     
     public var titleLabelPaddingLeft: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "titleLabelLeft", constant: titleLabelPaddingLeft)
+            containerStackView.updateSubViewConstraint(identifier: "titleLabelLeft", constant: titleLabelPaddingLeft)
         }
     }
     
     public var titleLabelPaddingRight: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "titleLabelRight", constant: -titleLabelPaddingRight)
+            containerStackView.updateSubViewConstraint(identifier: "titleLabelRight", constant: -titleLabelPaddingRight)
         }
     }
     
@@ -137,25 +137,25 @@ public class AlertView: BaseUIView {
     
     public var messageLabelPaddingTop: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "messageLabelTop", constant: messageLabelPaddingTop)
+            containerStackView.updateSubViewConstraint(identifier: "messageLabelTop", constant: messageLabelPaddingTop)
         }
     }
     
     public var messageLabelPaddingBottom: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "messageLabelBottom", constant: -messageLabelPaddingBottom)
+            containerStackView.updateSubViewConstraint(identifier: "messageLabelBottom", constant: -messageLabelPaddingBottom)
         }
     }
     
     public var messageLabelPaddingLeft: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "messageLabelLeft", constant: messageLabelPaddingLeft)
+            containerStackView.updateSubViewConstraint(identifier: "messageLabelLeft", constant: messageLabelPaddingLeft)
         }
     }
     
     public var messageLabelPaddingRight: CGFloat = 0 {
         didSet {
-            containserStackView.updateSubViewConstraint(identifier: "messageLabelRight", constant: -messageLabelPaddingRight)
+            containerStackView.updateSubViewConstraint(identifier: "messageLabelRight", constant: -messageLabelPaddingRight)
         }
     }
 
@@ -182,14 +182,14 @@ public class AlertView: BaseUIView {
         let titleLabelInsets = UIEdgeInsets(top: Layout.titleLabelPaddingTop, left: Layout.titleLabelPaddingLeft, bottom: 0, right: Layout.titleLabelPaddingRight)
         let messageLabelInsets = UIEdgeInsets(top: Layout.messageLabelPaddingTop, left: Layout.messageLabelPaddingLeft, bottom: Layout.messageLabelPaddingBottom, right: Layout.messageLabelPaddingRight)
         
-        addSubview(containserStackView)
-        containserStackView.addArrangedSubview(alertImageView,
+        addSubview(containerStackView)
+        containerStackView.addArrangedSubview(alertImageView,
                                                withMargin: alertImageViewInsets,
                                                identifier: "alertImageView")
-        containserStackView.addArrangedSubview(titleLabel,
+        containerStackView.addArrangedSubview(titleLabel,
                                                withMargin: titleLabelInsets,
                                                identifier: "titleLabel")
-        containserStackView.addArrangedSubview(messageLabel,
+        containerStackView.addArrangedSubview(messageLabel,
                                                withMargin: messageLabelInsets,
                                                identifier: "messageLabel")
 
@@ -197,7 +197,7 @@ public class AlertView: BaseUIView {
     }
 
     private func addConstraints() {
-        containserStackView.fixInView(self)
+        containerStackView.fixInView(self)
         
         // errorImage
         alertImageView.anchor(width: Layout.errorImageWidth,
@@ -242,7 +242,7 @@ public class AlertView: BaseUIView {
         guard let alertImage = alertImageView.superview else {
             return
         }
-        containserStackView.removeArrangedSubview(alertImage)
+        containerStackView.removeArrangedSubview(alertImage)
     }
     
     private func setTitleText(_ text: String?) {
@@ -275,7 +275,7 @@ public class AlertView: BaseUIView {
         guard let containerTitleLabel = titleLabel.superview else {
             return
         }
-        containserStackView.removeArrangedSubview(containerTitleLabel)
+        containerStackView.removeArrangedSubview(containerTitleLabel)
     }
     
     private func setMessageText(_ text: String?) {
@@ -308,7 +308,7 @@ public class AlertView: BaseUIView {
         guard let containerMessageLabel = messageLabel.superview else {
             return
         }
-        containserStackView.removeArrangedSubview(containerMessageLabel)
+        containerStackView.removeArrangedSubview(containerMessageLabel)
         addTitleBottomIfNecessary()
     }
     
