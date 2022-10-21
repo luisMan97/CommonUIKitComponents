@@ -5,7 +5,7 @@
 //  Created by Jorge Luis Rivera Ladino on 7/09/22.
 //
 
-import Foundation
+import UIKit
 
 extension UIView {
     

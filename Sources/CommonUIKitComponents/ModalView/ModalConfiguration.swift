@@ -5,7 +5,6 @@
 //  Created by Jorge Luis Rivera Ladino on 30/08/22.
 //
 
-import Foundation
 import UIKit
 
 public class ModalConfiguration {
