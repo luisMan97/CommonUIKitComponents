@@ -43,8 +43,12 @@ public extension UIView {
     }
     
     func anchor(top: NSLayoutYAxisAnchor? = nil,
+                topGreaterThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
+                topLessThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
                 paddingTop: CGFloat = 0,
                 bottom: NSLayoutYAxisAnchor? = nil,
+                bottomGreaterThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
+                bottomLessThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
                 paddingBottom: CGFloat = 0,
                 left: NSLayoutXAxisAnchor? = nil,
                 paddingLeft: CGFloat = 0,
@@ -59,9 +63,13 @@ public extension UIView {
                 identifier: String
     ) {
         anchor(top: top,
+               topGreaterThanOrEqualTo: topGreaterThanOrEqualTo,
+               topLessThanOrEqualTo: topLessThanOrEqualTo,
                paddingTop: paddingTop,
                topIdentifier: "\(identifier)Top",
                bottom: bottom,
+               bottomGreaterThanOrEqualTo: bottomGreaterThanOrEqualTo,
+               bottomLessThanOrEqualTo: bottomLessThanOrEqualTo,
                paddingBottom: paddingBottom,
                bottomIdentifier: "\(identifier)Bottom",
                left: left,
@@ -101,9 +109,11 @@ public extension UIView {
     ///   - paddingCenterY: `0` by default.
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 topGreaterThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
+                topLessThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
                 paddingTop: CGFloat = 0,
                 topIdentifier: String? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
+                bottomGreaterThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
                 bottomLessThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
                 paddingBottom: CGFloat = 0,
                 bottomIdentifier: String? = nil,
@@ -127,7 +137,9 @@ public extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         setupConstraint(anchor: topAnchor, equalTo: top, identifer: topIdentifier, padding: paddingTop)
         setupConstraint(anchor: topAnchor, greaterThanOrEqualTo: topGreaterThanOrEqualTo, identifer: topIdentifier, padding: paddingTop)
+        setupConstraint(anchor: topAnchor, lessThanOrEqualTo: topLessThanOrEqualTo, identifer: topIdentifier, padding: paddingTop)
         setupConstraint(anchor: bottomAnchor, equalTo: bottom, identifer: bottomIdentifier, padding: -paddingBottom)
+        setupConstraint(anchor: bottomAnchor, greaterThanOrEqualTo: bottomGreaterThanOrEqualTo, identifer: bottomIdentifier, padding: -paddingBottom)
         setupConstraint(anchor: bottomAnchor, lessThanOrEqualTo: bottomLessThanOrEqualTo, identifer: bottomIdentifier, padding: -paddingBottom)
         setupConstraint(anchor: rightAnchor, equalTo: right, identifer: rightIdentifier, padding: -paddingRight)
         setupConstraint(anchor: leftAnchor, equalTo: left, identifer: leftIdentifier, padding: paddingLeft)

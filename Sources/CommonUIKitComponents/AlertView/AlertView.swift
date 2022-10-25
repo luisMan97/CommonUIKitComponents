@@ -235,7 +235,7 @@ public class AlertView: BaseUIView {
     }
     
     private func hideImageIfNecessary() {
-        guard alertImageView.image == nil else {
+        guard alertImageView.image == nil, alertImageSubView == nil else {
             return
         }
         hideImage()
