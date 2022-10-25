@@ -21,6 +21,8 @@ public class AlertView: BaseUIView {
     private var alertImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
+    
+    private var alertImageSubView: UIView?
 
     private var titleLabel = UILabel().then {
         $0.numberOfLines = 0
@@ -172,7 +174,8 @@ public class AlertView: BaseUIView {
     }
     
     public func addSubViewIntoImageView(_ view: UIView) {
-        view.fixInView(alertImageView)
+        alertImageSubView = view
+        alertImageSubView?.fixInView(alertImageView)
     }
 
     // MARK: - Private Methods

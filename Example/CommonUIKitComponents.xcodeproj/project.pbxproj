@@ -48,7 +48,7 @@
 		A317414F65F02D77A207C197 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A6BB288C3838A0C766C7C131 /* Pods_CommonUIKitComponents_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonUIKitComponents_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB2FCBB61799E1624D05D74 /* Pods-CommonUIKitComponents_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonUIKitComponents_Example.release.xcconfig"; path = "Target Support Files/Pods-CommonUIKitComponents_Example/Pods-CommonUIKitComponents_Example.release.xcconfig"; sourceTree = "<group>"; };
-		ECC548BE67FD119327275E2D /* CommonUIKitComponents.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CommonUIKitComponents.podspec; path = ../CommonUIKitComponents.podspec; sourceTree = "<group>"; };
+		ECC548BE67FD119327275E2D /* CommonUIKitComponents.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CommonUIKitComponents.podspec; path = ../CommonUIKitComponents.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
