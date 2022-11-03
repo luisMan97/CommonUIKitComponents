@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     enum Options: String, CaseIterable {
         case modal = "Modal"
+        case TextFieldOTP = "TextFieldOTP"
     }
     
     let options = Options.allCases
@@ -56,6 +57,10 @@ extension ViewController: UITableViewDelegate {
         switch indexPath.row {
         case 0:
             let modalExampleViewController = ModalExampleViewController()
+            modalExampleViewController.title = options[indexPath.row].rawValue
+            navigationController?.pushViewController(modalExampleViewController, animated: true)
+        case 1:
+            let modalExampleViewController = UITextFieldOTPExampleController()
             modalExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(modalExampleViewController, animated: true)
         default: break
