@@ -5,7 +5,7 @@
 //  Created by Jorge Luis Rivera Ladino on 2/11/22.
 //
 
-import Foundation
+import UIKit
 
 enum OTPLayout {
     static let fontSize: CGFloat = 30
