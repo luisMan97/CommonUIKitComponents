@@ -253,7 +253,7 @@ public class UITextFieldOTP: BaseUIView {
             textField.isAccessibilityElement = true
             textField.accessibilityIdentifier = accessibilityIdentifierOTPTextField.appending("_").appending(String(index))
             textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-            textField.isDelegate = self
+            textField.otpDelegate = self
             textField.tag = index
             textField.delegate = self
             textField.keyboardType = keyboardType

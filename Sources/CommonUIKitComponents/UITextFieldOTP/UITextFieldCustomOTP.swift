@@ -18,7 +18,7 @@ public class UITextFieldCustomOTP: UITextField {
     
     // MARK: - Private Properties
 
-    weak var isDelegate: UITextFieldCustomOTPDelegate?
+    weak var otpDelegate: UITextFieldCustomOTPDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +34,7 @@ public class UITextFieldCustomOTP: UITextField {
     // MARK: - Override Methods
 
     override public func deleteBackward() {
-        isDelegate?.deleteBackward(self)
+        otpDelegate?.deleteBackward(self)
         super.deleteBackward()
     }
     
