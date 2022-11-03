@@ -1,5 +1,5 @@
 PODS:
-  - CommonUIKitComponents (1.2.1)
+  - CommonUIKitComponents (1.2.2)
 
 DEPENDENCIES:
   - CommonUIKitComponents (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CommonUIKitComponents: fe30cc9cfde0df074a954475cc60617106d6217c
+  CommonUIKitComponents: c988514ac24b09e154667e1ace73a09697a99004
 
 PODFILE CHECKSUM: b214aef44a4d494c5ce6ef786484d0ab4f569f20
 

@@ -135,10 +135,12 @@ public class UITextFieldOTP: BaseUIView {
     
     // MARK: - Public Methods
     
+    @objc
     public func setNewDigit(_ digit: String) {
         setDigit(digit, atIndex: currentIndex)
     }
 
+    @objc
     public func removeLastDigit() {
         var index = currentIndex
         if arrayOTP.firstIndex(of: String()) != nil {
@@ -149,9 +151,11 @@ public class UITextFieldOTP: BaseUIView {
 
     /// This function join all the values of the UITextFields and returns a string.
     /// - Returns: OTP.
+    @objc
     public func getOTP() -> String { arrayOTP.joined() }
 
     /// This function remove all the values of the UITextFields.
+    @objc
     public func removeOTP() {
         arrayOTP.removeAll(keepingCapacity: true)
         textFields.forEach {
@@ -163,6 +167,7 @@ public class UITextFieldOTP: BaseUIView {
 
     /// Change the style of the UITextFieldOTP.
     /// - Parameter style: Normal or Error.
+    @objc
     public func otpStyle(_ style: UITextFieldOTPStyles) {
         self.style = style
         switch style {
