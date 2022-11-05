@@ -18,7 +18,7 @@ public protocol UITextFieldOTPDelegate: AnyObject {
 
 /// The purpose of UITextFieldOTP is to provide an interface with dynamic UITextFields to enter any type of numeric code.
 @objc
-public class UITextFieldOTP: BaseUIView {
+public class UITextFieldOTP: UIView {
     
     typealias Layout = OTPLayout
 
@@ -114,18 +114,14 @@ public class UITextFieldOTP: BaseUIView {
     private let layoutAttributes: [NSLayoutConstraint.Attribute] = [.top, .bottom, .right, .left],
                 accessibilityIdentifierOTPTextField = "otpTextField"
     private var arrayOTP: [String] = []
-    
+    private var awakeFromNibWasCalled = false
     private var currentIndex: Int { arrayOTP.firstIndex(of: String()) ?? arrayOTP.count - 1 }
 
     // MARK: - Override Methods
     
-    override public func configureView() {
-        super.configureView()
-        setup()
-    }
-    
     override public func awakeFromNib() {
         super.awakeFromNib()
+        awakeFromNibWasCalled = true
         setup()
     }
     
@@ -134,6 +130,12 @@ public class UITextFieldOTP: BaseUIView {
     }
     
     // MARK: - Public Methods
+    
+    @objc
+    public func setupWhenBuildingUIProgrammatically() {
+        if awakeFromNibWasCalled { return }
+        setup()
+    }
     
     @objc
     public func setNewDigit(_ digit: String) {
