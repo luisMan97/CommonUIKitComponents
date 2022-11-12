@@ -160,6 +160,12 @@ public class AlertView: BaseUIView {
             containerStackView.updateSubViewConstraint(identifier: "messageLabelRight", constant: -messageLabelPaddingRight)
         }
     }
+    
+    // MARK: - Private Properties
+    
+    private var imageIsHidden = false
+    private var titleIsHidden = false
+    private var messageIsHidden = false
 
     // MARK: - Override Methods
 
@@ -167,9 +173,9 @@ public class AlertView: BaseUIView {
         super.configureView()
         addViews()
         DispatchQueue.main.async { [self] in
-            hideImageIfNecessary()
-            hideTitleIfNecessary()
-            hideMessageIfNecessary()
+            hideOrShowImageIfNecessary()
+            hideOrShowTitleIfNecessary()
+            hideOrShowMessageIfNecessary()
         }
     }
     
@@ -181,9 +187,18 @@ public class AlertView: BaseUIView {
     // MARK: - Private Methods
 
     private func addViews() {
-        let alertImageViewInsets = UIEdgeInsets(top: Layout.errorImagePaddingTop, left: 0, bottom: 0, right: 0)
-        let titleLabelInsets = UIEdgeInsets(top: Layout.titleLabelPaddingTop, left: Layout.titleLabelPaddingLeft, bottom: 0, right: Layout.titleLabelPaddingRight)
-        let messageLabelInsets = UIEdgeInsets(top: Layout.messageLabelPaddingTop, left: Layout.messageLabelPaddingLeft, bottom: Layout.messageLabelPaddingBottom, right: Layout.messageLabelPaddingRight)
+        let alertImageViewInsets = UIEdgeInsets(top: Layout.errorImagePaddingTop,
+                                                left: 0,
+                                                bottom: 0,
+                                                right: 0)
+        let titleLabelInsets = UIEdgeInsets(top: Layout.titleLabelPaddingTop,
+                                            left: Layout.titleLabelPaddingLeft,
+                                            bottom: 0,
+                                            right: Layout.titleLabelPaddingRight)
+        let messageLabelInsets = UIEdgeInsets(top: Layout.messageLabelPaddingTop,
+                                              left: Layout.messageLabelPaddingLeft,
+                                              bottom: Layout.messageLabelPaddingBottom,
+                                              right: Layout.messageLabelPaddingRight)
         
         addSubview(containerStackView)
         containerStackView.addArrangedSubview(alertImageView,
@@ -231,46 +246,83 @@ public class AlertView: BaseUIView {
     
     private func setAlertImage(_ image: UIImage?) {
         alertImageView.image = image
-        hideImageIfNecessary()
+        hideOrShowImageIfNecessary()
     }
     
-    private func hideImageIfNecessary() {
+    private func hideOrShowImageIfNecessary() {
         guard alertImageView.image == nil, alertImageSubView == nil else {
+            if imageIsHidden { reAddTheImage() }
             return
         }
         hideImage()
+    }
+    
+    private func reAddTheImage() {
+        imageIsHidden = false
+        let alertImageViewInsets = UIEdgeInsets(top: Layout.errorImagePaddingTop, left: 0, bottom: 0, right: 0)
+        containerStackView.insertArrangedSubview(alertImageView,
+                                                 at: 0,
+                                                 withMargin: alertImageViewInsets,
+                                                 identifier: "alertImageView")
     }
     
     private func hideImage() {
         guard let alertImage = alertImageView.superview else {
             return
         }
+        imageIsHidden = true
         containerStackView.removeArrangedSubview(alertImage)
     }
     
     private func setTitleText(_ text: String?) {
         titleLabel.text = text
-        hideTitleIfNecessary()
+        hideOrShowTitleIfNecessary()
     }
     
     private func setTitleAttributedText(_ attributedString: NSAttributedString?) {
         titleLabel.attributedText = attributedString
-        hideTitleIfNecessary()
+        hideOrShowTitleIfNecessary()
     }
     
-    private func hideTitleIfNecessary() {
+    private func hideOrShowTitleIfNecessary() {
         if let titleText = titleLabel.text {
             guard titleText.isEmpty else {
+                if titleIsHidden { reAddTheTitle() }
                 return
             }
             hideTitle()
         } else if let titleAttributedText = titleLabel.attributedText {
             guard titleAttributedText.string.isEmpty else {
+                if titleIsHidden { reAddTheTitle() }
                 return
             }
             hideTitle()
         } else {
             hideTitle()
+        }
+    }
+    
+    private func reAddTheTitle() {
+        titleIsHidden = false
+        let titleLabelInsets = UIEdgeInsets(top: Layout.titleLabelPaddingTop,
+                                            left: Layout.titleLabelPaddingLeft,
+                                            bottom: 0,
+                                            right: Layout.titleLabelPaddingRight)
+        
+        if imageIsHidden { // Insert first
+            containerStackView.insertArrangedSubview(titleLabel,
+                                                     at: 0,
+                                                     withMargin: titleLabelInsets,
+                                                     identifier: "titleLabel")
+        } else if messageIsHidden { // Insert last (normal)
+            containerStackView.addArrangedSubview(titleLabel,
+                                                  withMargin: titleLabelInsets,
+                                                  identifier: "titleLabel")
+        } else { // Insert below alertImageView
+            containerStackView.insertArrangedSubview(titleLabel,
+                                                     belowArrangedSubview: alertImageView,
+                                                     withMargin: titleLabelInsets,
+                                                     identifier: "titleLabel")
         }
     }
     
@@ -278,27 +330,30 @@ public class AlertView: BaseUIView {
         guard let containerTitleLabel = titleLabel.superview else {
             return
         }
+        titleIsHidden = true
         containerStackView.removeArrangedSubview(containerTitleLabel)
     }
     
     private func setMessageText(_ text: String?) {
         messageLabel.text = text
-        hideMessageIfNecessary()
+        hideOrShowMessageIfNecessary()
     }
     
     private func setMessageAttributedText(_ attributedString: NSAttributedString?) {
         messageLabel.attributedText = attributedString
-        hideMessageIfNecessary()
+        hideOrShowMessageIfNecessary()
     }
     
-    private func hideMessageIfNecessary() {
+    private func hideOrShowMessageIfNecessary() {
         if let titleText = messageLabel.text {
             guard titleText.isEmpty else {
+                if messageIsHidden { reAddTheMessage() }
                 return
             }
             hideMessage()
         } else if let titleAttributedText = messageLabel.attributedText {
             guard titleAttributedText.string.isEmpty else {
+                if messageIsHidden { reAddTheMessage() }
                 return
             }
             hideMessage()
@@ -307,10 +362,22 @@ public class AlertView: BaseUIView {
         }
     }
     
+    private func reAddTheMessage() {
+        messageIsHidden = false
+        let messageLabelInsets = UIEdgeInsets(top: Layout.messageLabelPaddingTop,
+                                              left: Layout.messageLabelPaddingLeft,
+                                              bottom: Layout.messageLabelPaddingBottom,
+                                              right: Layout.messageLabelPaddingRight)
+        containerStackView.addArrangedSubview(messageLabel,
+                                              withMargin: messageLabelInsets,
+                                              identifier: "messageLabel")
+    }
+    
     private func hideMessage() {
         guard let containerMessageLabel = messageLabel.superview else {
             return
         }
+        messageIsHidden = true
         containerStackView.removeArrangedSubview(containerMessageLabel)
         addTitleBottomIfNecessary()
     }
