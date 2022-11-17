@@ -15,9 +15,11 @@ public class ModalConfiguration {
     private(set) var cornerRadius: CGFloat
     private(set) var roundOnlyTopCorners: Bool
     private(set) var customView: UIView?
+    private(set) var modalVeticalCentered: Bool
     private(set) var primaryActionText: String
     private(set) var secondaryActionText: String?
     private(set) var showButtons: Bool
+    private(set) var buttonsVerticalCenteredToBottom: Bool
     private(set) var primaryButtonColor: UIColor?
     private(set) var secondaryButtonColor: UIColor?
     private(set) var primaryButtonTitleColor: UIColor?
@@ -44,6 +46,7 @@ public class ModalConfiguration {
                 cornerRadius: CGFloat = 8,
                 roundOnlyTopCorners: Bool = false,
                 customView: UIView? = nil,
+                modalVeticalCentered: Bool = false,
                 primaryActionText: String = "Aceptar",
                 primaryButtonColor: UIColor? = .blue,
                 primaryButtonTitleColor: UIColor? = nil,
@@ -55,6 +58,7 @@ public class ModalConfiguration {
                 secondaryButtonHeight: CGFloat? = nil,
                 secondaryButtonCornerRadius: CGFloat = 8,
                 showButtons: Bool = true,
+                buttonsVerticalCenteredToBottom: Bool = false,
                 buttonPadAligment: ButtonPadAlign = .horizontal,
                 buttonsPadSpacing: CGFloat = 0,
                 buttonsPadHorizontalPadding: CGFloat = 34,
@@ -70,6 +74,7 @@ public class ModalConfiguration {
         self.cornerRadius = cornerRadius
         self.roundOnlyTopCorners = roundOnlyTopCorners
         self.customView = customView
+        self.modalVeticalCentered = modalVeticalCentered
         self.primaryActionText = primaryActionText
         self.primaryButtonColor = primaryButtonColor
         self.primaryButtonTitleColor = primaryButtonTitleColor
@@ -81,6 +86,7 @@ public class ModalConfiguration {
         self.secondaryButtonHeight = secondaryButtonHeight
         self.secondaryButtonCornerRadius = secondaryButtonCornerRadius
         self.showButtons = showButtons
+        self.buttonsVerticalCenteredToBottom = buttonsVerticalCenteredToBottom
         self.buttonPadAligment = buttonPadAligment
         self.buttonsPadSpacing = buttonsPadSpacing
         self.buttonsPadHorizontalPadding = buttonsPadHorizontalPadding
@@ -111,6 +117,11 @@ public class ModalConfiguration {
     
     public func setCustomView(_ customView: UIView) -> ModalConfiguration {
         self.customView = customView
+        return self
+    }
+    
+    public func setModalVeticalCentered(_ modalVeticalCentered: Bool) -> ModalConfiguration {
+        self.modalVeticalCentered = modalVeticalCentered
         return self
     }
     
@@ -166,6 +177,11 @@ public class ModalConfiguration {
     
     public func setShowButtons(_ showButtons: Bool) -> ModalConfiguration {
         self.showButtons = showButtons
+        return self
+    }
+    
+    public func setButtonsVerticalCenteredToBottom(_ buttonsVerticalCenteredToBottom: Bool) -> ModalConfiguration {
+        self.buttonsVerticalCenteredToBottom = buttonsVerticalCenteredToBottom
         return self
     }
     

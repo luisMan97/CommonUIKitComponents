@@ -23,14 +23,14 @@ class ModalViewController: UIViewController {
     private lazy var closeButton = UIButton().then {
         $0.addTarget(self, action: #selector(cloaseAction), for: .touchUpInside)
     }
-    
-    private let scrollView = ScrollView().then {
-        $0.addedScrollViewHeightIfNeeded = true
-    }
 
     private let containerStackView = UIStackView().then {
         $0.axis = .vertical
         $0.backgroundColor = .white
+    }
+    
+    private let scrollView = ScrollView().then {
+        $0.addedScrollViewHeightIfNeeded = true
     }
     
     private let contentView = UIView()
@@ -64,29 +64,7 @@ class ModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
-        buttonPadView.underlineButtonsWhenHasNoBackgroundColor = configuration.underlineButtonsWhenHasNoBackgroundColor
-        buttonPadView.alignment = configuration.buttonPadAligment
-        buttonPadView.buttonsSpacing = configuration.buttonsPadSpacing
-        if let primaryButtonHeight = configuration.primaryButtonHeight { buttonPadView.primaryButtonHeight = primaryButtonHeight }
-        if let secondaryButtonHeight = configuration.secondaryButtonHeight { buttonPadView.secondaryButtonHeight = secondaryButtonHeight }
-        buttonPadView.setButtons(horizontalPadding: configuration.buttonsPadHorizontalPadding,
-                                 cornerRadius: configuration.buttonsPadCornerRadius,
-                                 primaryButtonCornerRadius: configuration.primaryButtonCornerRadius,
-                                 secondaryButtonCornerRadius: configuration.secondaryButtonCornerRadius)
-        buttonPadView.primaryButtonText = configuration.primaryActionText
-        buttonPadView.primaryButtonColor = configuration.primaryButtonColor
-        buttonPadView.primaryButtonTitleColor = configuration.primaryButtonTitleColor
-        if let secondaryTitle = configuration.secondaryActionText,
-           secondaryTitle.isNotEmpty {
-            buttonPadView.secondaryButtonText = secondaryTitle
-            buttonPadView.secondaryButtonColor = configuration.secondaryButtonColor
-            buttonPadView.secondaryButtonTitleColor = configuration.secondaryButtonTitleColor
-        } else {
-            buttonPadView.secondaryButtonHidden = true
-        }
-        
-        setAlertType()
-        setButtonPadViewBottomConstriantIfNeeded()
+        setupButtonPadView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,7 +112,12 @@ class ModalViewController: UIViewController {
         view.addSubview(closeButton)
          
         containerStackView.addArrangedSubview(scrollView)
-        containerStackView.addArrangedSubview(buttonPadView)
+        if configuration.buttonsVerticalCenteredToBottom {
+            view.addSubview(buttonPadView)
+        } else {
+            let buttonPadViewPaddingBottom = configuration.modalVeticalCentered ? configuration.buttonsPadBottomPadding : 0
+            containerStackView.addArrangedSubview(buttonPadView, withMargin: .init(top: 0, left: 0, bottom: buttonPadViewPaddingBottom, right: 0))
+        }
          
         scrollView.addContainerView(contentView)
         addConstraints()
@@ -155,16 +138,64 @@ class ModalViewController: UIViewController {
                            height: 50)
         
         // containerStackView
+        let containerStackViewBottom = configuration.modalVeticalCentered ? nil : view.bottomAnchor
+        let containerStackViewCenterY = configuration.modalVeticalCentered ? view : nil
+         
         containerStackView.anchor(topGreaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor,
                                   paddingTop: 20,
-                                  bottom: view.bottomAnchor,
+                                  bottom: containerStackViewBottom,
                                   left: view.leftAnchor,
-                                  right: view.rightAnchor)
+                                  right: view.rightAnchor,
+                                  centerY: containerStackViewCenterY)
         
         // buttonPadView
-        buttonPadView.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                             paddingBottom: configuration.buttonsPadBottomPadding,
+        let buttonPadViewBottom = (configuration.buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? nil : view.safeAreaLayoutGuide.bottomAnchor
+        let buttonPadViewPaddingBottom = (configuration.buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? 0 : configuration.buttonsPadBottomPadding
+        let buttonPadViewLeft = configuration.buttonsVerticalCenteredToBottom ? view.leftAnchor : nil
+        let buttonPadViewRight = configuration.buttonsVerticalCenteredToBottom ? view.rightAnchor : nil
+        let buttonPadViewPaddingLeft = configuration.buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
+        let buttonPadViewPaddingRight = configuration.buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
+        let buttonPadViewPaddingCenterX = configuration.buttonsVerticalCenteredToBottom ? view : nil
+    
+        buttonPadView.anchor(bottom: buttonPadViewBottom,
+                             paddingBottom: buttonPadViewPaddingBottom,
+                             left: buttonPadViewLeft,
+                             paddingLeft: buttonPadViewPaddingLeft,
+                             right: buttonPadViewRight,
+                             paddingRight: buttonPadViewPaddingRight,
+                             centerX: buttonPadViewPaddingCenterX,
                              identifier: "buttonPadView")
+        
+        if configuration.buttonsVerticalCenteredToBottom {
+            let anchor = buttonPadView.centerYAnchor.constraint(equalTo: containerStackView.bottomAnchor)
+            anchor.identifier = "buttonPadViewCenterY"
+            anchor.isActive = true
+        }
+    }
+    
+    private func setupButtonPadView() {
+        buttonPadView.underlineButtonsWhenHasNoBackgroundColor = configuration.underlineButtonsWhenHasNoBackgroundColor
+        buttonPadView.alignment = configuration.buttonPadAligment
+        buttonPadView.buttonsSpacing = configuration.buttonsPadSpacing
+        if let primaryButtonHeight = configuration.primaryButtonHeight { buttonPadView.primaryButtonHeight = primaryButtonHeight }
+        if let secondaryButtonHeight = configuration.secondaryButtonHeight { buttonPadView.secondaryButtonHeight = secondaryButtonHeight }
+        buttonPadView.setButtons(horizontalPadding: configuration.buttonsPadHorizontalPadding,
+                                 cornerRadius: configuration.buttonsPadCornerRadius,
+                                 primaryButtonCornerRadius: configuration.primaryButtonCornerRadius,
+                                 secondaryButtonCornerRadius: configuration.secondaryButtonCornerRadius)
+        buttonPadView.primaryButtonText = configuration.primaryActionText
+        buttonPadView.primaryButtonColor = configuration.primaryButtonColor
+        buttonPadView.primaryButtonTitleColor = configuration.primaryButtonTitleColor
+        if let secondaryTitle = configuration.secondaryActionText,
+           secondaryTitle.isNotEmpty {
+            buttonPadView.secondaryButtonText = secondaryTitle
+            buttonPadView.secondaryButtonColor = configuration.secondaryButtonColor
+            buttonPadView.secondaryButtonTitleColor = configuration.secondaryButtonTitleColor
+        } else {
+            buttonPadView.secondaryButtonHidden = true
+        }
+        setAlertType()
+        setButtonPadViewBottomConstriantIfNeeded()
     }
     
     private func setAlertType() {

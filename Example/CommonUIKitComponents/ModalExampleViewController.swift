@@ -44,6 +44,20 @@ class ModalExampleViewController: UIViewController {
         $0.switchCompletion = { [weak self] value in self?.cornerRadiusViewAction(value: value) }
     }
     
+    private lazy var buttonModalVerticalCentered = ToggleView().then {
+        $0.labelText = "Modal Vertical Centered"
+        $0.switchCompletion = { [weak self] isOn in
+            self?.modalVerticalCentered = isOn
+        }
+    }
+    
+    private lazy var buttonCenterVerticalToBottom = ToggleView().then {
+        $0.labelText = "Buttons Vertical Centered To Bottom"
+        $0.switchCompletion = { [weak self] isOn in
+            self?.centerButtonsVerticalToBottom = isOn
+        }
+    }
+    
     private lazy var buttonAligmntVertical = ToggleView().then {
         $0.labelText = "Vertical Buttons"
         $0.switchCompletion = { [weak self] isOn in
@@ -97,7 +111,9 @@ class ModalExampleViewController: UIViewController {
     private var secondaryActionText = "Cancelar"
     private var cornerRadius: CGFloat = 8
     private var buttonAligment = ButtonPadAlign.horizontal
-    private var secondaryButtonColor = UIColor.lightGray.withAlphaComponent(0.3)
+    private var modalVerticalCentered = false
+    private var centerButtonsVerticalToBottom = false
+    private var secondaryButtonColor = UIColor.red
     private var underlineButtonsWhenHasNoBackgroundColor = false
     private var buttonsPadSpacing: Double = 0
     private var buttonsPadCornerRadius: Double = 8
@@ -120,6 +136,9 @@ class ModalExampleViewController: UIViewController {
         alertOptionsStackView.addArrangedSubview(simpleModalWithAlertViewButton)
         alertOptionsStackView.addArrangedSubview(secondaryActionTextField)
         alertOptionsStackView.addArrangedSubview(cornerRadiusView)
+        alertOptionsStackView.addArrangedSubview(buttonAligmntVertical)
+        alertOptionsStackView.addArrangedSubview(buttonModalVerticalCentered)
+        alertOptionsStackView.addArrangedSubview(buttonCenterVerticalToBottom)
         alertOptionsStackView.addArrangedSubview(buttonAligmntVertical)
         alertOptionsStackView.addArrangedSubview(underlineButtonsWhenHasNoBackgroundColorView)
         alertOptionsStackView.addArrangedSubview(secondaryButtonClearColor)
@@ -151,11 +170,14 @@ class ModalExampleViewController: UIViewController {
             .setPrimaryButtonCornerRadius(primaryButtonCornerRadius)
             .setSecondaryActionText(secondaryActionText)
             .setSecondaryButtonColor(secondaryButtonColor)
+            .setSecondaryButtonTitleColor(.white)
             .setSecondaryButtonCornerRadius(secondaryButtonCornerRadius)
             .setButtonPadAligment(buttonAligment)
             .setButtonsPadSpacing(buttonsPadSpacing)
             .setButtonsPadCornerRadius(buttonsPadCornerRadius)
             .setUnderlineButtonsWhenHasNoBackgroundColor(underlineButtonsWhenHasNoBackgroundColor)
+            .setModalVeticalCentered(modalVerticalCentered)
+            .setButtonsVerticalCenteredToBottom(centerButtonsVerticalToBottom)
                 
         showModal(modalConfiguration, primaryCompletion: {
             print("Primary button tapped")
@@ -173,7 +195,7 @@ class ModalExampleViewController: UIViewController {
     }
     
     private func secondaryButtonClearColorAction(isOn: Bool) {
-        secondaryButtonColor = isOn ? .clear : .lightGray.withAlphaComponent(0.1)
+        secondaryButtonColor = isOn ? .clear : .red
         if !isOn {
             underlineButtonsWhenHasNoBackgroundColorView.isOn = false
         }
