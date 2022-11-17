@@ -41,15 +41,11 @@ class ButtonPadView: BaseUIView {
     }
     
     public var primaryButtonColor: UIColor? {
-        didSet {
-            setPrimaryButtonColor()
-        }
+        didSet { setPrimaryButtonColor() }
     }
     
     public var primaryButtonTitleColor: UIColor? {
-        didSet {
-            primaryButton.setTitleColor(primaryButtonTitleColor, for: .normal)
-        }
+        didSet { primaryButton.setTitleColor(primaryButtonTitleColor, for: .normal) }
     }
     
     public var underlinePrimaryButton = false {
@@ -57,16 +53,12 @@ class ButtonPadView: BaseUIView {
     }
     
     public var primaryButtonHeight: CGFloat = 0 {
-        didSet {
-            containerStackView.updateSubViewConstraint(identifier: "primaryButtonHeight", constant: primaryButtonHeight)
-        }
+        didSet { containerStackView.updateSubViewConstraint(identifier: "primaryButtonHeight", constant: primaryButtonHeight) }
     }
 
     /// Set the right button text
     public var secondaryButtonText: String = String() {
-        didSet {
-            setSecondaryButtonText()
-        }
+        didSet { setSecondaryButtonText() }
     }
     
     public var secondaryButtonColor: UIColor? {
@@ -84,27 +76,19 @@ class ButtonPadView: BaseUIView {
     }
 
     public var secondaryButtonHidden: Bool = false {
-        didSet {
-            secondaryButton.isHidden = secondaryButtonHidden
-        }
+        didSet { secondaryButton.isHidden = secondaryButtonHidden }
     }
     
     public var secondaryButtonHeight: CGFloat = 0 {
-        didSet {
-            containerStackView.updateSubViewConstraint(identifier: "secondaryButtonHeight", constant: secondaryButtonHeight)
-        }
+        didSet { containerStackView.updateSubViewConstraint(identifier: "secondaryButtonHeight", constant: secondaryButtonHeight) }
     }
     
     public var alignment: ButtonPadAlign = .horizontal {
-        didSet {
-            setButtonsDisplay()
-        }
+        didSet { setButtonsDisplay() }
     }
     
     public var underlineButtonsWhenHasNoBackgroundColor: Bool = false {
-        didSet {
-            setUnderlineButtonsWhenHasNoBackgroundColor()
-        }
+        didSet { setUnderlineButtonsWhenHasNoBackgroundColor() }
     }
     
     public var primaryCompletion: CompletionHandler?
@@ -119,11 +103,32 @@ class ButtonPadView: BaseUIView {
     
     // MARK: - Public Methods
     
-    public func setButtons(horizontalPadding: CGFloat, cornerRadius: CGFloat, primaryButtonCornerRadius: CGFloat, secondaryButtonCornerRadius: CGFloat) {
+    public func setButtons(horizontalPadding: CGFloat,
+                           cornerRadius: CGFloat,
+                           primaryButtonCornerRadius: CGFloat,
+                           primaryBorderColor: UIColor? = nil,
+                           primaryBorderWith: CGFloat? = nil,
+                           secondaryButtonCornerRadius: CGFloat,
+                           secondaryBorderColor: UIColor? = nil,
+                           secondaryBorderWith: CGFloat? = nil) {
         buttonsHorizontalPadding = horizontalPadding
         setButtonsCornerRadius(cornerRadius)
-        setPrimaryButtonCornerRadius(primaryButtonCornerRadius)
-        setSecondaryButtonCornerRadius(secondaryButtonCornerRadius)
+        roundPrimaryButtonCornersWith(cornerRadius: primaryButtonCornerRadius,
+                                      borderColor: primaryBorderColor,
+                                      borderWidth: primaryBorderWith)
+        roundSecondaryButtonCornersWith(cornerRadius: secondaryButtonCornerRadius,
+                                        borderColor: secondaryBorderColor,
+                                        borderWidth: secondaryBorderWith)
+    }
+    
+    public func setPrimaryImage(_ image: UIImage?, spacing: CGFloat = 8) {
+        primaryButton.setImage(image, for: .normal)
+        primaryButton.centerTextAndImage(spacing: spacing)
+    }
+    
+    public func setSecondaryImage(_ image: UIImage?, spacing: CGFloat = 8) {
+        primaryButton.setImage(image, for: .normal)
+        primaryButton.centerTextAndImage(spacing: spacing)
     }
     
     // MARK: - Private Methods
@@ -170,11 +175,15 @@ class ButtonPadView: BaseUIView {
         primaryButton.setTitle(primaryButtonText, for: .normal)
     }
     
-    private func setPrimaryButtonCornerRadius(_ cornerRadius: CGFloat) {
+    private func roundPrimaryButtonCornersWith(cornerRadius: CGFloat,
+                                               borderColor: UIColor? = nil,
+                                               borderWidth: CGFloat? = nil) {
         guard buttonsHorizontalPadding > 0 else {
             return
         }
-        primaryButton.layer.cornerRadius = cornerRadius
+        primaryButton.roundCornersWith(borderColor: borderColor,
+                                       borderWidth: borderWidth,
+                                       cornerRadius: cornerRadius)
     }
     
     private func setPrimaryButtonColor() {
@@ -189,11 +198,15 @@ class ButtonPadView: BaseUIView {
         setButtonsSpacingIfNeeded()
     }
     
-    private func setSecondaryButtonCornerRadius(_ cornerRadius: CGFloat) {
+    private func roundSecondaryButtonCornersWith(cornerRadius: CGFloat,
+                                                 borderColor: UIColor? = nil,
+                                                 borderWidth: CGFloat? = nil) {
         guard buttonsHorizontalPadding > 0 else {
             return
         }
-        secondaryButton.layer.cornerRadius = cornerRadius
+        secondaryButton.roundCornersWith(borderColor: borderColor,
+                                         borderWidth: borderWidth,
+                                         cornerRadius: cornerRadius)
     }
     
     private func setButtonsCornerRadius(_ cornerRadius: CGFloat) {

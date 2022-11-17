@@ -178,7 +178,7 @@ class ModalExampleViewController: UIViewController {
             .setUnderlineButtonsWhenHasNoBackgroundColor(underlineButtonsWhenHasNoBackgroundColor)
             .setModalVeticalCentered(modalVerticalCentered)
             .setButtonsVerticalCenteredToBottom(centerButtonsVerticalToBottom)
-                
+        
         showModal(modalConfiguration, primaryCompletion: {
             print("Primary button tapped")
         })

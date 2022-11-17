@@ -15,9 +15,14 @@ public class ModalConfiguration {
     private(set) var cornerRadius: CGFloat
     private(set) var roundOnlyTopCorners: Bool
     private(set) var customView: UIView?
+    private(set) var modalHorizontalPadding: CGFloat
     private(set) var modalVeticalCentered: Bool
     private(set) var primaryActionText: String
     private(set) var secondaryActionText: String?
+    private(set) var primaryButtonImage: UIImage?
+    private(set) var primaryButtonImageSpacing: CGFloat
+    private(set) var secondaryButtonImage: UIImage?
+    private(set) var secondaryButtonImageSpacing: CGFloat
     private(set) var showButtons: Bool
     private(set) var buttonsVerticalCenteredToBottom: Bool
     private(set) var primaryButtonColor: UIColor?
@@ -28,6 +33,10 @@ public class ModalConfiguration {
     private(set) var secondaryButtonHeight: CGFloat?
     private(set) var primaryButtonCornerRadius: CGFloat
     private(set) var secondaryButtonCornerRadius: CGFloat
+    private(set) var primaryButtonBorderWidth: CGFloat?
+    private(set) var secondaryButtonBorderWidth: CGFloat?
+    private(set) var primaryButtonBorderColor: UIColor?
+    private(set) var secondaryButtonBorderColor: UIColor?
     private(set) var buttonPadAligment: ButtonPadAlign
     private(set) var backgroundTapDismissView: Bool
     private(set) var closeButtonPaddingTop: CGFloat
@@ -46,17 +55,26 @@ public class ModalConfiguration {
                 cornerRadius: CGFloat = 8,
                 roundOnlyTopCorners: Bool = false,
                 customView: UIView? = nil,
+                modalHorizontalPadding: CGFloat = 0,
                 modalVeticalCentered: Bool = false,
                 primaryActionText: String = "Aceptar",
+                primaryButtonImage: UIImage? = nil,
+                primaryButtonImageSpacing: CGFloat = 8,
                 primaryButtonColor: UIColor? = .blue,
                 primaryButtonTitleColor: UIColor? = nil,
                 primaryButtonHeight: CGFloat? = nil,
                 primaryButtonCornerRadius: CGFloat = 8,
+                primaryButtonBorderWidth: CGFloat? = nil,
+                primaryButtonBorderColor: UIColor? = nil,
                 secondaryActionText: String? = nil,
+                secondaryButtonImage: UIImage? = nil,
+                secondaryButtonImageSpacing: CGFloat = 8,
                 secondaryButtonColor: UIColor? = .lightGray.withAlphaComponent(0.3),
                 secondaryButtonTitleColor: UIColor? = .black,
                 secondaryButtonHeight: CGFloat? = nil,
                 secondaryButtonCornerRadius: CGFloat = 8,
+                secondaryButtonBorderWidth: CGFloat? = nil,
+                secondaryButtonBorderColor: UIColor? = nil,
                 showButtons: Bool = true,
                 buttonsVerticalCenteredToBottom: Bool = false,
                 buttonPadAligment: ButtonPadAlign = .horizontal,
@@ -74,17 +92,26 @@ public class ModalConfiguration {
         self.cornerRadius = cornerRadius
         self.roundOnlyTopCorners = roundOnlyTopCorners
         self.customView = customView
+        self.modalHorizontalPadding = modalHorizontalPadding
         self.modalVeticalCentered = modalVeticalCentered
         self.primaryActionText = primaryActionText
+        self.primaryButtonImage = primaryButtonImage
+        self.primaryButtonImageSpacing = primaryButtonImageSpacing
         self.primaryButtonColor = primaryButtonColor
         self.primaryButtonTitleColor = primaryButtonTitleColor
         self.primaryButtonCornerRadius = primaryButtonCornerRadius
+        self.primaryButtonBorderWidth = primaryButtonBorderWidth
+        self.primaryButtonBorderColor = primaryButtonBorderColor
         self.secondaryActionText = secondaryActionText
+        self.secondaryButtonImage = secondaryButtonImage
+        self.secondaryButtonImageSpacing = secondaryButtonImageSpacing
         self.secondaryButtonColor = secondaryButtonColor
         self.secondaryButtonTitleColor = secondaryButtonTitleColor
         self.primaryButtonHeight = primaryButtonHeight
         self.secondaryButtonHeight = secondaryButtonHeight
         self.secondaryButtonCornerRadius = secondaryButtonCornerRadius
+        self.secondaryButtonBorderWidth = primaryButtonBorderWidth
+        self.secondaryButtonBorderColor = primaryButtonBorderColor
         self.showButtons = showButtons
         self.buttonsVerticalCenteredToBottom = buttonsVerticalCenteredToBottom
         self.buttonPadAligment = buttonPadAligment
@@ -120,6 +147,11 @@ public class ModalConfiguration {
         return self
     }
     
+    public func setModalHorizontalPadding(_ modalHorizontalPadding: CGFloat) -> ModalConfiguration {
+        self.modalHorizontalPadding = modalHorizontalPadding
+        return self
+    }
+    
     public func setModalVeticalCentered(_ modalVeticalCentered: Bool) -> ModalConfiguration {
         self.modalVeticalCentered = modalVeticalCentered
         return self
@@ -127,6 +159,16 @@ public class ModalConfiguration {
     
     public func setPrimaryActionText(_ primaryActionText: String) -> ModalConfiguration {
         self.primaryActionText = primaryActionText
+        return self
+    }
+    
+    public func setPrimaryButtonImage(_ primaryButtonImage: UIImage?) -> ModalConfiguration {
+        self.primaryButtonImage = primaryButtonImage
+        return self
+    }
+    
+    public func setPrimaryButtonImageSpacing(_ primaryButtonImageSpacing: CGFloat) -> ModalConfiguration {
+        self.primaryButtonImageSpacing = primaryButtonImageSpacing
         return self
     }
     
@@ -150,8 +192,28 @@ public class ModalConfiguration {
         return self
     }
     
+    public func setPrimaryButtonBorderWidth(_ primaryButtonBorderWidth: CGFloat) -> ModalConfiguration {
+        self.primaryButtonBorderWidth = primaryButtonBorderWidth
+        return self
+    }
+    
+    public func setPrimaryButtonBorderColor(_ primaryButtonBorderColor: UIColor) -> ModalConfiguration {
+        self.primaryButtonBorderColor = primaryButtonBorderColor
+        return self
+    }
+    
     public func setSecondaryActionText(_ secondaryActionText: String) -> ModalConfiguration {
         self.secondaryActionText = secondaryActionText
+        return self
+    }
+    
+    public func setSecondaryButtonImage(_ secondaryButtonImage: UIImage?) -> ModalConfiguration {
+        self.secondaryButtonImage = secondaryButtonImage
+        return self
+    }
+    
+    public func setSecondaryButtonImageSpacing(_ secondaryButtonImageSpacing: CGFloat) -> ModalConfiguration {
+        self.secondaryButtonImageSpacing = secondaryButtonImageSpacing
         return self
     }
     
@@ -172,6 +234,16 @@ public class ModalConfiguration {
     
     public func setSecondaryButtonCornerRadius(_ secondaryButtonCornerRadius: CGFloat) -> ModalConfiguration {
         self.secondaryButtonCornerRadius = secondaryButtonCornerRadius
+        return self
+    }
+    
+    public func setSecondaryButtonBorderWidth(_ secondaryButtonBorderWidth: CGFloat) -> ModalConfiguration {
+        self.secondaryButtonBorderWidth = secondaryButtonBorderWidth
+        return self
+    }
+    
+    public func setSecondaryButtonBorderColor(_ secondaryButtonBorderColor: UIColor) -> ModalConfiguration {
+        self.secondaryButtonBorderColor = secondaryButtonBorderColor
         return self
     }
     

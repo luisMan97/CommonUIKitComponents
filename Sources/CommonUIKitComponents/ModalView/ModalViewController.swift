@@ -127,13 +127,13 @@ class ModalViewController: UIViewController {
         // closeButton
         closeButtonImageView.anchor(top: containerStackView.topAnchor,
                                     paddingTop: configuration.closeButtonPaddingTop,
-                                    right: view.rightAnchor,
+                                    right: containerStackView.rightAnchor,
                                     paddingRight: configuration.closeButtonPaddingRight,
                                     width: configuration.closeButtonWidth,
                                     height: configuration.closeButtonHeight)
         
         closeButton.anchor(top: containerStackView.topAnchor,
-                           right: view.rightAnchor,
+                           right: containerStackView.rightAnchor,
                            width: 50,
                            height: 50)
         
@@ -145,7 +145,9 @@ class ModalViewController: UIViewController {
                                   paddingTop: 20,
                                   bottom: containerStackViewBottom,
                                   left: view.leftAnchor,
+                                  paddingLeft: configuration.modalHorizontalPadding,
                                   right: view.rightAnchor,
+                                  paddingRight: configuration.modalHorizontalPadding,
                                   centerY: containerStackViewCenterY)
         
         // buttonPadView
@@ -182,8 +184,14 @@ class ModalViewController: UIViewController {
         buttonPadView.setButtons(horizontalPadding: configuration.buttonsPadHorizontalPadding,
                                  cornerRadius: configuration.buttonsPadCornerRadius,
                                  primaryButtonCornerRadius: configuration.primaryButtonCornerRadius,
-                                 secondaryButtonCornerRadius: configuration.secondaryButtonCornerRadius)
+                                 primaryBorderColor: configuration.primaryButtonBorderColor,
+                                 primaryBorderWith: configuration.primaryButtonBorderWidth,
+                                 secondaryButtonCornerRadius: configuration.secondaryButtonCornerRadius,
+                                 secondaryBorderColor: configuration.secondaryButtonBorderColor,
+                                 secondaryBorderWith: configuration.secondaryButtonBorderWidth)
         buttonPadView.primaryButtonText = configuration.primaryActionText
+        buttonPadView.setPrimaryImage(configuration.primaryButtonImage,
+                                      spacing: configuration.primaryButtonImageSpacing)
         buttonPadView.primaryButtonColor = configuration.primaryButtonColor
         buttonPadView.primaryButtonTitleColor = configuration.primaryButtonTitleColor
         if let secondaryTitle = configuration.secondaryActionText,
@@ -193,6 +201,11 @@ class ModalViewController: UIViewController {
             buttonPadView.secondaryButtonTitleColor = configuration.secondaryButtonTitleColor
         } else {
             buttonPadView.secondaryButtonHidden = true
+        }
+        if configuration.secondaryButtonImage != nil {
+            buttonPadView.secondaryButtonHidden = false
+            buttonPadView.setSecondaryImage(configuration.secondaryButtonImage,
+                                            spacing: configuration.secondaryButtonImageSpacing)
         }
         setAlertType()
         setButtonPadViewBottomConstriantIfNeeded()
