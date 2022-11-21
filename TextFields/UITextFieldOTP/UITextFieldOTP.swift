@@ -176,7 +176,7 @@ public class UITextFieldOTP: UIView {
         case .normal:
             addStyleToUITextFields(selectorColor: selectorColor,
                                    font: font,
-                                   fontSize: /*UIDevice.isIPhoneSE || UIDevice.isIPhone4 || UIDevice.isIPhone5 ? 28.0 :*/ fontSize,
+                                   fontSize: fontSize,
                                    textColor: textColor,
                                    backgroundColor: textFieldBackgroundColor,
                                    borderStyle: borderStyle,

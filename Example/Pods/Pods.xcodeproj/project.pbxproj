@@ -16,6 +16,8 @@
 		519F6037D94C02F9B777BD9E9DF71606 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2908737BA61C4FCA3DA2D2EF1BFD1F9 /* StringExtensions.swift */; };
 		58BEBE7E01E33E9254A95CB7A17FB4F9 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972FFE559BA28611CC64CD1DE626593 /* ToggleView.swift */; };
 		602A0FBABD37F002B3609BB00A72E7A3 /* ButtonPadAlign.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFC14BFD90683628A4C70747E080495 /* ButtonPadAlign.swift */; };
+		611F78D72929912B004F00A4 /* AllowedCharsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611F78D62929912B004F00A4 /* AllowedCharsTextField.swift */; };
+		611F78DA292996C1004F00A4 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611F78D9292996C1004F00A4 /* Characters.swift */; };
 		621DDF729854D194C90C9E7A23310982 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C6702C0936AC2C15513710665AC88 /* UIButtonExtensions.swift */; };
 		6C8C719A8EE72DA0585031631AF7C69F /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D7D92576AC62CE50B76C5EDC475EC /* Then.swift */; };
 		6EC6B461EFFEE42D18BDB0BA40DCB92B /* UITextFieldOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E113CBF7A38CAC4DB26B44C935A0DD /* UITextFieldOTP.swift */; };
@@ -75,6 +77,8 @@
 		5BA0E0EC02F89946D9A17477F8FEE008 /* CommonUIKitComponents-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CommonUIKitComponents-dummy.m"; sourceTree = "<group>"; };
 		5CFC4F3E596E5137396E970E82DE517C /* Pods-CommonUIKitComponents_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CommonUIKitComponents_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5FC120E09863F4D450DB55A6022E9CED /* Pods-CommonUIKitComponents_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CommonUIKitComponents_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		611F78D62929912B004F00A4 /* AllowedCharsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowedCharsTextField.swift; sourceTree = "<group>"; };
+		611F78D9292996C1004F00A4 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		6A4693C746C3A8353B9D1AB6B1B40465 /* Pods-CommonUIKitComponents_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CommonUIKitComponents_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		712D101F47FBEE9A4EE717C93CDDA9A3 /* Pods-CommonUIKitComponents_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CommonUIKitComponents_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		716EB4E805B67B38D97C5A3CBEF9CD5A /* Pods-CommonUIKitComponents_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CommonUIKitComponents_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -85,15 +89,15 @@
 		95BC5098302BD5CFF90D21F68377FFBE /* UITextFieldCustomOTP.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITextFieldCustomOTP.swift; sourceTree = "<group>"; };
 		993770DC4B6DE52A52C20961E11CEAC6 /* Pods-CommonUIKitComponents_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CommonUIKitComponents_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9972FFE559BA28611CC64CD1DE626593 /* ToggleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A283A56110022B12E0A62721B5EF78C9 /* CommonUIKitComponents.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CommonUIKitComponents.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A283A56110022B12E0A62721B5EF78C9 /* CommonUIKitComponents.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CommonUIKitComponents.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2C4376B923835AED861FB9E5F010899 /* UIView+Constraints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		A5A337395721C817C0FBC111DF8FFC68 /* Pods-CommonUIKitComponents_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CommonUIKitComponents_Example-frameworks.sh"; sourceTree = "<group>"; };
 		A96D7D92576AC62CE50B76C5EDC475EC /* Then.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		A99C9BC60C786634738B7C0C07BAFBB3 /* OTPLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OTPLayout.swift; sourceTree = "<group>"; };
 		AA2506230DAA99140B7A7C89058D1E38 /* ModalConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModalConfiguration.swift; sourceTree = "<group>"; };
 		AAFC14BFD90683628A4C70747E080495 /* ButtonPadAlign.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ButtonPadAlign.swift; sourceTree = "<group>"; };
-		ADEA30CB06E1C13ACAAA4EA9D78DEEE6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		ADEA30CB06E1C13ACAAA4EA9D78DEEE6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B8643D1CBAE417E2F2CA11ED6785C635 /* Pods-CommonUIKitComponents_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CommonUIKitComponents_Tests-dummy.m"; sourceTree = "<group>"; };
 		B919E9ECFE347235C51150DE1CA68315 /* UITextFieldOTPStyles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITextFieldOTPStyles.swift; sourceTree = "<group>"; };
 		C22B8906A1AE792D4C5968082B49F01B /* Pods-CommonUIKitComponents_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CommonUIKitComponents_Tests"; path = Pods_CommonUIKitComponents_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,7 +115,7 @@
 		E06D7000791A36109A2B87A3F8B05AC9 /* CommonUIKitComponents */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CommonUIKitComponents; path = CommonUIKitComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E077DF7D73C84FFCBE27DD80AB8EBF2F /* Pods-CommonUIKitComponents_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CommonUIKitComponents_Example"; path = Pods_CommonUIKitComponents_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FC3344753F260239743B1E595D2279 /* CommonUIKitComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CommonUIKitComponents.debug.xcconfig; sourceTree = "<group>"; };
-		E34D13B01FC28F4D9926686B28E6AC73 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		E34D13B01FC28F4D9926686B28E6AC73 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E6D68A394F5D56996678918602455EB8 /* Pods-CommonUIKitComponents_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CommonUIKitComponents_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E89C6702C0936AC2C15513710665AC88 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		EAECA38113A0723810C352244FE76A78 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
@@ -219,8 +223,7 @@
 				D0E113CBF7A38CAC4DB26B44C935A0DD /* UITextFieldOTP.swift */,
 				B919E9ECFE347235C51150DE1CA68315 /* UITextFieldOTPStyles.swift */,
 			);
-			name = UITextFieldOTP;
-			path = Sources/CommonUIKitComponents/UITextFieldOTP;
+			path = UITextFieldOTP;
 			sourceTree = "<group>";
 		};
 		41337F4B19D9538F1D3A843F36DBE295 /* Development Pods */ = {
@@ -265,6 +268,24 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		611F78D5292990F6004F00A4 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				611F78D8292996B0004F00A4 /* AllowedCharsTextField */,
+				3F780A485B999B2052A7F1F1D3A868B6 /* UITextFieldOTP */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		611F78D8292996B0004F00A4 /* AllowedCharsTextField */ = {
+			isa = PBXGroup;
+			children = (
+				611F78D62929912B004F00A4 /* AllowedCharsTextField.swift */,
+				611F78D9292996C1004F00A4 /* Characters.swift */,
+			);
+			path = AllowedCharsTextField;
+			sourceTree = "<group>";
+		};
 		6A94C6CFECC213E9A15699ED431EB134 /* ScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,13 +309,13 @@
 			children = (
 				C2908737BA61C4FCA3DA2D2EF1BFD1F9 /* StringExtensions.swift */,
 			);
-			name = Foundation;
 			path = Foundation;
 			sourceTree = "<group>";
 		};
 		8171686F1618B25EA8EBFAC9A354E656 /* CommonUIKitComponents */ = {
 			isa = PBXGroup;
 			children = (
+				611F78D5292990F6004F00A4 /* TextFields */,
 				93B5B206EC3E51DB306391EEDD8E0740 /* AlertView */,
 				721AD13E0D174C3469D7F034F39C9D4D /* Base */,
 				C42E51F6547304AC81224C9177E53420 /* ButtonPad */,
@@ -304,7 +325,6 @@
 				3A354A5D93664ED0C39493DD5DC02494 /* StepperView */,
 				2CEAE8978C5EDBB92A1415454941C167 /* Support Files */,
 				E0A944C34141BDD4A004102D85F46967 /* ToggleView */,
-				3F780A485B999B2052A7F1F1D3A868B6 /* UITextFieldOTP */,
 				AF6AC6FBB9DB1A77F6CBF855255EC3DC /* Utils */,
 			);
 			name = CommonUIKitComponents;
@@ -317,7 +337,6 @@
 				7273BEBAEF661B66DA1F85F18AB8ED7E /* Foundation */,
 				B2B5B30F5D776CC9157D7078BE9698B3 /* UIKit */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -364,7 +383,6 @@
 				D6A898DB65C21D666D442AF2A88235AA /* UIViewControllerExtensions.swift */,
 				EBF9C67C210367DC357E9932B191B767 /* UIViewExtensions.swift */,
 			);
-			name = UIKit;
 			path = UIKit;
 			sourceTree = "<group>";
 		};
@@ -575,9 +593,11 @@
 				6C8C719A8EE72DA0585031631AF7C69F /* Then.swift in Sources */,
 				58BEBE7E01E33E9254A95CB7A17FB4F9 /* ToggleView.swift in Sources */,
 				621DDF729854D194C90C9E7A23310982 /* UIButtonExtensions.swift in Sources */,
+				611F78DA292996C1004F00A4 /* Characters.swift in Sources */,
 				B04DD0C3F5CF1169634D6B740AC9466C /* UIControlExtensions.swift in Sources */,
 				3528FD6841C6E4F3381B22C53040A047 /* UIStackViewExtensions.swift in Sources */,
 				7531678740244F58BADAE947BAF2BF57 /* UITextFieldCustomOTP.swift in Sources */,
+				611F78D72929912B004F00A4 /* AllowedCharsTextField.swift in Sources */,
 				6EC6B461EFFEE42D18BDB0BA40DCB92B /* UITextFieldOTP.swift in Sources */,
 				C2432891205955E39E0FB5F89714A163 /* UITextFieldOTPStyles.swift in Sources */,
 				ABBF4A3ACA4070DCC0D97F5DC989000D /* UIView+Constraints.swift in Sources */,
@@ -770,8 +790,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
