@@ -15,6 +15,12 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		61AC11C229103AD10065F98B /* UITextFieldOTPExampleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AC11C129103AD10065F98B /* UITextFieldOTPExampleController.swift */; };
+		61E1B51F2934620B0016C25E /* ModalTagsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E1B51E2934620B0016C25E /* ModalTagsFactory.swift */; };
+		61E1B5222934625C0016C25E /* ModalTagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E1B5212934625C0016C25E /* ModalTagsDataSource.swift */; };
+		61E1B5242934628D0016C25E /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E1B5232934628D0016C25E /* Tag.swift */; };
+		61E1B53A2934679E0016C25E /* ModalTagsCellLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E1B5382934679E0016C25E /* ModalTagsCellLayout.swift */; };
+		61E1B54729347A9F0016C25E /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E1B54529347A9F0016C25E /* TagsCollectionViewCell.swift */; };
+		61E1B54829347A9F0016C25E /* TagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E1B54629347A9F0016C25E /* TagsCollectionViewCell.xib */; };
 		61EF7C7128D22E900097979F /* ModalExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EF7C7028D22E900097979F /* ModalExampleViewController.swift */; };
 		878A0DE9AB065030C997EDAF /* Pods_CommonUIKitComponents_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BB288C3838A0C766C7C131 /* Pods_CommonUIKitComponents_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +52,12 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		61AC11C129103AD10065F98B /* UITextFieldOTPExampleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldOTPExampleController.swift; sourceTree = "<group>"; };
+		61E1B51E2934620B0016C25E /* ModalTagsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTagsFactory.swift; sourceTree = "<group>"; };
+		61E1B5212934625C0016C25E /* ModalTagsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTagsDataSource.swift; sourceTree = "<group>"; };
+		61E1B5232934628D0016C25E /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		61E1B5382934679E0016C25E /* ModalTagsCellLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTagsCellLayout.swift; sourceTree = "<group>"; };
+		61E1B54529347A9F0016C25E /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		61E1B54629347A9F0016C25E /* TagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		61EF7C7028D22E900097979F /* ModalExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalExampleViewController.swift; sourceTree = "<group>"; };
 		A317414F65F02D77A207C197 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A6BB288C3838A0C766C7C131 /* Pods_CommonUIKitComponents_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonUIKitComponents_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +118,7 @@
 		607FACD21AFB9204008FA782 /* Example for CommonUIKitComponents */ = {
 			isa = PBXGroup;
 			children = (
+				61E1B520293462320016C25E /* DraggableModal */,
 				61AC11C029103AC60065F98B /* UITextFieldOTP */,
 				61EF7C6F28D22E810097979F /* ModalView */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -160,6 +173,19 @@
 				61AC11C129103AD10065F98B /* UITextFieldOTPExampleController.swift */,
 			);
 			name = UITextFieldOTP;
+			sourceTree = "<group>";
+		};
+		61E1B520293462320016C25E /* DraggableModal */ = {
+			isa = PBXGroup;
+			children = (
+				61E1B5382934679E0016C25E /* ModalTagsCellLayout.swift */,
+				61E1B51E2934620B0016C25E /* ModalTagsFactory.swift */,
+				61E1B5212934625C0016C25E /* ModalTagsDataSource.swift */,
+				61E1B5232934628D0016C25E /* Tag.swift */,
+				61E1B54529347A9F0016C25E /* TagsCollectionViewCell.swift */,
+				61E1B54629347A9F0016C25E /* TagsCollectionViewCell.xib */,
+			);
+			name = DraggableModal;
 			sourceTree = "<group>";
 		};
 		61EF7C6F28D22E810097979F /* ModalView */ = {
@@ -271,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				61E1B54829347A9F0016C25E /* TagsCollectionViewCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -294,10 +321,16 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CommonUIKitComponents_Example/Pods-CommonUIKitComponents_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CommonUIKitComponents/CommonUIKitComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CommonUIKitComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -356,7 +389,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				61EF7C7128D22E900097979F /* ModalExampleViewController.swift in Sources */,
+				61E1B54729347A9F0016C25E /* TagsCollectionViewCell.swift in Sources */,
+				61E1B5222934625C0016C25E /* ModalTagsDataSource.swift in Sources */,
+				61E1B51F2934620B0016C25E /* ModalTagsFactory.swift in Sources */,
+				61E1B5242934628D0016C25E /* Tag.swift in Sources */,
 				61AC11C229103AD10065F98B /* UITextFieldOTPExampleController.swift in Sources */,
+				61E1B53A2934679E0016C25E /* ModalTagsCellLayout.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

@@ -14,10 +14,8 @@ class ModalViewController: UIViewController {
     private var backgroundView = UIView()
     
     private var closeButtonImageView = UIImageView().then {
-        if #available(iOS 13.0, *) {
-            $0.image = UIImage(systemName: "xmark")
-            $0.tintColor = .darkGray
-        }
+        $0.image = .xmark
+        $0.tintColor = .darkGray
     }
     
     private lazy var closeButton = UIButton().then {

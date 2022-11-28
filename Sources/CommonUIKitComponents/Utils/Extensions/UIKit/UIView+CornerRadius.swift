@@ -49,5 +49,53 @@ extension UIView {
         roundCornersWith(borderColor: borderColor, borderWidth: borderWidth, cornerRadius: cornerRadius)
     }
     
+    func setupRoundedCorners(radius: CGFloat,
+                             corners: UIRectCorner = .allCorners) {
+        setupRoundedCorners(radius: radius, corners: corners, smoothCorners: true)
+    }
+    
+    func setupRoundedCorners(radius: CGFloat,
+                             corners: UIRectCorner = .allCorners,
+                             smoothCorners: Bool) {
+        layer.cornerRadius = radius
+        if smoothCorners {
+            if #available(iOS 13.0, *) {
+                layer.cornerCurve = .continuous
+            }
+        }
+        clipsToBounds = true
+        if let mask = corners.mask {
+            layer.maskedCorners = mask
+        }
+        if layer.shadowPath != nil {
+            createCachedShadow()
+        }
+    }
+    
+    func createCachedShadow() {
+        let origin = CGPoint(x: bounds.origin.x + layer.shadowOffset.width,
+                             y: bounds.origin.y + layer.shadowOffset.height)
+        let size = CGSize(width: bounds.size.width + layer.shadowOffset.width,
+                          height: bounds.size.height + layer.shadowOffset.height)
+        let rect = CGRect(origin: origin,
+                          size: size)
+        let path: UIBezierPath
+        if layer.cornerRadius > 0 {
+            let maskedRect = layer.maskedCorners.rect
+            if maskedRect == .allCorners {
+                path = UIBezierPath(roundedRect: rect,
+                                    cornerRadius: layer.cornerRadius)
+            } else {
+                path = UIBezierPath(roundedRect: rect,
+                                    byRoundingCorners: maskedRect,
+                                    cornerRadii: CGSize(width: layer.cornerRadius,
+                                                        height: layer.cornerRadius))
+            }
+        } else {
+            path = UIBezierPath(rect: rect)
+        }
+        layer.shadowPath = path.cgPath
+    }
+    
 }
 

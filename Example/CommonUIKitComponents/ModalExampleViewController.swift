@@ -194,6 +194,12 @@ class ModalExampleViewController: UIViewController {
         return alertView
     }
     
+    private func showDraggableModal() {
+        let tags: [Tag] = [.init(text: "test 0", descriptionTag: "descriptionTag 0, descriptionTag 0, descriptionTag 0, descriptionTag 0", iconUrl: ""),
+                           .init(text: "test 1", descriptionTag: "descriptionTag 1, descriptionTag 1, descriptionTag 1, descriptionTag 1, descriptionTag 1", iconUrl: "")]
+        ModalTagsFactory.showModalTags(originController: self, tags: tags)
+    }
+    
     private func secondaryButtonClearColorAction(isOn: Bool) {
         secondaryButtonColor = isOn ? .clear : .red
         if !isOn {
