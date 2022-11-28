@@ -9,6 +9,18 @@ import UIKit
 
 public extension UIStackView {
     
+    func removeAllArrangedSubviews() {
+        arrangedSubviews.forEach {
+            removeArrangedSubviewAndFromSuperview($0)
+        }
+    }
+    
+    func removeArrangedSubviewAndFromSuperview(_ view: UIView) {
+        removeArrangedSubview(view)
+        NSLayoutConstraint.deactivate(view.constraints)
+        view.removeFromSuperview()
+    }
+    
     func addArrangedSubview(_ view: UIView,
                             withMargin margin: UIEdgeInsets,
                             identifier: String = String()) {

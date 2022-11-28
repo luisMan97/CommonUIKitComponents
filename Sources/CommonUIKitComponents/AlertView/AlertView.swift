@@ -267,11 +267,11 @@ public class AlertView: BaseUIView {
     }
     
     private func hideImage() {
-        guard let alertImage = alertImageView.superview else {
+        guard let containerAlertImage = alertImageView.superview else {
             return
         }
         imageIsHidden = true
-        containerStackView.removeArrangedSubview(alertImage)
+        containerStackView.removeArrangedSubviewAndFromSuperview(containerAlertImage)
     }
     
     private func setTitleText(_ text: String?) {
@@ -331,7 +331,7 @@ public class AlertView: BaseUIView {
             return
         }
         titleIsHidden = true
-        containerStackView.removeArrangedSubview(containerTitleLabel)
+        containerStackView.removeArrangedSubviewAndFromSuperview(containerTitleLabel)
     }
     
     private func setMessageText(_ text: String?) {
@@ -378,7 +378,7 @@ public class AlertView: BaseUIView {
             return
         }
         messageIsHidden = true
-        containerStackView.removeArrangedSubview(containerMessageLabel)
+        containerStackView.removeArrangedSubviewAndFromSuperview(containerMessageLabel)
         addTitleBottomIfNecessary()
     }
     
