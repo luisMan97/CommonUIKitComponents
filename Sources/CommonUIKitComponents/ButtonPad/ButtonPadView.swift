@@ -40,6 +40,11 @@ class ButtonPadView: BaseUIView {
         didSet { setPrimaryButtonText() }
     }
     
+    public var primaryButtonFont: UIFont? {
+        get { primaryButton.titleLabel?.font }
+        set { primaryButton.titleLabel?.font = newValue }
+    }
+    
     public var primaryButtonColor: UIColor? {
         didSet { setPrimaryButtonColor() }
     }
@@ -59,6 +64,11 @@ class ButtonPadView: BaseUIView {
     /// Set the right button text
     public var secondaryButtonText: String = String() {
         didSet { setSecondaryButtonText() }
+    }
+    
+    public var secondaryButtonFont: UIFont? {
+        get { secondaryButton.titleLabel?.font }
+        set { secondaryButton.titleLabel?.font = newValue }
     }
     
     public var secondaryButtonColor: UIColor? {

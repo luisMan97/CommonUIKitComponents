@@ -149,13 +149,14 @@ class ModalViewController: UIViewController {
                                   centerY: containerStackViewCenterY)
         
         // buttonPadView
-        let buttonPadViewBottom = (configuration.buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? nil : view.safeAreaLayoutGuide.bottomAnchor
-        let buttonPadViewPaddingBottom = (configuration.buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? 0 : configuration.buttonsPadBottomPadding
-        let buttonPadViewLeft = configuration.buttonsVerticalCenteredToBottom ? view.leftAnchor : nil
-        let buttonPadViewRight = configuration.buttonsVerticalCenteredToBottom ? view.rightAnchor : nil
-        let buttonPadViewPaddingLeft = configuration.buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
-        let buttonPadViewPaddingRight = configuration.buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
-        let buttonPadViewPaddingCenterX = configuration.buttonsVerticalCenteredToBottom ? view : nil
+        let buttonsVerticalCenteredToBottom = configuration.buttonsVerticalCenteredToBottom
+        let buttonPadViewBottom = (buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? nil : view.safeAreaLayoutGuide.bottomAnchor
+        let buttonPadViewPaddingBottom = (buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? 0 : configuration.buttonsPadBottomPadding
+        let buttonPadViewLeft = buttonsVerticalCenteredToBottom ? view.leftAnchor : nil
+        let buttonPadViewRight = buttonsVerticalCenteredToBottom ? view.rightAnchor : nil
+        let buttonPadViewPaddingLeft = buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
+        let buttonPadViewPaddingRight = buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
+        let buttonPadViewPaddingCenterX = buttonsVerticalCenteredToBottom ? view : nil
     
         buttonPadView.anchor(bottom: buttonPadViewBottom,
                              paddingBottom: buttonPadViewPaddingBottom,
@@ -188,6 +189,7 @@ class ModalViewController: UIViewController {
                                  secondaryBorderColor: configuration.secondaryButtonBorderColor,
                                  secondaryBorderWith: configuration.secondaryButtonBorderWidth)
         buttonPadView.primaryButtonText = configuration.primaryActionText
+        buttonPadView.primaryButtonFont = configuration.primaryButtonFont
         buttonPadView.setPrimaryImage(configuration.primaryButtonImage,
                                       spacing: configuration.primaryButtonImageSpacing)
         buttonPadView.primaryButtonColor = configuration.primaryButtonColor
@@ -195,6 +197,7 @@ class ModalViewController: UIViewController {
         if let secondaryTitle = configuration.secondaryActionText,
            secondaryTitle.isNotEmpty {
             buttonPadView.secondaryButtonText = secondaryTitle
+            buttonPadView.secondaryButtonFont = configuration.secondaryButtonFont
             buttonPadView.secondaryButtonColor = configuration.secondaryButtonColor
             buttonPadView.secondaryButtonTitleColor = configuration.secondaryButtonTitleColor
         } else {

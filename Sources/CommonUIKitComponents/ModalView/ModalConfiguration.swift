@@ -9,7 +9,7 @@ import UIKit
 
 public class ModalConfiguration {
     
-    // MARK: - Internal Properties
+    // MARK: - Internal private(set) Properties
     
     private(set) var alertType: AlertType
     private(set) var cornerRadius: CGFloat
@@ -19,6 +19,8 @@ public class ModalConfiguration {
     private(set) var modalVeticalCentered: Bool
     private(set) var primaryActionText: String
     private(set) var secondaryActionText: String?
+    private(set) var primaryButtonFont: UIFont?
+    private(set) var secondaryButtonFont: UIFont?
     private(set) var primaryButtonImage: UIImage?
     private(set) var primaryButtonImageSpacing: CGFloat
     private(set) var secondaryButtonImage: UIImage?
@@ -58,6 +60,7 @@ public class ModalConfiguration {
                 modalHorizontalPadding: CGFloat = 0,
                 modalVeticalCentered: Bool = false,
                 primaryActionText: String = "Aceptar",
+                primaryButtonFont: UIFont? = nil,
                 primaryButtonImage: UIImage? = nil,
                 primaryButtonImageSpacing: CGFloat = 8,
                 primaryButtonColor: UIColor? = .blue,
@@ -67,6 +70,7 @@ public class ModalConfiguration {
                 primaryButtonBorderWidth: CGFloat? = nil,
                 primaryButtonBorderColor: UIColor? = nil,
                 secondaryActionText: String? = nil,
+                secondaryButtonFont: UIFont? = nil,
                 secondaryButtonImage: UIImage? = nil,
                 secondaryButtonImageSpacing: CGFloat = 8,
                 secondaryButtonColor: UIColor? = .lightGray.withAlphaComponent(0.3),
@@ -95,6 +99,7 @@ public class ModalConfiguration {
         self.modalHorizontalPadding = modalHorizontalPadding
         self.modalVeticalCentered = modalVeticalCentered
         self.primaryActionText = primaryActionText
+        self.primaryButtonFont = primaryButtonFont
         self.primaryButtonImage = primaryButtonImage
         self.primaryButtonImageSpacing = primaryButtonImageSpacing
         self.primaryButtonColor = primaryButtonColor
@@ -103,6 +108,7 @@ public class ModalConfiguration {
         self.primaryButtonBorderWidth = primaryButtonBorderWidth
         self.primaryButtonBorderColor = primaryButtonBorderColor
         self.secondaryActionText = secondaryActionText
+        self.secondaryButtonFont = secondaryButtonFont
         self.secondaryButtonImage = secondaryButtonImage
         self.secondaryButtonImageSpacing = secondaryButtonImageSpacing
         self.secondaryButtonColor = secondaryButtonColor
@@ -162,6 +168,11 @@ public class ModalConfiguration {
         return self
     }
     
+    public func setPrimaryButtonFont(_ primaryButtonFont: UIFont) -> ModalConfiguration {
+        self.primaryButtonFont = primaryButtonFont
+        return self
+    }
+    
     public func setPrimaryButtonImage(_ primaryButtonImage: UIImage?) -> ModalConfiguration {
         self.primaryButtonImage = primaryButtonImage
         return self
@@ -204,6 +215,11 @@ public class ModalConfiguration {
     
     public func setSecondaryActionText(_ secondaryActionText: String) -> ModalConfiguration {
         self.secondaryActionText = secondaryActionText
+        return self
+    }
+    
+    public func setSecondaryButtonFont(_ secondaryButtonFont: UIFont) -> ModalConfiguration {
+        self.secondaryButtonFont = secondaryButtonFont
         return self
     }
     

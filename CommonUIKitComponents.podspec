@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CommonUIKitComponents'
-  s.version          = '1.3.0'
+  s.version          = '1.3.1'
   s.summary          = 'Generic and reusable views.'
 
 # This description is used to generate tags and improve search results.
@@ -42,6 +42,5 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
 end
