@@ -13,11 +13,11 @@ class UITextFieldOTPExampleController: UIViewController {
     
     // MARK: - Private UI Properties
     
-    private lazy var textField = AllowedCharsTextField().then {
-        /*$0.delegate = self
+    private lazy var textField = UITextFieldOTP().then {
+        $0.delegate = self
         $0.numberOfTextFields = 4
-        $0.spacing = 20*/
-        $0.allowedCharacters = .alphanumeric
+        $0.spacing = 20
+        $0.setupWhenBuildingUIProgrammatically()
     }
     
     // MARK: - UIViewController Lyfecycle Methods
@@ -46,10 +46,10 @@ class UITextFieldOTPExampleController: UIViewController {
     
 }
 
-/*extension UITextFieldOTPExampleController: UITextFieldOTPDelegate {
+extension UITextFieldOTPExampleController: UITextFieldOTPDelegate {
     
     func textFieldOTP(_ textFieldOTP: UITextFieldOTP, isValid: Bool) {
         
     }
 
-}*/
+}
