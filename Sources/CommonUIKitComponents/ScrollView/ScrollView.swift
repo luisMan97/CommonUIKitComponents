@@ -12,8 +12,6 @@ public class ScrollView: BaseUIView {
     private var scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
     }
-
-    private var containerView = UIView()
     
     private var scrollViewHeight: NSLayoutConstraint?
     
@@ -26,30 +24,29 @@ public class ScrollView: BaseUIView {
     public override func configureView() {
         super.configureView()
         backgroundColor = .white
-        addSubViews()
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        addedScrollViewHeight()
+        DispatchQueue.main.async { self.addedScrollViewHeight() }
     }
     
-    // MARK: - Punlic Methods
+    // MARK: - Public Methods
 
     public func addContainerView(_ view: UIView) {
-        view.fixInView(containerView)
+        addSubViews(containerView: view)
     }
 
     // MARK: - Private Methods
 
-    private func addSubViews() {
+    private func addSubViews(containerView: UIView) {
         addSubview(scrollView)
         scrollView.addSubview(containerView)
         
-        addConstraints()
+        addConstraints(containerView: containerView)
     }
 
-    private func addConstraints() {
+    private func addConstraints(containerView: UIView) {
         // scrollView
         scrollView.anchor(top: topAnchor,
                           bottom: bottomAnchor)
@@ -80,4 +77,5 @@ public class ScrollView: BaseUIView {
         scrollViewHeight?.priority = .required - 1
         scrollViewHeight?.isActive = true
     }
+
 }

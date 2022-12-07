@@ -45,6 +45,7 @@ public class ModalConfiguration {
     private(set) var closeButtonPaddingRight: CGFloat
     private(set) var closeButtonHeight: CGFloat
     private(set) var closeButtonWidth: CGFloat
+    private(set) var showCloseButton: Bool
     private(set) var buttonsPadSpacing: CGFloat
     private(set) var buttonsPadHorizontalPadding: CGFloat
     private(set) var buttonsPadBottomPadding: CGFloat
@@ -91,6 +92,7 @@ public class ModalConfiguration {
                 closeButtonPaddingRight: CGFloat = 16,
                 closeButtonHeight: CGFloat = 20,
                 closeButtonWidth: CGFloat = 20,
+                showCloseButton: Bool = true,
                 underlineButtonsWhenHasNoBackgroundColor: Bool = false) {
         self.alertType = alertType
         self.cornerRadius = cornerRadius
@@ -129,6 +131,7 @@ public class ModalConfiguration {
         self.closeButtonPaddingRight = closeButtonPaddingRight
         self.closeButtonHeight = closeButtonHeight
         self.closeButtonWidth = closeButtonWidth
+        self.showCloseButton = showCloseButton
         self.buttonsPadCornerRadius = buttonsPadCornerRadius
         self.underlineButtonsWhenHasNoBackgroundColor = underlineButtonsWhenHasNoBackgroundColor
     }
@@ -315,6 +318,11 @@ public class ModalConfiguration {
     
     public func setCloseButtonWidth(_ closeButtonWidth: CGFloat) -> ModalConfiguration {
         self.closeButtonWidth = closeButtonWidth
+        return self
+    }
+    
+    public func setShowCloseButton(_ showCloseButton: Bool) -> ModalConfiguration {
+        self.showCloseButton = showCloseButton
         return self
     }
     

@@ -106,8 +106,7 @@ class ModalViewController: UIViewController {
     private func addSubViews() {
         backgroundView.fixInView(view)
         view.addSubview(containerStackView)
-        view.addSubview(closeButtonImageView)
-        view.addSubview(closeButton)
+        addCloseButton()
          
         containerStackView.addArrangedSubview(scrollView)
         if configuration.buttonsVerticalCenteredToBottom {
@@ -121,8 +120,29 @@ class ModalViewController: UIViewController {
         addConstraints()
     }
     
+    private func addCloseButton() {
+        guard configuration.showCloseButton else {
+            return
+        }
+        view.addSubview(closeButtonImageView)
+        view.addSubview(closeButton)
+    }
+    
     private func addConstraints() {
         // closeButton
+        addCloseButtonConstraints()
+        
+        // containerStackView
+        addContainerStackViewConstraints()
+        
+        // buttonPadView
+        addButtonPadViewConstraints()
+    }
+    
+    private func addCloseButtonConstraints() {
+        guard configuration.showCloseButton else {
+            return
+        }
         closeButtonImageView.anchor(top: containerStackView.topAnchor,
                                     paddingTop: configuration.closeButtonPaddingTop,
                                     right: containerStackView.rightAnchor,
@@ -134,53 +154,50 @@ class ModalViewController: UIViewController {
                            right: containerStackView.rightAnchor,
                            width: 50,
                            height: 50)
-        
-        // containerStackView
-        let containerStackViewBottom = configuration.modalVeticalCentered ? nil : view.bottomAnchor
-        let containerStackViewCenterY = configuration.modalVeticalCentered ? view : nil
-         
-        containerStackView.anchor(topGreaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor,
-                                  paddingTop: 20,
-                                  bottom: containerStackViewBottom,
-                                  left: view.leftAnchor,
+    }
+    
+    private func addContainerStackViewConstraints() {
+        if configuration.modalVeticalCentered {
+            containerStackView.anchor(centerY: view)
+        } else {
+            containerStackView.anchor(topGreaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor,
+                                      paddingTop: 20,
+                                      bottom: view.bottomAnchor)
+        }
+        containerStackView.anchor(left: view.leftAnchor,
                                   paddingLeft: configuration.modalHorizontalPadding,
                                   right: view.rightAnchor,
-                                  paddingRight: configuration.modalHorizontalPadding,
-                                  centerY: containerStackViewCenterY)
-        
-        // buttonPadView
-        let buttonsVerticalCenteredToBottom = configuration.buttonsVerticalCenteredToBottom
-        let buttonPadViewBottom = (buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? nil : view.safeAreaLayoutGuide.bottomAnchor
-        let buttonPadViewPaddingBottom = (buttonsVerticalCenteredToBottom || configuration.modalVeticalCentered) ? 0 : configuration.buttonsPadBottomPadding
-        let buttonPadViewLeft = buttonsVerticalCenteredToBottom ? view.leftAnchor : nil
-        let buttonPadViewRight = buttonsVerticalCenteredToBottom ? view.rightAnchor : nil
-        let buttonPadViewPaddingLeft = buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
-        let buttonPadViewPaddingRight = buttonsVerticalCenteredToBottom ? configuration.buttonsPadHorizontalPadding : 0
-        let buttonPadViewPaddingCenterX = buttonsVerticalCenteredToBottom ? view : nil
+                                  paddingRight: configuration.modalHorizontalPadding)
+    }
     
-        buttonPadView.anchor(bottom: buttonPadViewBottom,
-                             paddingBottom: buttonPadViewPaddingBottom,
-                             left: buttonPadViewLeft,
-                             paddingLeft: buttonPadViewPaddingLeft,
-                             right: buttonPadViewRight,
-                             paddingRight: buttonPadViewPaddingRight,
-                             centerX: buttonPadViewPaddingCenterX,
-                             identifier: "buttonPadView")
-        
+    private func addButtonPadViewConstraints() {
         if configuration.buttonsVerticalCenteredToBottom {
+            buttonPadView.anchor(left: view.leftAnchor,
+                                 paddingLeft: configuration.buttonsPadHorizontalPadding,
+                                 right: view.rightAnchor,
+                                 paddingRight: configuration.buttonsPadHorizontalPadding,
+                                 identifier: "buttonPadView")
+            
             let anchor = buttonPadView.centerYAnchor.constraint(equalTo: containerStackView.bottomAnchor)
             anchor.identifier = "buttonPadViewCenterY"
             anchor.isActive = true
+        } else {
+            if !configuration.modalVeticalCentered {
+                buttonPadView.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                                     paddingBottom: configuration.buttonsPadBottomPadding,
+                                     identifier: "buttonPadView")
+            }
         }
     }
     
     private func setupButtonPadView() {
+        let buttonsPadHorizontalPadding = configuration.buttonsVerticalCenteredToBottom ? 0.1 : configuration.buttonsPadHorizontalPadding
         buttonPadView.underlineButtonsWhenHasNoBackgroundColor = configuration.underlineButtonsWhenHasNoBackgroundColor
         buttonPadView.alignment = configuration.buttonPadAligment
         buttonPadView.buttonsSpacing = configuration.buttonsPadSpacing
         if let primaryButtonHeight = configuration.primaryButtonHeight { buttonPadView.primaryButtonHeight = primaryButtonHeight }
         if let secondaryButtonHeight = configuration.secondaryButtonHeight { buttonPadView.secondaryButtonHeight = secondaryButtonHeight }
-        buttonPadView.setButtons(horizontalPadding: configuration.buttonsPadHorizontalPadding,
+        buttonPadView.setButtons(horizontalPadding: buttonsPadHorizontalPadding,
                                  cornerRadius: configuration.buttonsPadCornerRadius,
                                  primaryButtonCornerRadius: configuration.primaryButtonCornerRadius,
                                  primaryBorderColor: configuration.primaryButtonBorderColor,
