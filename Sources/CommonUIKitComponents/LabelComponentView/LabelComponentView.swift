@@ -78,15 +78,17 @@ class LabelComponentView: BaseComponentView {
         addSubViews()
     }
     
-    func updateSpacingInside(_ spacing: CGFloat) {
+    // MARK: - Public Methods
+    
+    public func updateSpacingInside(_ spacing: CGFloat) {
         contentStackView.spacing = spacing
     }
     
-    func updateTextMarginConstraints(insets: UIEdgeInsets) {
+    public func updateTextMarginConstraints(insets: UIEdgeInsets) {
         textLabelContainer.componentInset = insets
     }
     
-    func updateImage(_ image: UIImage?) {
+    public func updateImage(_ image: UIImage?) {
         guard let image = image else {
             contentStackView.removeArrangedSubviewAndFromSuperview(iconImageView)
             return

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseComponentView: BaseUIView {
+public class BaseComponentView: BaseUIView {
     
     // MARK: - Public Properties
 
@@ -42,27 +42,27 @@ class BaseComponentView: BaseUIView {
     
     // MARK: - Internal Properties
         
-    var trailingConstraint: NSLayoutConstraint?
-    var leadingConstraint: NSLayoutConstraint?
-    var topConstraint: NSLayoutConstraint?
-    var bottomConstraint: NSLayoutConstraint?
+    public var trailingConstraint: NSLayoutConstraint?
+    public var leadingConstraint: NSLayoutConstraint?
+    public var topConstraint: NSLayoutConstraint?
+    public var bottomConstraint: NSLayoutConstraint?
     
     // MARK: - Override Methods
     
-    override func configureView() {
+    public override func configureView() {
         super.configureView()
         basicSetup()
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    // MARK: - Internal Methods
+    // MARK: - Public Methods
     
     /// This method will be called after loading from nib and it is intended for overriding
-    func basicSetup() {
+    public func basicSetup() {
         
     }
     
-    func updateComponentInsets(_ insets: UIEdgeInsets) {
+    public func updateComponentInsets(_ insets: UIEdgeInsets) {
         componentInset = insets
         setNeedsLayout()
     }

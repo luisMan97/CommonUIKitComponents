@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ComponentContainerView: BaseUIView {
+public class ComponentContainerView: BaseUIView {
     
     private var topConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
