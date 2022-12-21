@@ -113,32 +113,41 @@ class ButtonPadView: BaseUIView {
     
     // MARK: - Public Methods
     
-    public func setButtons(horizontalPadding: CGFloat,
-                           cornerRadius: CGFloat,
-                           primaryButtonCornerRadius: CGFloat,
-                           primaryBorderColor: UIColor? = nil,
-                           primaryBorderWith: CGFloat? = nil,
-                           secondaryButtonCornerRadius: CGFloat,
-                           secondaryBorderColor: UIColor? = nil,
-                           secondaryBorderWith: CGFloat? = nil) {
-        buttonsHorizontalPadding = horizontalPadding
-        setButtonsCornerRadius(cornerRadius)
-        roundPrimaryButtonCornersWith(cornerRadius: primaryButtonCornerRadius,
-                                      borderColor: primaryBorderColor,
-                                      borderWidth: primaryBorderWith)
-        roundSecondaryButtonCornersWith(cornerRadius: secondaryButtonCornerRadius,
-                                        borderColor: secondaryBorderColor,
-                                        borderWidth: secondaryBorderWith)
+    public func setButtonsCornerRadius(_ cornerRadius: CGFloat) {
+        containerStackView.layer.cornerRadius = cornerRadius
+        containerStackView.clipsToBounds = true
     }
     
-    public func setPrimaryImage(_ image: UIImage?, spacing: CGFloat = 8) {
+    public func roundPrimaryButtonCornersWith(cornerRadius: CGFloat,
+                                               borderColor: UIColor? = nil,
+                                               borderWidth: CGFloat? = nil) {
+        primaryButton.roundCornersWith(borderColor: borderColor,
+                                       borderWidth: borderWidth,
+                                       cornerRadius: cornerRadius)
+    }
+    
+    public func roundSecondaryButtonCornersWith(cornerRadius: CGFloat,
+                                                 borderColor: UIColor? = nil,
+                                                 borderWidth: CGFloat? = nil) {
+        secondaryButton.roundCornersWith(borderColor: borderColor,
+                                         borderWidth: borderWidth,
+                                         cornerRadius: cornerRadius)
+    }
+    
+    public func setPrimaryImage(_ image: UIImage?) {
         primaryButton.setImage(image, for: .normal)
+    }
+    
+    public func setPrimaryCenterTextAndImage(spacing: CGFloat) {
         primaryButton.centerTextAndImage(spacing: spacing)
     }
     
-    public func setSecondaryImage(_ image: UIImage?, spacing: CGFloat = 8) {
-        primaryButton.setImage(image, for: .normal)
-        primaryButton.centerTextAndImage(spacing: spacing)
+    public func setSecondaryImage(_ image: UIImage?) {
+        secondaryButton.setImage(image, for: .normal)
+    }
+    
+    public func setSecondaryCenterTextAndImage(spacing: CGFloat) {
+        secondaryButton.centerTextAndImage(spacing: spacing)
     }
     
     // MARK: - Private Methods
@@ -185,17 +194,6 @@ class ButtonPadView: BaseUIView {
         primaryButton.setTitle(primaryButtonText, for: .normal)
     }
     
-    private func roundPrimaryButtonCornersWith(cornerRadius: CGFloat,
-                                               borderColor: UIColor? = nil,
-                                               borderWidth: CGFloat? = nil) {
-        guard buttonsHorizontalPadding > 0 else {
-            return
-        }
-        primaryButton.roundCornersWith(borderColor: borderColor,
-                                       borderWidth: borderWidth,
-                                       cornerRadius: cornerRadius)
-    }
-    
     private func setPrimaryButtonColor() {
         primaryButton.backgroundColor = primaryButtonColor
         setUnderlineButtonsWhenHasNoBackgroundColor()
@@ -206,25 +204,6 @@ class ButtonPadView: BaseUIView {
         secondaryButton.backgroundColor = secondaryButtonColor
         setUnderlineButtonsWhenHasNoBackgroundColor()
         setButtonsSpacingIfNeeded()
-    }
-    
-    private func roundSecondaryButtonCornersWith(cornerRadius: CGFloat,
-                                                 borderColor: UIColor? = nil,
-                                                 borderWidth: CGFloat? = nil) {
-        guard buttonsHorizontalPadding > 0 else {
-            return
-        }
-        secondaryButton.roundCornersWith(borderColor: borderColor,
-                                         borderWidth: borderWidth,
-                                         cornerRadius: cornerRadius)
-    }
-    
-    private func setButtonsCornerRadius(_ cornerRadius: CGFloat) {
-        guard buttonsHorizontalPadding > 0 else {
-            return
-        }
-        containerStackView.layer.cornerRadius = cornerRadius
-        containerStackView.clipsToBounds = true
     }
     
     private func setSecondaryButtonText() {

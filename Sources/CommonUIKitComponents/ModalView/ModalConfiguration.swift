@@ -16,9 +16,11 @@ public class ModalConfiguration {
     private(set) var roundOnlyTopCorners: Bool
     private(set) var customView: UIView?
     private(set) var modalHorizontalPadding: CGFloat
+    private(set) var modalMaxWidth: CGFloat?
+    private(set) var modalWidth: CGFloat?
     private(set) var modalVeticalCentered: Bool
     private(set) var primaryActionText: String
-    private(set) var secondaryActionText: String?
+    private(set) var secondaryActionText: String
     private(set) var primaryButtonFont: UIFont?
     private(set) var secondaryButtonFont: UIFont?
     private(set) var primaryButtonImage: UIImage?
@@ -48,6 +50,7 @@ public class ModalConfiguration {
     private(set) var showCloseButton: Bool
     private(set) var buttonsPadSpacing: CGFloat
     private(set) var buttonsPadHorizontalPadding: CGFloat
+    private(set) var alignButtonsHorizontallyToModal: Bool
     private(set) var buttonsPadBottomPadding: CGFloat
     private(set) var buttonsPadCornerRadius: CGFloat
     private(set) var underlineButtonsWhenHasNoBackgroundColor: Bool
@@ -59,6 +62,8 @@ public class ModalConfiguration {
                 roundOnlyTopCorners: Bool = false,
                 customView: UIView? = nil,
                 modalHorizontalPadding: CGFloat = 0,
+                modalMaxWidth: CGFloat? = nil,
+                modalWidth: CGFloat? = nil,
                 modalVeticalCentered: Bool = false,
                 primaryActionText: String = "Aceptar",
                 primaryButtonFont: UIFont? = nil,
@@ -70,7 +75,7 @@ public class ModalConfiguration {
                 primaryButtonCornerRadius: CGFloat = 8,
                 primaryButtonBorderWidth: CGFloat? = nil,
                 primaryButtonBorderColor: UIColor? = nil,
-                secondaryActionText: String? = nil,
+                secondaryActionText: String = String(),
                 secondaryButtonFont: UIFont? = nil,
                 secondaryButtonImage: UIImage? = nil,
                 secondaryButtonImageSpacing: CGFloat = 8,
@@ -85,6 +90,7 @@ public class ModalConfiguration {
                 buttonPadAligment: ButtonPadAlign = .horizontal,
                 buttonsPadSpacing: CGFloat = 0,
                 buttonsPadHorizontalPadding: CGFloat = 34,
+                alignButtonsHorizontallyToModal: Bool = false,
                 buttonsPadBottomPadding: CGFloat = 0,
                 buttonsPadCornerRadius: CGFloat = 8,
                 backgroundTapDismissView: Bool = false,
@@ -99,6 +105,8 @@ public class ModalConfiguration {
         self.roundOnlyTopCorners = roundOnlyTopCorners
         self.customView = customView
         self.modalHorizontalPadding = modalHorizontalPadding
+        self.modalMaxWidth = modalMaxWidth
+        self.modalWidth = modalWidth
         self.modalVeticalCentered = modalVeticalCentered
         self.primaryActionText = primaryActionText
         self.primaryButtonFont = primaryButtonFont
@@ -125,6 +133,7 @@ public class ModalConfiguration {
         self.buttonPadAligment = buttonPadAligment
         self.buttonsPadSpacing = buttonsPadSpacing
         self.buttonsPadHorizontalPadding = buttonsPadHorizontalPadding
+        self.alignButtonsHorizontallyToModal = alignButtonsHorizontallyToModal
         self.buttonsPadBottomPadding = buttonsPadBottomPadding
         self.backgroundTapDismissView = backgroundTapDismissView
         self.closeButtonPaddingTop = closeButtonPaddingTop
@@ -158,6 +167,16 @@ public class ModalConfiguration {
     
     public func setModalHorizontalPadding(_ modalHorizontalPadding: CGFloat) -> ModalConfiguration {
         self.modalHorizontalPadding = modalHorizontalPadding
+        return self
+    }
+    
+    public func setModalMaxWidth(_ modalMaxWidth: CGFloat) -> ModalConfiguration {
+        self.modalMaxWidth = modalMaxWidth
+        return self
+    }
+    
+    public func setModalWidth(_ modalWidth: CGFloat) -> ModalConfiguration {
+        self.modalWidth = modalWidth
         return self
     }
     
@@ -288,6 +307,11 @@ public class ModalConfiguration {
     
     public func setButtonsPadHorizontalPadding(_ buttonsPadHorizontalPadding: CGFloat) -> ModalConfiguration {
         self.buttonsPadHorizontalPadding = buttonsPadHorizontalPadding
+        return self
+    }
+    
+    public func setAlignButtonsHorizontallyToModal(_ alignButtonsHorizontallyToModal: Bool) -> ModalConfiguration {
+        self.alignButtonsHorizontallyToModal = alignButtonsHorizontallyToModal
         return self
     }
     

@@ -135,21 +135,58 @@ public extension UIView {
                 centerYIdentifier: String? = nil
     ) {
         translatesAutoresizingMaskIntoConstraints = false
-        setupConstraint(anchor: topAnchor, equalTo: top, identifer: topIdentifier, padding: paddingTop)
-        setupConstraint(anchor: topAnchor, greaterThanOrEqualTo: topGreaterThanOrEqualTo, identifer: topIdentifier, padding: paddingTop)
-        setupConstraint(anchor: topAnchor, lessThanOrEqualTo: topLessThanOrEqualTo, identifer: topIdentifier, padding: paddingTop)
-        setupConstraint(anchor: bottomAnchor, equalTo: bottom, identifer: bottomIdentifier, padding: -paddingBottom)
-        setupConstraint(anchor: bottomAnchor, greaterThanOrEqualTo: bottomGreaterThanOrEqualTo, identifer: bottomIdentifier, padding: -paddingBottom)
-        setupConstraint(anchor: bottomAnchor, lessThanOrEqualTo: bottomLessThanOrEqualTo, identifer: bottomIdentifier, padding: -paddingBottom)
-        setupConstraint(anchor: rightAnchor, equalTo: right, identifer: rightIdentifier, padding: -paddingRight)
-        setupConstraint(anchor: leftAnchor, equalTo: left, identifer: leftIdentifier, padding: paddingLeft)
-        setupConstraint(anchor: widthAnchor, equalTo: width, identifer: widthdIentifier)
-        setupConstraint(anchor: heightAnchor, equalTo: height, identifer: heightIentifier)
-        setupConstraint(anchor: centerXAnchor, equalTo: centerX?.centerXAnchor, identifer: centerXIdentifier, padding: paddingCenterX)
-        setupConstraint(anchor: centerYAnchor, equalTo: centerY?.centerYAnchor, identifer: centerYIdentifier, padding: paddingCenterY)
+        setupConstraint(anchor: topAnchor,
+                        equalTo: top,
+                        identifer: topIdentifier,
+                        padding: paddingTop)
+        setupConstraint(anchor: topAnchor,
+                        greaterThanOrEqualTo: topGreaterThanOrEqualTo,
+                        identifer: topIdentifier,
+                        padding: paddingTop)
+        setupConstraint(anchor: topAnchor,
+                        lessThanOrEqualTo: topLessThanOrEqualTo,
+                        identifer: topIdentifier,
+                        padding: paddingTop)
+        setupConstraint(anchor: bottomAnchor,
+                        equalTo: bottom,
+                        identifer: bottomIdentifier,
+                        padding: -paddingBottom)
+        setupConstraint(anchor: bottomAnchor,
+                        greaterThanOrEqualTo: bottomGreaterThanOrEqualTo,
+                        identifer: bottomIdentifier,
+                        padding: -paddingBottom)
+        setupConstraint(anchor: bottomAnchor,
+                        lessThanOrEqualTo: bottomLessThanOrEqualTo,
+                        identifer: bottomIdentifier,
+                        padding: -paddingBottom)
+        setupConstraint(anchor: rightAnchor,
+                        equalTo: right,
+                        identifer: rightIdentifier,
+                        padding: -paddingRight)
+        setupConstraint(anchor: leftAnchor,
+                        equalTo: left,
+                        identifer: leftIdentifier,
+                        padding: paddingLeft)
+        setupConstraint(anchor: widthAnchor,
+                        equalTo: width,
+                        identifer: widthdIentifier)
+        setupConstraint(anchor: heightAnchor,
+                        equalTo: height,
+                        identifer: heightIentifier)
+        setupConstraint(anchor: centerXAnchor,
+                        equalTo: centerX?.centerXAnchor,
+                        identifer: centerXIdentifier,
+                        padding: paddingCenterX)
+        setupConstraint(anchor: centerYAnchor,
+                        equalTo: centerY?.centerYAnchor,
+                        identifer: centerYIdentifier,
+                        padding: paddingCenterY)
     }
     
-    func setupConstraint(anchor: NSLayoutYAxisAnchor, greaterThanOrEqualTo verticalAnchor: NSLayoutYAxisAnchor?, identifer: String?, padding: CGFloat) {
+    func setupConstraint(anchor: NSLayoutYAxisAnchor,
+                         greaterThanOrEqualTo verticalAnchor: NSLayoutYAxisAnchor?,
+                         identifer: String? = nil,
+                         padding: CGFloat = 0) {
         guard let verticalAnchor = verticalAnchor else {
             return
         }
@@ -160,7 +197,10 @@ public extension UIView {
         anchor.isActive = true
     }
     
-    func setupConstraint(anchor: NSLayoutYAxisAnchor, lessThanOrEqualTo verticalAnchor: NSLayoutYAxisAnchor?, identifer: String?, padding: CGFloat) {
+    func setupConstraint(anchor: NSLayoutYAxisAnchor,
+                         lessThanOrEqualTo verticalAnchor: NSLayoutYAxisAnchor?,
+                         identifer: String? = nil,
+                         padding: CGFloat = 0) {
         guard let verticalAnchor = verticalAnchor else {
             return
         }
@@ -171,7 +211,10 @@ public extension UIView {
         anchor.isActive = true
     }
     
-    func setupConstraint(anchor: NSLayoutYAxisAnchor, equalTo verticalAnchor: NSLayoutYAxisAnchor?, identifer: String?, padding: CGFloat) {
+    func setupConstraint(anchor: NSLayoutYAxisAnchor,
+                         equalTo verticalAnchor: NSLayoutYAxisAnchor?,
+                         identifer: String? = nil,
+                         padding: CGFloat = 0) {
         guard let verticalAnchor = verticalAnchor else {
             return
         }
@@ -182,7 +225,10 @@ public extension UIView {
         anchor.isActive = true
     }
     
-     func setupConstraint(anchor: NSLayoutXAxisAnchor, equalTo horizontalAnchor: NSLayoutXAxisAnchor?, identifer: String?, padding: CGFloat) {
+     func setupConstraint(anchor: NSLayoutXAxisAnchor,
+                          equalTo horizontalAnchor: NSLayoutXAxisAnchor?,
+                          identifer: String? = nil,
+                          padding: CGFloat = 0) {
         guard let horizontalAnchor = horizontalAnchor else {
             return
         }
@@ -193,7 +239,9 @@ public extension UIView {
         anchor.isActive = true
     }
     
-    func setupConstraint(anchor: NSLayoutDimension, equalTo constant: CGFloat, identifer: String?) {
+    func setupConstraint(anchor: NSLayoutDimension,
+                         equalTo constant: CGFloat,
+                         identifer: String? = nil) {
         guard constant != 0 else {
             return
         }
