@@ -12,6 +12,27 @@ import Foundation
 public typealias CompletionHandler = () -> Void
 public typealias GenericCompletionHandler<T> = (T) -> Void
 
+// MARK: - Public Variables
+
+public var appWindow: UIWindow? { UIApplication.shared.delegate?.window ?? nil }
+
+public var windowRootViewController: UIViewController? { appWindow?.rootViewController }
+
+public var windowTopViewController: UIViewController? {
+    func finder(from viewController: UIViewController?) -> UIViewController? {
+        if let tabBarViewController = viewController as? UITabBarController {
+            return finder(from: tabBarViewController.selectedViewController)
+        } else if let navigationController = viewController as? UINavigationController {
+            return finder(from: navigationController.visibleViewController)
+        } else if let presentedViewController = viewController?.presentedViewController {
+            return finder(from: presentedViewController)
+        } else {
+            return viewController
+        }
+    }
+    return finder(from: windowRootViewController)
+}
+
 // MARK: - Public Functions
 
 public func bundleFor(root object: AnyClass, name: String) -> Bundle? {

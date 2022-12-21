@@ -36,7 +36,7 @@ extension UIView {
         guard #available(iOS 11.0, *) else {
             return false
         }
-        return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20
+        return appWindow?.safeAreaInsets.top ?? 0 > 20
     }
 
     /// Bool indicating if the current window has botton SafeArea
@@ -44,7 +44,7 @@ extension UIView {
         guard #available(iOS 11.0, *) else {
             return false
         }
-        return UIApplication.shared.delegate?.window??.safeAreaInsets.bottom ?? 0 > 0
+        return appWindow?.safeAreaInsets.bottom ?? 0 > 0
     }
     
     var windowHasNotSafeArea: Bool { !windowHasSafeArea }
