@@ -12,7 +12,7 @@ public enum AttachmentPlacement {
     case leading
 }
 
-class LabelComponentView: BaseComponentView {
+public class LabelComponentView: BaseComponentView {
 
     // MARK: - Private UI Properties
 
@@ -73,7 +73,7 @@ class LabelComponentView: BaseComponentView {
     
     // MARK: - Override Methods
     
-    override func basicSetup() {
+    public override func basicSetup() {
         super.basicSetup()
         addSubViews()
     }
