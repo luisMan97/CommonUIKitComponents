@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension NSMutableAttributedString {
+public extension NSMutableAttributedString {
     
     func setFont(font: UIFont, forText stringValue: String) {
         let range = mutableString.range(of: stringValue, options: .caseInsensitive)
