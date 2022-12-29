@@ -252,4 +252,76 @@ public extension UIView {
         anchor.isActive = true
     }
     
+    func addConstraintTopParent(constant: CGFloat = 0) {
+        guard let parentTopAnchor = superview?.topAnchor else {
+            return
+        }
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: parentTopAnchor, constant: constant).isActive = true
+    }
+    
+    func addConstraintTop(_ view: UIView, constant: CGFloat = 0){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
+    }
+    
+    func addCenterXConstraint(_ view: UIView, multiplier: CGFloat = 1, constant: CGFloat = 0){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint(item: self,
+                                            attribute: .centerX,
+                                            relatedBy: .equal,
+                                            toItem: view,
+                                            attribute: .centerX,
+                                            multiplier: multiplier,
+                                            constant: constant)
+        constraint.isActive = true
+        self.superview!.addConstraint(constraint)
+    }
+    
+    func addBottomConstraintParent(constant: CGFloat = 0){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.bottomAnchor.constraint(equalTo: self.superview!.bottomAnchor, constant: constant).isActive = true
+    }
+    
+    func setSize(width: CGFloat? = nil, height: CGFloat? = nil){
+        if let width = width {
+            self.setWidthConstraint(width)
+        }
+        if let height = height {
+            self.setHeightConstraint(height)
+        }
+    }
+    
+    func setWidthConstraint(_ width: CGFloat){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = self.widthAnchor.constraint(equalToConstant: width)
+        constraint.identifier = "widthConstraint"
+        constraint.isActive = true
+    }
+    
+    func setHeightConstraint(_ height: CGFloat){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = self.heightAnchor.constraint(equalToConstant: height)
+        constraint.identifier = "hightConstraint"
+        constraint.isActive = true
+    }
+    
+    func addWidthConstraintParent(multiplier: CGFloat = 1){
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: multiplier).isActive = true
+    }
+    
+    func addConstraintXCenterParent(multiplier: CGFloat = 1, constant: CGFloat = 0){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint(item: self,
+                                            attribute: .centerX,
+                                            relatedBy: .equal,
+                                            toItem: self.superview!,
+                                            attribute: .centerX,
+                                            multiplier: multiplier,
+                                            constant: constant)
+        constraint.isActive = true
+        self.superview!.addConstraint(constraint)
+    }
+    
 }

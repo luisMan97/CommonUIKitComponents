@@ -11,19 +11,19 @@ import UIKit
 public protocol ViewControllerComponent: ViewComponent {
     var viewControllerActions: ViewControllerActions { get }
     func present(over baseController: UIViewController?,
-                 completion: (() -> Void)?)
+                 completion: CompletionHandler?)
     func present(above viewController: UIViewController,
                  animated: Bool,
-                 completion: (() -> Void)?)
+                 completion: CompletionHandler?)
     func push(in navigationController: UINavigationController?,
-              completion: (() -> Void)?)
+              completion: CompletionHandler?)
 }
 
 // MARK: - ViewControllerComponent Default Implementations
 public extension ViewControllerComponent {
     func present(over baseController: UIViewController?,
-                 completion: (() -> Void)?) {}
+                 completion: CompletionHandler?) {}
     func push(in navigationController: UINavigationController?,
-              completion: (() -> Void)?) {}
+              completion: CompletionHandler?) {}
 }
 

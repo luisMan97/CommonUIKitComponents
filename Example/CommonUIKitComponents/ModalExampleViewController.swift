@@ -24,6 +24,7 @@ class ModalExampleViewController: UIViewController {
         $0.addTargetAction(for: .touchUpInside) { [weak self] in
             self?.showModal()
         }
+        //$0.addTarget(self, action: #selector(showPopover), for: .touchUpInside)
         $0.setTitle("Modal with custom Alert View", for: .normal)
         $0.underline()
         $0.setTitleColor(.blue, for: .normal)
@@ -106,6 +107,12 @@ class ModalExampleViewController: UIViewController {
         $0.switchCompletion = { [weak self] value in self?.secondaryButtonCornerRadiusViewAction(value: value) }
     }
     
+    private var popoverView: UIView?
+    
+    private var menuClosure = { (index: Int) -> Void in
+        print(index)
+    }
+    
     // MARK: - Private Properties
     
     private var secondaryActionText = "Cancelar"
@@ -160,6 +167,13 @@ class ModalExampleViewController: UIViewController {
                                      paddingRight: 8)
         
         simpleModalWithAlertViewButton.anchor(height: 45)
+    }
+    
+    @objc
+    func showPopover(_ sender: UIButton) {
+        /*sender.showPopoverView(message: "Luis",
+                               size: .init(width: 208, height: 45))*/
+        PopoverMenuFactory.showPopoverMenu(from: sender, items: [.init(icon: "", title: "hola"), .init(icon: "", title: "hola 2")], callBack: menuClosure)
     }
     
     private func showModal() {
@@ -248,6 +262,14 @@ extension ModalExampleViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
        textField.resignFirstResponder()
        return true
+    }
+    
+}
+
+extension ModalExampleViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
     }
     
 }

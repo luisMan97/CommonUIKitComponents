@@ -7,7 +7,19 @@
 
 import UIKit
 
+public
 extension UIView {
+    
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self.next
+        while parentResponder != nil {
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+            parentResponder = parentResponder?.next
+        }
+        return nil
+    }
     
     class func getAllSubviews<T: UIView>(from parenView: UIView) -> [T] {
         return parenView.subviews.flatMap { subView -> [T] in
@@ -50,6 +62,5 @@ extension UIView {
     var windowHasNotSafeArea: Bool { !windowHasSafeArea }
     
     var windowHasNotBottomSafeArea: Bool { !windowHasBottomSafeArea }
-    
     
 }

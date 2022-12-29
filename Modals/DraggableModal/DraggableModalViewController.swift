@@ -88,19 +88,19 @@ final class DraggableModalViewController: UIViewController {
     private var scrollViewAdapter: DraggableModalScrollViewAdapter?
 
     private var topSafeArea: CGFloat = {
-        return UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0.0
+        keyWindow?.safeAreaInsets.top ?? 0.0
     }()
 
     private lazy var viewHeight: CGFloat = {
-        return view.bounds.height - topSafeArea
+        view.bounds.height - topSafeArea
     }()
 
     private lazy var lastConstant: CGFloat = {
-        return topContainerConstraint?.constant ?? 0
+        topContainerConstraint?.constant ?? 0
     }()
 
     private lazy var modalSafeTop: CGFloat = {
-        return topSafeArea + .spacing(8)
+        topSafeArea + .spacing(8)
     }()
 
     // MARK: - Modal State
@@ -115,11 +115,11 @@ final class DraggableModalViewController: UIViewController {
     var didDissmisDrag: Observable<Void> { didDissmisDragMutableObservable }
     var deallocated: Observable<Void> { deallocatedMutableObservable }
     
-    let didLoadMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
-    let willAppearMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
-    let didAppearMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
-    let didDissmisDragMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
-    let deallocatedMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
+    private let didLoadMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
+    private let willAppearMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
+    private let didAppearMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
+    private let didDissmisDragMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
+    private let deallocatedMutableObservable: MutableObservable<Void> = MutableObservable<Void>()
 
     // MARK: - Life Cycle
     init(config: DraggableModalConfig) {
@@ -202,7 +202,7 @@ final class DraggableModalViewController: UIViewController {
         StatusBar.config.setupOldStyle()
     }
 
-    func dismissComponent(completion: (() -> Void)?) {
+    func dismissComponent(completion: CompletionHandler?) {
         animateModal(willAppear: false, completion: completion)
     }
 }
@@ -423,7 +423,7 @@ private extension DraggableModalViewController {
         animateModal(willAppear: false)
     }
 
-    func animateModal(willAppear: Bool, completion: (() -> Void)? = nil) {
+    func animateModal(willAppear: Bool, completion: CompletionHandler? = nil) {
         DispatchQueue.main.asyncAfter(deadline: .now() + (willAppear ? 0.2 : 0.0), execute: { [weak self] in
             if !willAppear {
                 self?.bottomComponent?.animateAppear(willAppear)

@@ -18,7 +18,7 @@ final class StatusBar {
     static let config = StatusBar()
 
     var height: CGFloat {
-        UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 20.0
+        keyWindow?.safeAreaInsets.top ?? 20.0
     }
 
     var currentHeight: CGFloat {
@@ -96,31 +96,6 @@ extension StatusBar {
             default:
                 return false
             }
-        }
-    }
-
-}
-
-extension UIApplication {
-
-    var statusBarView: UIView? {
-        guard !ProcessInfo.processInfo.arguments.contains(where: { $0.contains("xctest") }) else {
-            return nil
-        }
-
-        if #available(iOS 13.0, *) {
-            let tag = 12345
-            if let statusBar = UIApplication.shared.keyWindow?.viewWithTag(tag) {
-                return statusBar
-            } else {
-                let frame = UIApplication.shared.statusBarFrame
-                let statusBar = UIView(frame: frame)
-                statusBar.tag = tag
-                UIApplication.shared.keyWindow?.addSubview(statusBar)
-                return statusBar
-            }
-        } else {
-            return value(forKey: "statusBar") as? UIView
         }
     }
 

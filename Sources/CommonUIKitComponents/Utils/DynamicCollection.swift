@@ -15,7 +15,7 @@ public protocol DynamicCollection: AnyObject {
         maxSize: CGSize?,
         layoutPriorities: (horizontal: UILayoutPriority, vertical: UILayoutPriority)?,
         orientation: UICollectionView.ScrollDirection,
-        cellSetup: ((T)->Void)?) -> CGSize
+        cellSetup: GenericCompletionHandler<T>?) -> CGSize
     
     func calculateSizeFor<T: UICollectionViewCell>(
         cellType: T.Type,
@@ -23,7 +23,7 @@ public protocol DynamicCollection: AnyObject {
         maxSize: CGSize?,
         orientation: UICollectionView.ScrollDirection,
         bundle: Bundle?,
-        cellSetup: ((T)->Void)?) -> CGSize
+        cellSetup: GenericCompletionHandler<T>?) -> CGSize
     
     func calculateSizeFor<T: UICollectionViewCell>(
         cellType: T.Type,
@@ -32,7 +32,7 @@ public protocol DynamicCollection: AnyObject {
         orientation: UICollectionView.ScrollDirection,
         at bundle: Bundle,
         mainSize: CGSize,
-        content: ((T)->Void)?) -> CGSize
+        content: GenericCompletionHandler<T>?) -> CGSize
 }
 
 extension DynamicCollection {
@@ -43,7 +43,7 @@ extension DynamicCollection {
                                                           orientation: UICollectionView.ScrollDirection,
                                                           at bundle: Bundle,
                                                           mainSize: CGSize,
-                                                          content: ((T)->Void)?) -> CGSize {
+                                                          content: GenericCompletionHandler<T>?) -> CGSize {
         guard let cell = UINib(nibName: String(describing: cellType),
                                bundle: bundle).instantiate(withOwner: self,
                                                            options: nil).first as? T else {
@@ -63,7 +63,7 @@ extension DynamicCollection {
                                                                         maxSize: CGSize?,
                                                                         layoutPriorities: (horizontal: UILayoutPriority, vertical: UILayoutPriority)?,
                                                                         orientation: UICollectionView.ScrollDirection,
-                                                                        cellSetup: ((T)->Void)?) -> CGSize {
+                                                                        cellSetup: GenericCompletionHandler<T>?) -> CGSize {
         return calculateSizeFor(cell: T(),
                                 mainSize: mainSize,
                                 minSize: minSize,
@@ -80,7 +80,7 @@ extension DynamicCollection {
                                                            maxSize: CGSize?,
                                                            layoutPriorities: (horizontal: UILayoutPriority, vertical: UILayoutPriority)? = nil,
                                                            orientation: UICollectionView.ScrollDirection,
-                                                           cellSetup: ((T)->Void)?) -> CGSize {
+                                                           cellSetup: GenericCompletionHandler<T>?) -> CGSize {
         
         let mainWidth: CGFloat
         let mainHeight: CGFloat

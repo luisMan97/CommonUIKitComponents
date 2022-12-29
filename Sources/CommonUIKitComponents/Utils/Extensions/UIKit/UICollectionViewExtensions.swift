@@ -26,7 +26,7 @@ extension UICollectionView: DynamicCollection {
                                                           maxSize: CGSize? = nil,
                                                           orientation: UICollectionView.ScrollDirection,
                                                           bundle: Bundle? = nil,
-                                                          cellSetup: ((T)->Void)?) -> CGSize {
+                                                          cellSetup: GenericCompletionHandler<T>?) -> CGSize {
         let bundle = bundle ?? bundleForXib(type: cellType)
         return calculateSizeFor(cellType: cellType,
                                 with: minSize,
@@ -42,7 +42,7 @@ extension UICollectionView: DynamicCollection {
                                                                         maxSize: CGSize? = nil,
                                                                         layoutPriorities: (horizontal: UILayoutPriority, vertical: UILayoutPriority)? = nil,
                                                                         orientation: UICollectionView.ScrollDirection = .vertical,
-                                                                        cellSetup: ((T)->Void)?) -> CGSize {
+                                                                        cellSetup: GenericCompletionHandler<T>?) -> CGSize {
         calculateSizeForCellWithoutNib(of: type,
                                        mainSize: minSize,
                                        minSize: minSize,

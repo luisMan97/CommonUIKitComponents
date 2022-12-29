@@ -16,6 +16,8 @@ public typealias GenericCompletionHandler<T> = (T) -> Void
 
 public var appWindow: UIWindow? { UIApplication.shared.delegate?.window ?? nil }
 
+public var keyWindow: UIWindow? { UIApplication.shared.keyWindow }
+
 public var windowRootViewController: UIViewController? { appWindow?.rootViewController }
 
 public var windowTopViewController: UIViewController? {
@@ -51,7 +53,7 @@ public func bundleForXib<T: NSObject>(type: T.Type) -> Bundle {
     if defaultBundle.has(xib: name) { return defaultBundle }
     
     if !Bundle.main.has(xib: name) {
-        print("The xib named: " + name + " isn't in the resources bundle neither in the class bundle or in the main bundle, this message only tells you that Rappi will crash 🧨")
+        print("The xib named: " + name + " isn't in the resources bundle neither in the class bundle or in the main bundle, this message only tells you that the application will crash 🧨")
     }
     return .main
 }
