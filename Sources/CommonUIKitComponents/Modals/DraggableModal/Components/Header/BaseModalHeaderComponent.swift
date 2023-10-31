@@ -17,16 +17,12 @@ public final class BaseModalHeaderComponent: ModalHeaderComponent {
         }
     }
 
-    public var base: UIView {
-        return component
-    }
+    public var base: UIView { component }
 
-    public var height: CGFloat {
-        return component.calculateAppropriateHeight()
-    }
+    public var height: CGFloat { component.calculateAppropriateHeight() }
 
     public var titleTapper: Observable<Void>? {
-        return component.titleTapper()
+        component.titleTapper()
     }
 
     public var collectionOffset: CGPoint? {
@@ -35,9 +31,7 @@ public final class BaseModalHeaderComponent: ModalHeaderComponent {
         }
     }
 
-    public var isFloating: Bool {
-        component.isFloating
-    }
+    public var isFloating: Bool { component.isFloating }
 
     public init(config: BaseModalHeaderConfig) {
 

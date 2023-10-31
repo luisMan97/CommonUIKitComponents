@@ -11,7 +11,7 @@ import UIKit
 public struct DraggableModalConfig {
     public let header: ModalHeaderComponent
     public let bottom: BottomViewComponent?
-    public let dataSource: ModalDataSource
+    public let dataSource: ModalDataSourceImplementation
     public var backgroundImage: UIImageView?
     public var leastProportion: CGFloat = 0.95
     public var higherProportion: CGFloat = 0.95
@@ -21,20 +21,24 @@ public struct DraggableModalConfig {
     public var generateFeedback: Bool = true
     public var hiddenTopIndicator: Bool = false
 
-    public init(header: ModalHeaderComponent, bottom: BottomViewComponent?, dataSource: ModalDataSource, backgroundImage: UIImageView? = nil) {
+    public init(header: ModalHeaderComponent,
+                bottom: BottomViewComponent?,
+                dataSource: ModalDataSourceImplementation,
+                backgroundImage: UIImageView? = nil) {
         self.header = header
         self.dataSource = dataSource
         self.bottom = bottom
         self.backgroundImage = backgroundImage
     }
 
-    public init(header: ModalHeaderComponent, dataSource: ModalDataSource) {
+    public init(header: ModalHeaderComponent,
+                dataSource: ModalDataSourceImplementation) {
         self.header = header
         self.dataSource = dataSource
         self.bottom = ModalCloseBottomComponent()
     }
 
-    public init(dataSource: ModalDataSource) {
+    public init(dataSource: ModalDataSourceImplementation) {
         let insets = UIEdgeInsets(top: .spacing(4), left: 0, bottom: .spacing(4), right: 0)
         self.header = BaseModalHeaderComponent(config: BaseModalHeaderConfig(contentInsets: insets))
         self.dataSource = dataSource

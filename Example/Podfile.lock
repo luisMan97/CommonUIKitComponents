@@ -1,31 +1,15 @@
 PODS:
-  - CommonUIKitComponents (1.4.5):
-    - RxCocoa
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
+  - CommonUIKitComponents (1.4.5)
 
 DEPENDENCIES:
   - CommonUIKitComponents (from `../`)
-
-SPEC REPOS:
-  trunk:
-    - RxCocoa
-    - RxRelay
-    - RxSwift
 
 EXTERNAL SOURCES:
   CommonUIKitComponents:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CommonUIKitComponents: 794d5db10ca003ae36575b222d5c748869a48218
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  CommonUIKitComponents: 980c1fa33d8888575b89801ce68711506dfc7d67
 
 PODFILE CHECKSUM: b214aef44a4d494c5ce6ef786484d0ab4f569f20
 

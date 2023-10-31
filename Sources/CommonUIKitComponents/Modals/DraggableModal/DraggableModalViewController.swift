@@ -22,39 +22,39 @@ final class DraggableModalViewController: UIViewController {
         view.addSubview($0)
     }
     private lazy var bottomView: UIView? = {
-        guard let bottomComponent = bottomComponent else { return nil }
+        guard let bottomComponent else { return nil }
         let bottomView = bottomComponent.base
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bottomView)
         return bottomView
     }()
     private lazy var collectionView: UICollectionView? = {
-        if contentViewController == nil {
-            let collectionView = makeCollection()
-            containerView.addSubview(collectionView)
-            return collectionView
-        } else {
+        if contentViewController != nil {
             return nil
         }
+        let collectionView = makeCollection()
+        containerView.addSubview(collectionView)
+        return collectionView
     }()
     private lazy var closeView = UIView(frame: .zero).then {
-        view.insertSubview($0, at: 0)
+        view.insertSubview($0,
+                           at: 0)
     }
     private var contentView: UIView {
         if let view = contentViewController?.view {
             return view
-        } else if let collectionView = collectionView {
+        } else if let collectionView {
             return collectionView
         } else {
             return UIView()
         }
     }
     private lazy var backImage: UIImageView? = {
-        guard let imageView = backgroundImage else { return nil }
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .clear
-        containerView.addSubview(imageView)
-        return imageView
+        guard let backgroundImage else { return nil }
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.backgroundColor = .clear
+        containerView.addSubview(backgroundImage)
+        return backgroundImage
     }()
 
     private weak var topContainerConstraint: NSLayoutConstraint?
@@ -65,7 +65,7 @@ final class DraggableModalViewController: UIViewController {
     private var headerComponent: ModalHeaderComponent
     private var bottomComponent: BottomViewComponent?
     private var backgroundImage: UIImageView?
-    private let dataSource: ModalDataSource?
+    private let dataSource: ModalDataSourceImplementation?
     private let higherProportion: CGFloat
     private let leastProportion: CGFloat
     private let percentThreshold: CGFloat
@@ -85,7 +85,6 @@ final class DraggableModalViewController: UIViewController {
             changeHeaderState()
         }
     }
-    private var scrollViewAdapter: DraggableModalScrollViewAdapter?
 
     private var topSafeArea: CGFloat = {
         keyWindow?.safeAreaInsets.top ?? 0.0
@@ -136,11 +135,16 @@ final class DraggableModalViewController: UIViewController {
         self.generateFeedback = config.generateFeedback
         self.backgroundImage = config.backgroundImage
         self.hiddenTopIndicator = config.hiddenTopIndicator
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: nil,
+                   bundle: nil)
     }
 
-    init(controller: UIViewController, canBeDismissed: Bool) {
-        let insets = UIEdgeInsets(top: .spacing(2), left: 0, bottom: .spacing(2), right: 0)
+    init(controller: UIViewController,
+         canBeDismissed: Bool) {
+        let insets = UIEdgeInsets(top: .spacing(2),
+                                  left: .zero,
+                                  bottom: .spacing(2),
+                                  right: .zero)
         self.headerComponent = BaseModalHeaderComponent(config: BaseModalHeaderConfig(contentInsets: insets, showDecorator: false))
         self.contentViewController = controller
         self.dataSource = nil
@@ -154,7 +158,8 @@ final class DraggableModalViewController: UIViewController {
         self.hiddenTopIndicator = false
         self.backgroundImage?.isHidden = true
         self.bottomComponent = canBeDismissed ? ModalCloseBottomComponent() : nil
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: nil,
+                   bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -210,26 +215,34 @@ final class DraggableModalViewController: UIViewController {
 // MARK: - Private Implementation
 private extension DraggableModalViewController {
     func standardTopConstant() -> CGFloat {
-        return max(firstConstant - keyboardHeight, 0)
+        max(firstConstant - keyboardHeight, 0)
     }
 
     func makeView() {
         let rootView = UIView()
         rootView.frame = UIScreen.main.bounds
-        self.view = rootView
+        view = rootView
 
-        if let collectionView = self.collectionView {
-            disableResizing(of: closeView, topView, topView, collectionView, headerComponent.base, containerView)
-        } else if let contentViewController = contentViewController {
+        if let collectionView {
+            disableResizing(of: closeView,
+                            topView,
+                            topView,
+                            collectionView,
+                            headerComponent.base,
+                            containerView)
+        } else if let contentViewController {
             displayContentController()
-            disableResizing(of: closeView, topView, topView, contentViewController.view, headerComponent.base, containerView)
+            disableResizing(of: closeView,
+                            topView,
+                            topView,
+                            contentViewController.view,
+                            headerComponent.base,
+                            containerView)
         }
     }
 
     func displayContentController() {
-        guard let contentViewController = self.contentViewController else {
-            return
-        }
+        guard let contentViewController else { return }
 
         addChild(contentViewController)
         containerView.addSubview(contentViewController.view)
@@ -237,9 +250,7 @@ private extension DraggableModalViewController {
     }
 
     func removeContentViewController() {
-        guard let contentViewController = self.contentViewController else {
-            return
-        }
+        guard let contentViewController else { return }
 
         contentViewController.willMove(toParent: nil)
         contentViewController.view.removeFromSuperview()
@@ -250,14 +261,12 @@ private extension DraggableModalViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionHeadersPinToVisibleBounds = true
-
-        return UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return .init(frame: .zero,
+                     collectionViewLayout: layout)
     }
 
     func setupDataSource() {
-        guard let dataSource = self.dataSource else {
-            return
-        }
+        guard let dataSource else { return }
 
         if refreshLayoutAfterUpdate {
             dataSource.contentSize.observe { [weak self] size in
@@ -265,28 +274,31 @@ private extension DraggableModalViewController {
             }
         }
         dataSource.viewController = self
+        dataSource.viewController = self
         dataSource.collectionView = collectionView
     }
 
     func subscribeToScroll() {
-        var scrollView: UIScrollView?
-
-        if let collectionView = self.collectionView {
-            scrollView = collectionView
-        } else {
-            scrollView = collectionViewInContentVC
-        }
-
-        scrollViewAdapter = DraggableModalScrollViewAdapter(scrollView: scrollView)
-
-        scrollViewAdapter?.didScroll.observe { [weak self] in
-            self?.scrollViewDidScroll()
-        }
-        scrollViewAdapter?.didEndDragging.observe { [weak self] in
-            self?.scrollViewDidEndDragging()
-        }
-        scrollViewAdapter?.willBeginDecelerating.observe { [weak self] in
-            self?.scrollViewWillBeginDecelerating()
+        if let dataSource {
+            dataSource.didScroll.observe { [weak self] in
+                self?.scrollViewDidScroll()
+            }
+            dataSource.didEndDragging.observe { [weak self] in
+                self?.scrollViewDidEndDragging()
+            }
+            dataSource.willBeginDecelerating.observe { [weak self] in
+                self?.scrollViewWillBeginDecelerating()
+            }
+        } else if let contentViewController = contentViewController as? DraggableModalWithCollectionViewController {
+            contentViewController.didScroll.observe { [weak self] in
+                self?.scrollViewDidScroll()
+            }
+            contentViewController.didEndDragging.observe { [weak self] in
+                self?.scrollViewDidEndDragging()
+            }
+            contentViewController.willBeginDecelerating.observe { [weak self] in
+                self?.scrollViewWillBeginDecelerating()
+            }
         }
     }
 
@@ -340,17 +352,17 @@ private extension DraggableModalViewController {
             topView.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -.spacing(2))
         ])
 
-        if let image = backImage {
+        if let backImage {
             NSLayoutConstraint.activate([
-                image.topAnchor.constraint(equalTo: containerView.topAnchor),
-                image.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                image.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                image.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+                backImage.topAnchor.constraint(equalTo: containerView.topAnchor),
+                backImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                backImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                backImage.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
             ])
         }
 
-        if let bottomView = bottomView,
-           let bottomComponent = bottomComponent {
+        if let bottomView,
+           let bottomComponent {
             NSLayoutConstraint.activate([
                 bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -369,28 +381,31 @@ private extension DraggableModalViewController {
     }
 
     func setupAppearance() {
-        if let back = backImage {
-            containerView.sendSubviewToBack(back)
+        if let backImage {
+            containerView.sendSubviewToBack(backImage)
         }
         closeView.backgroundColor = .overlayB
-        closeView.alpha = 0.0
+        closeView.alpha = .zero
         topView.backgroundColor = .overlayA
         topView.setupRoundedCorners(radius: .spacing(1))
-        topView.transform = CGAffineTransform(translationX: 0, y: view.bounds.height)
+        topView.transform = CGAffineTransform(translationX: .zero,
+                                              y: view.bounds.height)
 
-        if let collectionView = self.collectionView {
+        if let collectionView {
             collectionView.showsVerticalScrollIndicator = false
             collectionView.showsHorizontalScrollIndicator = false
             collectionView.contentInsetAdjustmentBehavior = .never
             collectionView.backgroundColor = .primaryA
-            collectionView.contentInset = .init(top: 0,
-                                                left: 0,
+            collectionView.contentInset = .init(top: .zero,
+                                                left: .zero,
                                                 bottom: .spacing(30),
-                                                right: 0)
+                                                right: .zero)
         }
 
-        containerView.setupRoundedCorners(radius: 30.0, corners: [.topLeft, .topRight])
-        containerView.transform = CGAffineTransform(translationX: 0, y: view.bounds.height)
+        containerView.setupRoundedCorners(radius: 30.0,
+                                          corners: [.topLeft, .topRight])
+        containerView.transform = CGAffineTransform(translationX: .zero,
+                                                    y: view.bounds.height)
         containerView.backgroundColor = .primaryA
         bottomComponent?.viewDidLoad()
         view.backgroundColor = .clear
@@ -423,7 +438,8 @@ private extension DraggableModalViewController {
         animateModal(willAppear: false)
     }
 
-    func animateModal(willAppear: Bool, completion: CompletionHandler? = nil) {
+    func animateModal(willAppear: Bool,
+                      completion: CompletionHandler? = nil) {
         DispatchQueue.main.asyncAfter(deadline: .now() + (willAppear ? 0.2 : 0.0), execute: { [weak self] in
             if !willAppear {
                 self?.bottomComponent?.animateAppear(willAppear)
@@ -431,14 +447,14 @@ private extension DraggableModalViewController {
 
             UIView.animate(withDuration: willAppear ? 0.25 : 0.4,
                            animations: { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 let transform = CGAffineTransform(translationX: 0,
                                                   y: self.view.bounds.height)
                 self.containerView.transform = willAppear ? .identity : transform
                 self.topView.transform = willAppear ? .identity : transform
                 self.closeView.alpha = willAppear ? 1.0 : 0.0
             }, completion: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
 
                 if willAppear && self.generateFeedback {
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -493,13 +509,7 @@ private extension DraggableModalViewController {
     }
 
     func scrollViewDidScroll() {
-        var scrollView: UIScrollView?
-
-        if let collectionView = self.collectionView {
-            scrollView = collectionView
-        } else {
-            scrollView = collectionViewInContentVC
-        }
+        let scrollView: UIScrollView? = collectionView != nil ? collectionView : collectionViewInContentVC
 
         if containerView.frame.minY > topSafeArea && isExpandable {
             scrollView?.contentOffset.y = 0
@@ -511,17 +521,9 @@ private extension DraggableModalViewController {
     }
 
     func scrollViewDidEndDragging() {
-        var optionalScrollView: UIScrollView?
+        let scrollView: UIScrollView? = collectionView != nil ? collectionView : collectionViewInContentVC
 
-        if let collectionView = self.collectionView {
-            optionalScrollView = collectionView
-        } else {
-            optionalScrollView = collectionViewInContentVC
-        }
-
-        guard let scrollView = optionalScrollView else {
-            return
-        }
+        guard let scrollView else { return }
 
         guard (topContainerConstraint?.constant ?? 0.0) > minConstant && !shouldFinish else {
             return
@@ -532,17 +534,9 @@ private extension DraggableModalViewController {
     }
 
     func scrollViewWillBeginDecelerating() {
-        var optionalScrollView: UIScrollView?
+        let scrollView: UIScrollView? = collectionView != nil ? collectionView : collectionViewInContentVC
 
-        if let collectionView = self.collectionView {
-            optionalScrollView = collectionView
-        } else {
-            optionalScrollView = collectionViewInContentVC
-        }
-
-        guard let scrollView = optionalScrollView else {
-            return
-        }
+        guard let scrollView else { return }
 
         guard shouldStopScroll else { return }
         shouldStopScroll = false
@@ -614,9 +608,9 @@ extension DraggableModalViewController: UIGestureRecognizerDelegate {
         let velocity = recognizer.velocity(in: collectionView).y
         var isWithOutScrollArea = true
 
-        if let collectionView = self.collectionView {
+        if let collectionView {
             isWithOutScrollArea = collectionView.contentOffset.y <= 0
-        } else if let collectionViewInContentVC = self.collectionViewInContentVC {
+        } else if let collectionViewInContentVC {
             isWithOutScrollArea = collectionViewInContentVC.contentOffset.y <= 0
         }
 
@@ -636,8 +630,10 @@ extension DraggableModalViewController: UIGestureRecognizerDelegate {
 
     private func calculateGesture(with velocity: CGFloat, to deltaY: CGFloat) {
         let minConstant = isExpandable ? 0 : standardTopConstant()
-        let maxY = max(minConstant, lastConstant + deltaY)
-        let minY = min(view.bounds.height, maxY)
+        let maxY = max(minConstant,
+                       lastConstant + deltaY)
+        let minY = min(view.bounds.height,
+                       maxY)
         let dismissPercentage = containerView.bounds.height / (viewHeight - standardTopConstant())
         topContainerConstraint?.constant = minY
         closeView.alpha = dismissPercentage
@@ -654,10 +650,10 @@ extension DraggableModalViewController: UIGestureRecognizerDelegate {
         var isCollectionViewDragging = false
         var isCollectionViewDecelerating = false
 
-        if let collectionView = self.collectionView {
+        if let collectionView {
             isCollectionViewDragging = collectionView.isDragging
             isCollectionViewDecelerating = collectionView.isDecelerating
-        } else if let collectionViewInContentVC = collectionViewInContentVC {
+        } else if let collectionViewInContentVC {
             isCollectionViewDragging = collectionViewInContentVC.isDragging
             isCollectionViewDecelerating = collectionViewInContentVC.isDecelerating
         }
@@ -673,24 +669,8 @@ extension DraggableModalViewController: UIGestureRecognizerDelegate {
     }
 
     private func findScrollViewInContentController() -> UICollectionView? {
-        guard let contentViewController = contentViewController else { return nil }
+        guard let contentViewController else { return nil }
         let collectionViews: [UICollectionView] = UIView.getAllSubviews(from: contentViewController.view)
         return collectionViews.first
     }
-}
-
-extension DraggableModalViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        .zero
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        .zero
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Tapped")
-    }
-    
 }

@@ -89,9 +89,9 @@ extension ViewController: UITableViewDelegate {
             alertViewExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(alertViewExampleViewController, animated: true)
         case 5:
-            ModalTagsFactory.showModalTags(originController: self,
-                                           tags: [.init(text: "Text",
-                                                        descriptionTag: "Description tag")])
+            let modalExampleViewController = DraggableModalViewController()
+            modalExampleViewController.title = options[indexPath.row].rawValue
+            navigationController?.pushViewController(modalExampleViewController, animated: true)
         case 6:
             let modalExampleViewController = IndicatorViewController()
             modalExampleViewController.title = options[indexPath.row].rawValue

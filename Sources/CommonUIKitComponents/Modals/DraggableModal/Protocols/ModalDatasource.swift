@@ -17,11 +17,11 @@ public protocol ModalDataSource: UIScrollViewDelegate {
 }
 
 // MARK: - ModalDataSource Default Implementation
-public extension ModalDataSource {
+/*public extension ModalDataSource {
 
     var viewController: UIViewController? {
         get { nil }
         set {}
     }
 
-}
+}*/

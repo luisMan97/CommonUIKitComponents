@@ -8,13 +8,13 @@
 
 import CommonUIKitComponents
 
-class ModalTagsDataSource: NSObject, ModalDataSource {
+class ModalTagsDataSource: ModalDataSourceImplementation {
 
     // MARK: - Internal Properties
 
-    var contentSize: Observable<CGSize> { contentSizeMutableObservable }
+    override var contentSize: Observable<CGSize> { contentSizeMutableObservable }
 
-    weak var collectionView: UICollectionView? {
+    weak override var collectionView: UICollectionView? {
         didSet {
             setupCollectionView()
         }
@@ -38,7 +38,7 @@ class ModalTagsDataSource: NSObject, ModalDataSource {
         let nib = UINib(nibName: "TagsCollectionViewCell", bundle: Bundle(for: TagsCollectionViewCell.self))
         collectionView?.register(nib, forCellWithReuseIdentifier: "TagsCollectionViewCell")
         collectionView?.dataSource = self
-        collectionView!.delegate = self
+        collectionView?.delegate = self
         collectionView?.isScrollEnabled = true
         collectionView?.contentInset = UIEdgeInsets(top: 20,
                                                     left: 24,

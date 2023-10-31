@@ -37,13 +37,16 @@ public struct DraggableModalComponent: ViewControllerComponent {
     }
 
     // Use this to present the component over your view controller
-    public func present(over baseController: UIViewController?, completion: CompletionHandler? = nil) {
+    public func present(over baseController: UIViewController?,
+                        completion: CompletionHandler? = nil) {
         component.modalPresentationStyle = .overFullScreen
         baseController?.present(component, animated: false, completion: completion)
     }
 
     // Use this to present any view controller above your component
-    public func present(above viewController: UIViewController, animated: Bool, completion: CompletionHandler? = nil) {
+    public func present(above viewController: UIViewController,
+                        animated: Bool = true, completion:
+                        CompletionHandler? = nil) {
         component.present(viewController, animated: animated, completion: completion)
     }
 

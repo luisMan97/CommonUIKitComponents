@@ -20,10 +20,5 @@
   },
   "source_files": "Sources/CommonUIKitComponents/**/*",
   "swift_versions": "5.0",
-  "dependencies": {
-    "RxCocoa": [
-
-    ]
-  },
   "swift_version": "5.0"
 }

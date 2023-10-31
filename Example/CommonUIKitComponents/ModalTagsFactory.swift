@@ -11,7 +11,7 @@ import UIKit
 
 enum ModalTagsFactory {
 
-    static func showModalTags(originController: UIViewController?,
+    static func showModalTags(originController: UIViewController,
                               tags: [Tag]
     ) {
         let dataSource = ModalTagsDataSource(data: tags).then {
