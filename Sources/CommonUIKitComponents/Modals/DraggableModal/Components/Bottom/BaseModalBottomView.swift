@@ -8,12 +8,12 @@
 import UIKit
 
 class BaseModalBottomView: UIView {
-    
+
     lazy var gradientView = UIView(frame: .zero).then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         addSubview($0)
     }
-    
+
     var colors: [UIColor] = []
 
     init(frame: CGRect = .zero, colors: [UIColor]? = nil) {

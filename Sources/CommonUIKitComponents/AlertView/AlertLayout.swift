@@ -8,20 +8,29 @@
 import UIKit
 
 enum AlertLayout {
+    // containerStackView
+    static let containerStackViewPaddingTop: CGFloat = 34.1
+    static let containerStackViewPaddingBottom: CGFloat = 32
     // errorImage
-    static let errorImageWidth: CGFloat = 51.8
-    static let errorImageHeight: CGFloat = 51.8
-    static let errorImagePaddingTop: CGFloat = 34.1
+    static let errorImageSize: CGFloat = 51.8
     // titleLabel
     static let titleLabelFontSize: CGFloat = 18
-    static let titleLabelPaddingLeft: CGFloat = 24
-    static let titleLabelPaddingRight: CGFloat = 24
+    static let titleLabelHorizontalPadding: CGFloat = 24
     static let titleLabelPaddingTop: CGFloat = 34.1
-    static let titleLabelPaddingBottom: CGFloat = 32
+    static var titleLabelInsets: UIEdgeInsets {
+        .init(top: titleLabelPaddingTop,
+              left: titleLabelHorizontalPadding,
+              bottom: .zero,
+              right: titleLabelHorizontalPadding)
+    }
     // messageLabel
     static let messageLabelFontSize: CGFloat = 15
     static let messageLabelPaddingTop: CGFloat = 12
-    static let messageLabelPaddingBottom: CGFloat = 32
-    static let messageLabelPaddingLeft: CGFloat = 32
-    static let messageLabelPaddingRight: CGFloat = 32
+    static let messageLabelHorizontalPadding: CGFloat = 32
+    static var messageLabelInsets: UIEdgeInsets {
+        .init(top: messageLabelPaddingTop,
+              left: messageLabelHorizontalPadding,
+              bottom: .zero,
+              right: messageLabelHorizontalPadding)
+    }
 }

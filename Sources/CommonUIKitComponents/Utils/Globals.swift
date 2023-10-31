@@ -45,11 +45,11 @@ public func bundleFor(root object: AnyClass, name: String) -> Bundle? {
 public func bundleForXib<T: NSObject>(type: T.Type) -> Bundle {
     let defaultBundle = Bundle(for: T.classForCoder())
     let name = String(describing: type)
-    
+
     if let podName = String(reflecting: type).split(separator: ".").first,
         let resourcesBundle = bundleFor(root: T.classForCoder(), name: podName + "Resources"),
         resourcesBundle.has(xib: name) { return resourcesBundle }
-    
+
     if defaultBundle.has(xib: name) { return defaultBundle }
     
     if !Bundle.main.has(xib: name) {

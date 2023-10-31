@@ -10,7 +10,7 @@ public enum Gradient { }
 // MARK: - Direction
 
 public extension Gradient {
-    
+
     enum Direction: Int, Hashable, CaseIterable {
         case right
         case left
@@ -21,13 +21,13 @@ public extension Gradient {
         case bottomLeftToTopRight
         case bottomRightToTopLeft
     }
-    
+
 }
 
 // MARK: - Factory
 
 extension Gradient {
-    
+
     private static let layerName: String = "RappiLayer"
 
     /// - parameter parentLayer: the layer that will host the gradient.
@@ -53,7 +53,7 @@ extension Gradient {
             parentLayer.insertSublayer(gradientLayer, at: 0)
         }
     }
-    
+
     internal static func gradientPoints(
         for direction: Direction,
         with size: CGSize = .init(width: 1.0, height: 1.0)
@@ -85,11 +85,11 @@ extension Gradient {
 
         return (startPoint, endPoint)
     }
-    
+
 }
 
 extension Gradient {
-    
+
     /// - parameter layer: the layer that will host the gradient.
     /// - parameter direction: the direction of the gradient.
     /// - parameter alpha: the opacity value.
@@ -100,7 +100,7 @@ extension Gradient {
     ) {
         Style.accentA.apply(to: layer, direction: direction, alpha: alpha)
     }
-    
+
 }
 
 // MARK: - Style

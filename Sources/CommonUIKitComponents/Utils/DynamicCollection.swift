@@ -16,7 +16,7 @@ public protocol DynamicCollection: AnyObject {
         layoutPriorities: (horizontal: UILayoutPriority, vertical: UILayoutPriority)?,
         orientation: UICollectionView.ScrollDirection,
         cellSetup: GenericCompletionHandler<T>?) -> CGSize
-    
+
     func calculateSizeFor<T: UICollectionViewCell>(
         cellType: T.Type,
         minSize: CGSize,
@@ -24,7 +24,7 @@ public protocol DynamicCollection: AnyObject {
         orientation: UICollectionView.ScrollDirection,
         bundle: Bundle?,
         cellSetup: GenericCompletionHandler<T>?) -> CGSize
-    
+
     func calculateSizeFor<T: UICollectionViewCell>(
         cellType: T.Type,
         with minSize: CGSize,
@@ -36,7 +36,7 @@ public protocol DynamicCollection: AnyObject {
 }
 
 extension DynamicCollection {
-    
+
     public func calculateSizeFor<T: UICollectionViewCell>(cellType: T.Type,
                                                           with minSize: CGSize,
                                                           maxSize: CGSize? = nil,
@@ -56,7 +56,7 @@ extension DynamicCollection {
                                 orientation: orientation,
                                 cellSetup: content)
     }
-    
+
     public func calculateSizeForCellWithoutNib<T: UICollectionViewCell>(of type: T.Type,
                                                                         mainSize: CGSize,
                                                                         minSize: CGSize,
@@ -72,7 +72,7 @@ extension DynamicCollection {
                                 orientation: orientation,
                                 cellSetup: cellSetup)
         }
-    
+
     // MARK: - Private methods
     private func calculateSizeFor<T: UICollectionViewCell>(cell: T,
                                                            mainSize: CGSize,
@@ -81,10 +81,9 @@ extension DynamicCollection {
                                                            layoutPriorities: (horizontal: UILayoutPriority, vertical: UILayoutPriority)? = nil,
                                                            orientation: UICollectionView.ScrollDirection,
                                                            cellSetup: GenericCompletionHandler<T>?) -> CGSize {
-        
         let mainWidth: CGFloat
         let mainHeight: CGFloat
-        
+
         switch orientation {
         case .vertical:
             mainWidth = mainSize.width
@@ -93,18 +92,18 @@ extension DynamicCollection {
             mainWidth = cell.frame.width
             mainHeight = mainSize.height
         }
-        
+
         cell.updateConstraintsIfNeeded()
         cell.bounds = CGRect(x: 0,
                              y: 0,
                              width: mainWidth,
                              height: mainHeight)
-        
+
         cellSetup?(cell)
-        
+
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
-        
+
         let containedSize: CGSize
         switch layoutPriorities {
         case .some(let priorities):
@@ -114,7 +113,7 @@ extension DynamicCollection {
         case .none:
             containedSize = cell.contentView.systemLayoutSizeFitting(minSize)
         }
-        
+
         let height = max(containedSize.height,
                          minSize.height)
         let width = max(containedSize.width,

@@ -8,7 +8,7 @@
 import UIKit
 
 public enum PopoverMenuFactory {
-    
+
     public static func showPopoverMenu(from view: UIView,
                                        items: [PopoverMenuItem],
                                        callBack: @escaping GenericCompletionHandler<Int>) {
@@ -28,5 +28,5 @@ public enum PopoverMenuFactory {
         controller.popoverPresentationController?.sourceRect = view.bounds
         viewController.present(controller, animated: false)
     }
-    
+
 }

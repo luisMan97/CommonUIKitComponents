@@ -9,7 +9,7 @@ import UIKit
 
 public
 extension UIView {
-    
+
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self.next
         while parentResponder != nil {
@@ -20,7 +20,7 @@ extension UIView {
         }
         return nil
     }
-    
+
     class func getAllSubviews<T: UIView>(from parenView: UIView) -> [T] {
         return parenView.subviews.flatMap { subView -> [T] in
             var result = [T]()
@@ -35,14 +35,21 @@ extension UIView {
             return result
         }
     }
-    
+
     func setupBorder(width: CGFloat = 1.0, color: UIColor) {
         layer.borderWidth = width
         layer.borderColor = color.cgColor
     }
-    
+
+    func animate(withDuration: TimeInterval,
+                 completion: ((Bool) -> Void)? = nil) {     
+        UIView.animate(withDuration: withDuration,
+                       animations: { self.layoutIfNeeded() },
+                       completion: completion)
+    }
+
     // MARK: - SafeArea
-    
+
     /// Bool indicating if the current window has SafeArea
     var windowHasSafeArea: Bool {
         guard #available(iOS 11.0, *) else {
@@ -58,9 +65,9 @@ extension UIView {
         }
         return appWindow?.safeAreaInsets.bottom ?? 0 > 0
     }
-    
+
     var windowHasNotSafeArea: Bool { !windowHasSafeArea }
-    
+
     var windowHasNotBottomSafeArea: Bool { !windowHasBottomSafeArea }
-    
+
 }

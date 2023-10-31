@@ -20,7 +20,7 @@ class BaseModalHeaderView: UIView {
         let factor = (screenSize.width - insets) / screenSize.width
         return factor
     }()
-    
+
     var isFloating: Bool { config.isFloating }
 
     private let config: BaseModalHeaderConfig

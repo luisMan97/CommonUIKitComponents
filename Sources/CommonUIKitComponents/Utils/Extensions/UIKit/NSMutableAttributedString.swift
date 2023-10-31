@@ -8,12 +8,12 @@
 import UIKit
 
 public extension NSMutableAttributedString {
-    
+
     func setFont(font: UIFont, forText stringValue: String) {
         let range = mutableString.range(of: stringValue, options: .caseInsensitive)
         addAttribute(.font, value: font, range: range)
     }
-    
+
     @discardableResult
     func font(_ font: UIFont, text: String) -> NSMutableAttributedString {
         let attrs: [NSAttributedString.Key: Any] = [.font: font]
@@ -21,5 +21,5 @@ public extension NSMutableAttributedString {
         append(boldString)
         return self
     }
-    
+
 }

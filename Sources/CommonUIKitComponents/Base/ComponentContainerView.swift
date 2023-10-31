@@ -8,12 +8,12 @@
 import UIKit
 
 public class ComponentContainerView: BaseUIView {
-    
+
     private var topConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
     private var leadingConstraint: NSLayoutConstraint?
     private var bottomConstraint: NSLayoutConstraint?
-    
+
     var componentInset: UIEdgeInsets = .zero {
         didSet {
             topConstraint?.constant = componentInset.top
@@ -22,7 +22,7 @@ public class ComponentContainerView: BaseUIView {
             bottomConstraint?.constant = -componentInset.bottom
         }
     }
-    
+
     func add(component: UIView) {
         component.translatesAutoresizingMaskIntoConstraints = false
         addSubview(component)
@@ -36,5 +36,5 @@ public class ComponentContainerView: BaseUIView {
         self.trailingConstraint = trailingConstraint
         self.bottomConstraint = bottomConstraint
     }
-    
+
 }

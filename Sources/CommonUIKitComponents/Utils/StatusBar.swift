@@ -8,7 +8,7 @@
 import UIKit
 
 final class StatusBar {
-    
+
     var oldStyle: Style = .black
     var currentStyle: Style = .black
     var isHidden = false

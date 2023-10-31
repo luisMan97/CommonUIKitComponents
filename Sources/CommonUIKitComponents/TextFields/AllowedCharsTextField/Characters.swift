@@ -26,7 +26,7 @@ public enum Characters: Int {
     case alphabetAndWhiteSpacesWithAccents
     case alphanumericWithAccents
     case alphanumericAndWhiteSpacesWithAccents
-    
+
     public var stringValue: String {
         switch self {
         case .alphabetLowerCase: return Characters.alphabetLowerCaseConstant
@@ -48,7 +48,7 @@ public enum Characters: Int {
         case .alphanumericAndWhiteSpacesWithAccents: return Characters.alphanumericAndWhiteSpacesWithAccentsConstant
         }
     }
-    
+
     public static let alphabetLowerCaseConstant = "abcdefghijklmnopqrstuvwxyz"
     public static let alphabetUpperCaseConstant = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     public static let numbersConstant = "0123456789"

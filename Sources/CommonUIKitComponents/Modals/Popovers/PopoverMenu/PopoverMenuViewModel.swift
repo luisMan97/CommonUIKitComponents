@@ -14,14 +14,14 @@ protocol PopoverMenuViewModelProtocol: AnyObject {
 }
 
 class PopoverMenuViewModel: PopoverMenuViewModelProtocol {
-    
+
     // MARK: - Internal Properties
 
     var items: [PopoverMenuItem] = []
     var callBack: GenericCompletionHandler<Int>
     
     var numberOfItems: Int { items.count }
-    
+
     // MARK: - Initializers
 
     init(callBack: @escaping GenericCompletionHandler<Int>) {

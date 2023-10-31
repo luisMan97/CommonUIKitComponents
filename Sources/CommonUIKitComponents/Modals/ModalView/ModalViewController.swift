@@ -8,16 +8,16 @@
 import UIKit
 
 class ModalViewController: UIViewController {
-    
+
     // MARK: - Private UI Properties
-    
+
     private var backgroundView = UIView()
-    
-    private var closeButtonImageView = UIImageView().then {
+
+    private let closeButtonImageView = UIImageView().then {
         $0.image = .xmark
         $0.tintColor = .darkGray
     }
-    
+
     private lazy var closeButton = UIButton().then {
         $0.addTarget(self, action: #selector(cloaseAction), for: .touchUpInside)
     }
@@ -26,37 +26,37 @@ class ModalViewController: UIViewController {
         $0.axis = .vertical
         $0.backgroundColor = .white
     }
-    
+
     private let scrollView = ScrollView().then {
         $0.addedScrollViewHeightIfNeeded = true
     }
-    
+
     private let contentView = UIView()
     private lazy var buttonPadView = ButtonPadView().then {
         $0.backgroundColor = .clear
         $0.primaryCompletion = { [weak self] in self?.dismissWithEffect(completion: self?.primaryCompletion) }
         $0.secondaryCompletion = { [weak self] in self?.dismissWithEffect(completion: self?.secondaryCompletion) }
     }
-    
+
     // MARK: - Internal Properties
-    
+
     var containerStackViewBackgroundColor: UIColor? {
         didSet {
             containerStackView.backgroundColor = containerStackViewBackgroundColor
         }
     }
-        
+
     // MARK: - Private Properties
-    
+
     private var configuration = ModalConfiguration()
-    
+
     // MARK: - Private Closure Properties
-    
+
     private var primaryCompletion: CompletionHandler?
     private var secondaryCompletion: CompletionHandler?
     private var closeTapDismissViewCompletion: CompletionHandler?
     private var backgroundTapDismissViewCompletion: CompletionHandler?
-    
+
     // MARK: - UIViewController Lyfecycle Methods
 
     override func viewDidLoad() {
@@ -64,7 +64,7 @@ class ModalViewController: UIViewController {
         addSubViews()
         setupButtonPadView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let customView = configuration.customView {
@@ -75,9 +75,9 @@ class ModalViewController: UIViewController {
             backgroundView.addGestureRecognizer(tap)
         }
     }
-    
+
     // MARK: - Override Methods
-    
+
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if configuration.roundOnlyTopCorners {
@@ -86,9 +86,9 @@ class ModalViewController: UIViewController {
             containerStackView.roundAllCornersWith(cornerRadius: configuration.cornerRadius)
         }
     }
-    
+
     // MARK: - Internal Methods
-    
+
     func config(_ configuration: ModalConfiguration,
                 primaryCompletion: CompletionHandler? = nil,
                 secondaryCompletion: CompletionHandler? = nil,
@@ -100,9 +100,9 @@ class ModalViewController: UIViewController {
         self.closeTapDismissViewCompletion = closeTapDismissViewCompletion
         self.backgroundTapDismissViewCompletion = backgroundTapDismissViewCompletion
     }
-    
+
     // MARK: - Private Methods
-    
+
     private func addSubViews() {
         backgroundView.fixInView(view)
         view.addSubview(containerStackView)
@@ -112,7 +112,7 @@ class ModalViewController: UIViewController {
         scrollView.addContainerView(contentView)
         addConstraints()
     }
-    
+
     private func addCloseButton() {
         guard configuration.showCloseButton else {
             return
@@ -120,7 +120,7 @@ class ModalViewController: UIViewController {
         view.addSubview(closeButtonImageView)
         view.addSubview(closeButton)
     }
-    
+
     private func addButtonPadView() {
         if configuration.buttonsVerticalCenteredToBottom {
             view.addSubview(buttonPadView)
@@ -129,13 +129,13 @@ class ModalViewController: UIViewController {
             containerStackView.addArrangedSubview(buttonPadView, withMargin: .init(top: 0, left: 0, bottom: buttonPadViewPaddingBottom, right: 0))
         }
     }
-    
+
     private func addConstraints() {
         addCloseButtonConstraints()
         addContainerStackViewConstraints()
         addButtonPadViewConstraints()
     }
-    
+
     private func addCloseButtonConstraints() {
         guard configuration.showCloseButton else {
             return
@@ -152,12 +152,12 @@ class ModalViewController: UIViewController {
                            width: 50,
                            height: 50)
     }
-    
+
     private func addContainerStackViewConstraints() {
         addContainerStackViewVerticalConstraints()
         addContainerStackViewHorizontalConstraints()
     }
-    
+
     private func addContainerStackViewVerticalConstraints() {
         if configuration.modalVeticalCentered {
             containerStackView.anchor(centerY: view)
@@ -167,7 +167,7 @@ class ModalViewController: UIViewController {
                                       bottom: view.bottomAnchor)
         }
     }
-    
+
     private func addContainerStackViewHorizontalConstraints() {
         if let modalWidth = configuration.modalWidth,
            modalWidth < view.frame.width {
@@ -188,7 +188,7 @@ class ModalViewController: UIViewController {
                                   right: view.rightAnchor,
                                   paddingRight: configuration.modalHorizontalPadding)
     }
-    
+
     private func addButtonPadViewConstraints() {
         if configuration.buttonsVerticalCenteredToBottom {
             let viewToAlign: UIView = configuration.alignButtonsHorizontallyToModal ? containerStackView : view
@@ -209,7 +209,7 @@ class ModalViewController: UIViewController {
                                  paddingBottom: configuration.buttonsPadBottomPadding,
                                  identifier: "buttonPadView")
         }
-        
+
         if configuration.alignButtonsHorizontallyToModal {
             buttonPadView.anchor(left: view.leftAnchor,
                                  paddingLeft: configuration.buttonsPadHorizontalPadding,
@@ -217,11 +217,11 @@ class ModalViewController: UIViewController {
                                  paddingRight: configuration.buttonsPadHorizontalPadding)
         }
     }
-    
+
     private func setupButtonPadView() {
         let buttonsPadHorizontalPadding = configuration.buttonsVerticalCenteredToBottom || configuration.alignButtonsHorizontallyToModal ? 0 : configuration.buttonsPadHorizontalPadding
         buttonPadView.underlineButtonsWhenHasNoBackgroundColor = configuration.underlineButtonsWhenHasNoBackgroundColor
-        buttonPadView.alignment = configuration.buttonPadAligment
+        buttonPadView.alignment = configuration.buttonPadAlignment
         buttonPadView.buttonsSpacing = configuration.buttonsPadSpacing
         buttonPadView.buttonsHorizontalPadding = buttonsPadHorizontalPadding
         buttonPadView.setButtonsCornerRadius(configuration.buttonsPadCornerRadius)
@@ -230,7 +230,7 @@ class ModalViewController: UIViewController {
         setAlertType()
         setButtonPadViewBottomConstriantIfNeeded()
     }
-    
+
     private func setupPrimaryButtonPadView() {
         if let primaryButtonHeight = configuration.primaryButtonHeight {
             buttonPadView.primaryButtonHeight = primaryButtonHeight
@@ -249,7 +249,7 @@ class ModalViewController: UIViewController {
         buttonPadView.primaryButtonColor = configuration.primaryButtonColor
         buttonPadView.primaryButtonTitleColor = configuration.primaryButtonTitleColor
     }
-    
+
     private func setupSecondaryButtonPadView() {
         if configuration.secondaryActionText.isNotEmpty || configuration.secondaryButtonImage != nil {
             if configuration.secondaryActionText.isNotEmpty {
@@ -269,13 +269,13 @@ class ModalViewController: UIViewController {
             buttonPadView.roundSecondaryButtonCornersWith(cornerRadius: configuration.secondaryButtonCornerRadius,
                                                           borderColor: configuration.secondaryButtonBorderColor,
                                                           borderWidth: configuration.secondaryButtonBorderWidth)
-            
+
             buttonPadView.secondaryButtonColor = configuration.secondaryButtonColor
         } else {
             buttonPadView.secondaryButtonHidden = true
         }
     }
-    
+
     private func setAlertType() {
         guard configuration.alertType != .custom else {
             return
@@ -287,7 +287,7 @@ class ModalViewController: UIViewController {
             buttonPadView.primaryButtonColor = .systemRed
         }
     }
-    
+
     private func setButtonPadViewBottomConstriantIfNeeded() {
         guard view.windowHasNotSafeArea,
               configuration.buttonsPadHorizontalPadding > 0 else {
@@ -301,7 +301,7 @@ class ModalViewController: UIViewController {
                 view.updateConstraint(identifier: "buttonPadViewBottom", constant: -16)
             }
         } else {
-            if configuration.buttonPadAligment == .vertical {
+            if configuration.buttonPadAlignment == .vertical {
                 guard configuration.secondaryButtonColor != .clear && configuration.secondaryButtonColor != containerStackViewBackgroundColor else {
                     return
                 }
@@ -311,14 +311,14 @@ class ModalViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Private @objc Methods
-    
+
     @objc
     private func backgroundViewAction() {
         dismissWithEffect(completion: backgroundTapDismissViewCompletion)
     }
-    
+
     @objc
     private func cloaseAction() {
         dismissWithEffect(completion: closeTapDismissViewCompletion)

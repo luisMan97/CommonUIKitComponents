@@ -12,7 +12,7 @@ class Tag {
     var text: String?
     var descriptionTag: String?
     var iconUrl: String?
-    
+
     init(text: String? = nil,
          descriptionTag: String? = nil,
          iconUrl: String? = nil) {

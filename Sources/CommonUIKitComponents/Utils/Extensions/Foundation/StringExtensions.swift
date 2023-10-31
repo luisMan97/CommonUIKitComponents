@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    
+
     var isNotEmpty: Bool { !self.isEmpty }
     
     ///  Function *containsOnlyCharactersIn* validate if the extended string is only composed with matchCharacters String parameter.
@@ -18,5 +18,5 @@ extension String {
         let disallowedCharacterSet = CharacterSet(charactersIn: matchCharacters).inverted
         return rangeOfCharacter(from: disallowedCharacterSet) == nil
     }
-    
+
 }

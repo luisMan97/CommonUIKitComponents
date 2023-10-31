@@ -68,7 +68,7 @@ let alertView = AlertView().then {
 
 let modalConfiguration = ModalConfiguration()
     .setCustomView(alertView)
-    
+
 showModal(modalConfiguration, primaryCompletion: {
     print("Primary button tapped")
 })

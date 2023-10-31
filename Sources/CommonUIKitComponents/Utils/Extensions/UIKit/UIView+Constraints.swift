@@ -8,7 +8,7 @@
 import UIKit
  
 public extension UIView {
-    
+
     func fixInView(_ container: UIView) {
         container.addSubview(self)
         activateNSLayoutAnchor(container)
@@ -24,24 +24,29 @@ public extension UIView {
             bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
     }
-    
+
     func constraintWith(identifier: String) -> NSLayoutConstraint? {
         constraints.first { $0.identifier == identifier }
     }
-    
+
+    func solveSimultaneouslyConstraintsError(_ identifier: String) {
+        guard let constraint = constraintWith(identifier: identifier) else { return }
+        constraint.priority = .defaultLow
+    }
+
     func updateConstraint(identifier: String, constant: CGFloat) {
         if let constraint = constraintWith(identifier: identifier) {
             constraint.constant = constant
         }
     }
-    
+
     func updateSubViewConstraint(identifier: String, constant: CGFloat) {
         let subView = subviews.first(where: { $0.constraintWith(identifier: identifier) != nil })
         if let constraint = subView?.constraintWith(identifier: identifier) {
             constraint.constant = constant
         }
     }
-    
+
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 topGreaterThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
                 topLessThanOrEqualTo: NSLayoutYAxisAnchor? = nil,
@@ -182,7 +187,7 @@ public extension UIView {
                         identifer: centerYIdentifier,
                         padding: paddingCenterY)
     }
-    
+
     func setupConstraint(anchor: NSLayoutYAxisAnchor,
                          greaterThanOrEqualTo verticalAnchor: NSLayoutYAxisAnchor?,
                          identifer: String? = nil,
@@ -196,7 +201,7 @@ public extension UIView {
         }
         anchor.isActive = true
     }
-    
+
     func setupConstraint(anchor: NSLayoutYAxisAnchor,
                          lessThanOrEqualTo verticalAnchor: NSLayoutYAxisAnchor?,
                          identifer: String? = nil,
@@ -210,7 +215,7 @@ public extension UIView {
         }
         anchor.isActive = true
     }
-    
+
     func setupConstraint(anchor: NSLayoutYAxisAnchor,
                          equalTo verticalAnchor: NSLayoutYAxisAnchor?,
                          identifer: String? = nil,
@@ -224,7 +229,7 @@ public extension UIView {
         }
         anchor.isActive = true
     }
-    
+
      func setupConstraint(anchor: NSLayoutXAxisAnchor,
                           equalTo horizontalAnchor: NSLayoutXAxisAnchor?,
                           identifer: String? = nil,
@@ -238,7 +243,7 @@ public extension UIView {
         }
         anchor.isActive = true
     }
-    
+
     func setupConstraint(anchor: NSLayoutDimension,
                          equalTo constant: CGFloat,
                          identifer: String? = nil) {
@@ -251,7 +256,7 @@ public extension UIView {
         }
         anchor.isActive = true
     }
-    
+
     func addConstraintTopParent(constant: CGFloat = 0) {
         guard let parentTopAnchor = superview?.topAnchor else {
             return
@@ -259,12 +264,12 @@ public extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         topAnchor.constraint(equalTo: parentTopAnchor, constant: constant).isActive = true
     }
-    
+
     func addConstraintTop(_ view: UIView, constant: CGFloat = 0){
         self.translatesAutoresizingMaskIntoConstraints = false
         self.topAnchor.constraint(equalTo: view.bottomAnchor, constant: constant).isActive = true
     }
-    
+
     func addCenterXConstraint(_ view: UIView, multiplier: CGFloat = 1, constant: CGFloat = 0){
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint(item: self,
@@ -277,13 +282,13 @@ public extension UIView {
         constraint.isActive = true
         self.superview!.addConstraint(constraint)
     }
-    
-    func addBottomConstraintParent(constant: CGFloat = 0){
+
+    func addBottomConstraintParent(constant: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.bottomAnchor.constraint(equalTo: self.superview!.bottomAnchor, constant: constant).isActive = true
     }
-    
-    func setSize(width: CGFloat? = nil, height: CGFloat? = nil){
+
+    func setSize(width: CGFloat? = nil, height: CGFloat? = nil) {
         if let width = width {
             self.setWidthConstraint(width)
         }
@@ -291,26 +296,26 @@ public extension UIView {
             self.setHeightConstraint(height)
         }
     }
-    
-    func setWidthConstraint(_ width: CGFloat){
+
+    func setWidthConstraint(_ width: CGFloat) {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = self.widthAnchor.constraint(equalToConstant: width)
         constraint.identifier = "widthConstraint"
         constraint.isActive = true
     }
-    
-    func setHeightConstraint(_ height: CGFloat){
+
+    func setHeightConstraint(_ height: CGFloat) {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = self.heightAnchor.constraint(equalToConstant: height)
         constraint.identifier = "hightConstraint"
         constraint.isActive = true
     }
-    
-    func addWidthConstraintParent(multiplier: CGFloat = 1){
+
+    func addWidthConstraintParent(multiplier: CGFloat = 1) {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalTo: self.superview!.widthAnchor, multiplier: multiplier).isActive = true
     }
-    
+
     func addConstraintXCenterParent(multiplier: CGFloat = 1, constant: CGFloat = 0){
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint(item: self,
@@ -323,5 +328,5 @@ public extension UIView {
         constraint.isActive = true
         self.superview!.addConstraint(constraint)
     }
-    
+
 }

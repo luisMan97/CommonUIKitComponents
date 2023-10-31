@@ -10,8 +10,8 @@ import UIKit
 public extension UIView {
 
     @discardableResult
-    func showPopoverMessageView(_ message: String,
-                                size: CGSize) -> UIView {
+    func showCustomPopoverMessage(_ message: String,
+                                  size: CGSize) -> UIView {
         let viewPopup = UIView().then {
             parentViewController?.view.addSubview($0)
             $0.setSize(width: size.width + 20,
@@ -21,12 +21,14 @@ public extension UIView {
                                     multiplier: 1,
                                     constant: 50)
             $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dissmisPopup)))
+            $0.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                           action: #selector(self.dissmisPopup)))
         }
         let popover = UIView().then {
             viewPopup.addSubview($0)
             $0.backgroundColor = UIColor(hex: "4B4B4B")
-            $0.setSize(width: size.width + 20, height: size.height + 20)
+            $0.setSize(width: size.width + 20,
+                       height: size.height + 20)
             $0.addBottomConstraintParent()
             $0.roundCornersWith(cornerRadius: 11)
             $0.addConstraintXCenterParent()
@@ -57,10 +59,10 @@ public extension UIView {
         }
         return viewPopup
     }
-    
+
     @objc
     func dissmisPopup(_ sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
     }
-    
+
 }

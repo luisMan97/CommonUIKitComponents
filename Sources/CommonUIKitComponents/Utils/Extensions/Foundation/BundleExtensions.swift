@@ -8,10 +8,10 @@
 import UIKit
 
 public extension Bundle {
-    
+
     func has(xib: String) -> Bool {
         return path(forResource: xib, ofType: "nib") != nil
     }
-    
+
 }
 

@@ -19,7 +19,7 @@ public protocol UITextFieldOTPDelegate: AnyObject {
 /// The purpose of UITextFieldOTP is to provide an interface with dynamic UITextFields to enter any type of numeric code.
 @objc
 public class UITextFieldOTP: UIView {
-    
+
     typealias Layout = OTPLayout
 
     // MARK: - Private UI Properties
@@ -37,7 +37,7 @@ public class UITextFieldOTP: UIView {
         $0.spacing = 10.0
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     // MARK: - Public Properties
 
     @objc
@@ -45,15 +45,15 @@ public class UITextFieldOTP: UIView {
 
     @objc
     public weak var delegate: UITextFieldOTPDelegate?
-    
+
     @objc
     public var keyboardType: UIKeyboardType = .numberPad
-    
+
     @objc
     public var style: UITextFieldOTPStyles = .normal {
         didSet { if style != oldValue { otpStyle(style) } }
     }
-    
+
     @objc
     public var hideKeyboardAutomatically: Bool = false
 
@@ -107,9 +107,9 @@ public class UITextFieldOTP: UIView {
     public var errorCornerRadius: CGFloat = Layout.cornerRadius
     @IBInspectable
     public var isSecureTextEntry: Bool = false
-    
+
     // MARK: - Private Methods
-    
+
     private static let defaultFont = "PFBeauSansPro-Regular"
     private let layoutAttributes: [NSLayoutConstraint.Attribute] = [.top, .bottom, .right, .left],
                 accessibilityIdentifierOTPTextField = "otpTextField"
@@ -118,25 +118,25 @@ public class UITextFieldOTP: UIView {
     private var currentIndex: Int { arrayOTP.firstIndex(of: String()) ?? arrayOTP.count - 1 }
 
     // MARK: - Override Methods
-    
+
     override public func awakeFromNib() {
         super.awakeFromNib()
         awakeFromNibWasCalled = true
         setup()
     }
-    
+
     deinit {
         unRegisterNotifications()
     }
-    
+
     // MARK: - Public Methods
-    
+
     @objc
     public func setupWhenBuildingUIProgrammatically() {
         if awakeFromNibWasCalled { return }
         setup()
     }
-    
+
     @objc
     public func setNewDigit(_ digit: String) {
         setDigit(digit, atIndex: currentIndex)
@@ -195,7 +195,7 @@ public class UITextFieldOTP: UIView {
                                    cornerRadius: errorCornerRadius)
         }
     }
-    
+
     // MARK: - Private Methods
 
     private func setup() {
@@ -203,13 +203,13 @@ public class UITextFieldOTP: UIView {
         addSubViews()
         registerNotifications()
     }
-    
+
     private func addSubViews() {
         addSubview(containerStackView)
         addSubview(hidenKeyboardButton)
         addConstraints()
     }
-    
+
     private func addConstraints() {
         NSLayoutConstraint.activate(
             layoutAttributes.map {
@@ -222,7 +222,7 @@ public class UITextFieldOTP: UIView {
                                    constant: 0.0)
             }
         )
-        
+
         NSLayoutConstraint.activate(
             layoutAttributes.map {
                 NSLayoutConstraint(item: hidenKeyboardButton,
@@ -235,23 +235,23 @@ public class UITextFieldOTP: UIView {
             }
         )
     }
-    
+
     private func registerNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
-    
+
     private func unRegisterNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
     private func setupTextFieldBackgroundColor() {
         guard style == .normal else { return }
         textFields.forEach { $0.backgroundColor = textFieldBackgroundColor }
     }
-    
+
     private func setupNumberOfTextFields() {
         guard numberOfTextFields > 0 else { return }
         clearAll()
@@ -270,7 +270,7 @@ public class UITextFieldOTP: UIView {
         }
         otpStyle(style)
     }
-    
+
     private func clearAll() {
         arrayOTP.removeAll()
         textFields.removeAll()
@@ -326,7 +326,7 @@ public class UITextFieldOTP: UIView {
     private func validateOTP() {
         delegate?.textFieldOTP(self, isValid: arrayOTP.joined().count == textFields.count)
     }
-    
+
     // MARK: - Private @objc Methods
 
     @objc
@@ -458,7 +458,7 @@ extension UITextFieldOTP: UITextFieldDelegate {
 
 // MARK: - UITextFieldCustomOTPDelegate
 extension UITextFieldOTP: UITextFieldCustomOTPDelegate {
-    
+
     func deleteBackward(_ textField: UITextFieldCustomOTP) {
         guard let text = textField.text, text.isEmpty, textField.tag > 1 else { return }
         textFields[textField.tag - 2].becomeFirstResponder()

@@ -12,14 +12,14 @@ internal final class BaseButton: UIView {
     private var button: UIButton
     private var config: ButtonConfig
     private var iconView: UIImageView?
-    
+
     private func setButton() {
         self.button.addTargetAction(for: .touchUpInside) { [weak self] in
             guard let self = self else { return }
             self.buttonTapMutableObservable.postValue(())
             self.hapticFeedbackIfEnabled(config: self.config)
         }
-        self.button.setTitle(config.titleString, for: .normal)
+        self.button.setTitle(config.titleString, for: .normal) // TODO: - eliminar selfs
         self.button.titleLabel?.font = config.titlefont
         self.button.setTitleColor(config.titleColor, for: .normal)
         self.button.backgroundColor = config.backgroundColor
@@ -154,11 +154,11 @@ internal final class BaseButton: UIView {
             self.button.imageView?.tintColor = config.imageColor
         }
     }
-    
+
     var buttonTap: Observable<Void> {
         buttonTapMutableObservable
     }
-    
+
     private let buttonTapMutableObservable = MutableObservable<Void>()
 
     func setButtonTitle(_ title: String, state: UIControl.State) {

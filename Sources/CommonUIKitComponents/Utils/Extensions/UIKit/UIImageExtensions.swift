@@ -8,7 +8,7 @@
 import Foundation
 
 public extension UIImage {
-    
+
     static var xmark: UIImage {
         if #available(iOS 13.0, *) {
             return UIImage(systemName: "xmark") ?? UIImage()
@@ -16,6 +16,14 @@ public extension UIImage {
             return UIImage()
         }
     }
-    
+
+    static var chevronDown: UIImage {
+        if #available(iOS 13.0, *) {
+            return UIImage(systemName: "chevron.down") ?? UIImage()
+        } else {
+            return UIImage()
+        }
+    }
+
 }
 

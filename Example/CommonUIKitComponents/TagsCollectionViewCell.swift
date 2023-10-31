@@ -11,11 +11,11 @@ import UIKit
 class TagsCollectionViewCell: UICollectionViewCell {
 
     typealias Layout = ModalTagsCellLayout
-    
+
     // MARK: - IBOutlets Properties
-    
+
     @IBOutlet private weak var textsStackView: UIStackView!
-    
+
     @IBOutlet private weak var tagImageView: UIImageView! {
         didSet {
             tagImageView.then {
@@ -37,7 +37,7 @@ class TagsCollectionViewCell: UICollectionViewCell {
         didSet {
             tagLabel.then {
                 $0.font = .systemFont(ofSize: 16)
-                $0.numberOfLines = 0
+                $0.numberOfLines = .zero
                 $0.textColor = .contentA
             }
         }
@@ -46,7 +46,7 @@ class TagsCollectionViewCell: UICollectionViewCell {
         didSet {
             tagDescriptionLabel.then {
                 $0.font = .systemFont(ofSize: 16)
-                $0.numberOfLines = 0
+                $0.numberOfLines = .zero
                 $0.lineBreakMode = .byWordWrapping
                 $0.textColor = .contentA
             }
@@ -59,23 +59,23 @@ class TagsCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
+
     // MARK: - Internal Properties
-    
+
     var productTag: Tag? {
         didSet {
             setupProductTag()
         }
     }
-    
+
     // MARK: - Private Methods
-    
+
     private func setupProductTag() {
         tagLabel.text = productTag?.text
         tagDescriptionLabel.text = productTag?.descriptionTag
         setTagImage(with: productTag?.iconUrl)
     }
-    
+
     private func setTagImage(with urlString: String?) {
         guard let urlString = urlString else {
                return

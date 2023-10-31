@@ -9,19 +9,19 @@ import RxSwift
 import RxCocoa
 
 class DraggableModalScrollViewAdapter {
-    
+
     var scrollView: UIScrollView?
     var didScroll: MutableObservable<Void> = MutableObservable<Void>()
     var didEndDragging: MutableObservable<Void> = MutableObservable<Void>()
     var willBeginDecelerating: MutableObservable<Void> = MutableObservable<Void>()
-    
+
     private let disposeBag: DisposeBag = DisposeBag()
-    
+
     init(scrollView: UIScrollView?) {
         self.scrollView = scrollView
         subscribeToScroll()
     }
-    
+
     func subscribeToScroll() {
         scrollView?.rx.didScroll
             .observe(on: MainScheduler.asyncInstance)

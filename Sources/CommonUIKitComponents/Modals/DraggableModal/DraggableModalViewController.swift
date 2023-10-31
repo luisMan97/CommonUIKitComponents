@@ -8,7 +8,7 @@
 import UIKit
 
 final class DraggableModalViewController: UIViewController {
-    
+
     // MARK: - View components
     private lazy var containerView = UIView(frame: .zero).then {
         view.addSubview($0)
@@ -192,7 +192,7 @@ final class DraggableModalViewController: UIViewController {
             collectionViewInContentVC = findScrollViewInContentController()
             subscribeToScroll()
         }
-        
+
         didAppearMutableObservable.postValue(())
     }
 
@@ -491,7 +491,7 @@ private extension DraggableModalViewController {
             })
         }
     }
-    
+
     func scrollViewDidScroll() {
         var scrollView: UIScrollView?
 
@@ -558,23 +558,23 @@ extension DraggableModalViewController {
                                                selector: #selector(keyboardWillShowNotification),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
-        
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShowNotification),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
-    
+
     private func unRegisterNotifications() {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillShowNotification,
                                                   object: nil)
-        
+
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
     }
-    
+
     @objc
     func keyboardWillShowNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
@@ -584,7 +584,7 @@ extension DraggableModalViewController {
 
         self.keyboardWillShow(true, keyboardHeight: frame.height)
     }
-    
+
     @objc
     func keyboardWillHideNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
@@ -594,7 +594,7 @@ extension DraggableModalViewController {
 
         self.keyboardWillShow(false, keyboardHeight: frame.height)
     }
-    
+
     private func keyboardWillShow(_ show: Bool, keyboardHeight: CGFloat) {
         self.keyboardHeight = show ? keyboardHeight : 0
         topContainerConstraint?.constant = standardTopConstant()
@@ -602,7 +602,7 @@ extension DraggableModalViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
+
 }
 
 
@@ -680,15 +680,15 @@ extension DraggableModalViewController: UIGestureRecognizerDelegate {
 }
 
 extension DraggableModalViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        .zero
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        .zero
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Tapped")
     }

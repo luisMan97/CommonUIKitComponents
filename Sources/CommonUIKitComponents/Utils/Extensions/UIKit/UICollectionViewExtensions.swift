@@ -8,7 +8,7 @@
 import UIKit
 
 public extension UICollectionView {
-    
+
     func reuse<T: UICollectionViewCell>(at index: IndexPath) -> T {
         let identifier = String(describing: T.self)
         guard let cell = dequeueReusableCell(withReuseIdentifier: identifier, for: index) as? T else {
@@ -20,7 +20,7 @@ public extension UICollectionView {
 }
 
 extension UICollectionView: DynamicCollection {
-    
+
     public func calculateSizeFor<T: UICollectionViewCell>(cellType: T.Type,
                                                           minSize: CGSize,
                                                           maxSize: CGSize? = nil,
@@ -36,7 +36,7 @@ extension UICollectionView: DynamicCollection {
                                 mainSize: frame.size,
                                 content: cellSetup)
     }
-    
+
     public func calculateSizeForCellWithoutNib<T: UICollectionViewCell>(of type: T.Type,
                                                                         minSize: CGSize,
                                                                         maxSize: CGSize? = nil,

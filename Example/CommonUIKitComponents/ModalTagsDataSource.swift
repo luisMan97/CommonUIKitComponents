@@ -9,29 +9,29 @@
 import CommonUIKitComponents
 
 class ModalTagsDataSource: NSObject, ModalDataSource {
-    
+
     // MARK: - Internal Properties
-    
+
     var contentSize: Observable<CGSize> { contentSizeMutableObservable }
-    
+
     weak var collectionView: UICollectionView? {
         didSet {
             setupCollectionView()
         }
     }
-    
+
     private(set) var data: [Tag] = []
-    
+
     // MARK: - Private Properties
-    
+
     private let contentSizeMutableObservable = MutableObservable<CGSize>()
-    
+
     // MARK: - Initilizers
-    
+
     init(data: [Tag]) {
         self.data = data
     }
-    
+
     // MARK: - Private Methods
 
     private func setupCollectionView() {
@@ -40,9 +40,13 @@ class ModalTagsDataSource: NSObject, ModalDataSource {
         collectionView?.dataSource = self
         collectionView!.delegate = self
         collectionView?.isScrollEnabled = true
-        collectionView?.contentInset = UIEdgeInsets(top: 20, left: 24, bottom: 0, right: 24)
+        collectionView?.contentInset = UIEdgeInsets(top: 20,
+                                                    left: 24,
+                                                    bottom: .zero,
+                                                    right: 24)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1,
+                                      execute: {
             guard let size = self.collectionView?.contentSize else { return }
             self.contentSizeMutableObservable.postValue(size)
         })
@@ -50,37 +54,37 @@ class ModalTagsDataSource: NSObject, ModalDataSource {
 }
 
 extension ModalTagsDataSource: UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         data.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         getModalTagsCollectionViewCell(at: indexPath,
                                        collectionView: collectionView)
     }
-    
+
 }
 
 extension ModalTagsDataSource: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         getModalTagsCollectionViewCellSize(productTag: data[indexPath.row],
                                            collectionView: collectionView)
     }
-    
+
 }
 
 // MARK: - This methods are called from Override Methods
 private extension ModalTagsDataSource {
-    
+
     func getModalTagsCollectionViewCell(at indexPath: IndexPath,
                                         collectionView: UICollectionView) -> UICollectionViewCell {
         let cell: TagsCollectionViewCell = collectionView.reuse(at: indexPath)
         cell.productTag = data[indexPath.row]
         return cell
     }
-    
+
     func getModalTagsCollectionViewCellSize(productTag: Tag?,
                                             collectionView: UICollectionView) -> CGSize {
         let width = UIScreen.main.bounds.width

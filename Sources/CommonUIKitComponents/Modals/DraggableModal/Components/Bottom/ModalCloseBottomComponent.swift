@@ -8,7 +8,7 @@
 import UIKit
 
 public final class ModalCloseBottomComponent: BottomViewComponent {
-    
+
     private let component: ModalCloseBottomView
 
     public var base: UIView { component }

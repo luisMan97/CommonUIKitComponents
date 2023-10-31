@@ -15,7 +15,7 @@ protocol UITextFieldCustomOTPDelegate: AnyObject {
 
 @objc
 public class UITextFieldCustomOTP: UITextField {
-    
+
     // MARK: - Private Properties
 
     weak var otpDelegate: UITextFieldCustomOTPDelegate?
@@ -37,7 +37,7 @@ public class UITextFieldCustomOTP: UITextField {
         otpDelegate?.deleteBackward(self)
         super.deleteBackward()
     }
-    
+
     public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         action == #selector(UIResponderStandardEditActions.copy) ||
         action == #selector(UIResponderStandardEditActions.selectAll) ||

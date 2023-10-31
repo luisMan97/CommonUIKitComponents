@@ -8,7 +8,7 @@
 import Foundation
 
 public final class BaseModalHeaderComponent: ModalHeaderComponent {
-    
+
     private let component: BaseModalHeaderView
 
     public var isHeaderOnTop: Bool = false {

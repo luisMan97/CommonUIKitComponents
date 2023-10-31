@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		024C830E9DEBCF1D02FA6569 /* Pods_CommonUIKitComponents_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05419D3B1E727BF441BA7F79 /* Pods_CommonUIKitComponents_Example.framework */; };
+		1A0943392A5EF216008E6A44 /* AlertViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0943382A5EF216008E6A44 /* AlertViewExampleViewController.swift */; };
+		1A9811982AF01F600018CE97 /* AccordionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811972AF01F600018CE97 /* AccordionViewController.swift */; };
+		1A98119C2AF024670018CE97 /* StepperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A98119B2AF024670018CE97 /* StepperViewController.swift */; };
+		1A98119F2AF0291C0018CE97 /* ToggleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A98119E2AF0291C0018CE97 /* ToggleViewController.swift */; };
+		1A9811A22AF02AFD0018CE97 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811A12AF02AFD0018CE97 /* SideViewController.swift */; };
+		1A9811A52AF036850018CE97 /* IndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811A42AF036850018CE97 /* IndicatorViewController.swift */; };
+		1A9811A82AF039D90018CE97 /* PopoverMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811A72AF039D90018CE97 /* PopoverMessageViewController.swift */; };
+		1A9811AB2AF081830018CE97 /* CustomPopoverMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811AA2AF081830018CE97 /* CustomPopoverMessageController.swift */; };
+		1A9811AE2AF092B30018CE97 /* PopoverMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811AD2AF092B30018CE97 /* PopoverMenuViewController.swift */; };
+		1A9811B12AF096DE0018CE97 /* LabelComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811B02AF096DE0018CE97 /* LabelComponentViewController.swift */; };
+		1A9811B42AF0C6D40018CE97 /* ButtonPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811B32AF0C6D40018CE97 /* ButtonPadViewController.swift */; };
+		1A9811B72AF0CA060018CE97 /* AllowedCharsTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811B62AF0CA060018CE97 /* AllowedCharsTextFieldViewController.swift */; };
+		1A9811BA2AF0CB250018CE97 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811B92AF0CB250018CE97 /* ScrollViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -37,6 +50,19 @@
 
 /* Begin PBXFileReference section */
 		05419D3B1E727BF441BA7F79 /* Pods_CommonUIKitComponents_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonUIKitComponents_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0943382A5EF216008E6A44 /* AlertViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewExampleViewController.swift; sourceTree = "<group>"; };
+		1A9811972AF01F600018CE97 /* AccordionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccordionViewController.swift; sourceTree = "<group>"; };
+		1A98119B2AF024670018CE97 /* StepperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperViewController.swift; sourceTree = "<group>"; };
+		1A98119E2AF0291C0018CE97 /* ToggleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleViewController.swift; sourceTree = "<group>"; };
+		1A9811A12AF02AFD0018CE97 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		1A9811A42AF036850018CE97 /* IndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorViewController.swift; sourceTree = "<group>"; };
+		1A9811A72AF039D90018CE97 /* PopoverMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverMessageViewController.swift; sourceTree = "<group>"; };
+		1A9811AA2AF081830018CE97 /* CustomPopoverMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopoverMessageController.swift; sourceTree = "<group>"; };
+		1A9811AD2AF092B30018CE97 /* PopoverMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverMenuViewController.swift; sourceTree = "<group>"; };
+		1A9811B02AF096DE0018CE97 /* LabelComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponentViewController.swift; sourceTree = "<group>"; };
+		1A9811B32AF0C6D40018CE97 /* ButtonPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPadViewController.swift; sourceTree = "<group>"; };
+		1A9811B62AF0CA060018CE97 /* AllowedCharsTextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowedCharsTextFieldViewController.swift; sourceTree = "<group>"; };
+		1A9811B92AF0CB250018CE97 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		253FDB9DC2F3F2FBC6EF1418 /* Pods-CommonUIKitComponents_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonUIKitComponents_Tests.release.xcconfig"; path = "Target Support Files/Pods-CommonUIKitComponents_Tests/Pods-CommonUIKitComponents_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3D54CC0B6E044735A16ECCE0 /* Pods-CommonUIKitComponents_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonUIKitComponents_Example.debug.xcconfig"; path = "Target Support Files/Pods-CommonUIKitComponents_Example/Pods-CommonUIKitComponents_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5B9F010CB731AE14821C6237 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -85,6 +111,110 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0943372A5EF192008E6A44 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				1A0943382A5EF216008E6A44 /* AlertViewExampleViewController.swift */,
+			);
+			name = AlertView;
+			sourceTree = "<group>";
+		};
+		1A9811992AF01F6C0018CE97 /* AccordionView */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811972AF01F600018CE97 /* AccordionViewController.swift */,
+			);
+			name = AccordionView;
+			sourceTree = "<group>";
+		};
+		1A98119A2AF024500018CE97 /* StepperView */ = {
+			isa = PBXGroup;
+			children = (
+				1A98119B2AF024670018CE97 /* StepperViewController.swift */,
+			);
+			name = StepperView;
+			sourceTree = "<group>";
+		};
+		1A98119D2AF028D90018CE97 /* ToggleView */ = {
+			isa = PBXGroup;
+			children = (
+				1A98119E2AF0291C0018CE97 /* ToggleViewController.swift */,
+			);
+			name = ToggleView;
+			sourceTree = "<group>";
+		};
+		1A9811A02AF02AF30018CE97 /* SideView */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811A12AF02AFD0018CE97 /* SideViewController.swift */,
+			);
+			name = SideView;
+			sourceTree = "<group>";
+		};
+		1A9811A32AF0367B0018CE97 /* Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811A42AF036850018CE97 /* IndicatorViewController.swift */,
+			);
+			name = Indicator;
+			sourceTree = "<group>";
+		};
+		1A9811A62AF039B80018CE97 /* PopoverMessageView */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811A72AF039D90018CE97 /* PopoverMessageViewController.swift */,
+			);
+			name = PopoverMessageView;
+			sourceTree = "<group>";
+		};
+		1A9811A92AF080FE0018CE97 /* CustomPopoverMessageView */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811AA2AF081830018CE97 /* CustomPopoverMessageController.swift */,
+			);
+			name = CustomPopoverMessageView;
+			sourceTree = "<group>";
+		};
+		1A9811AC2AF092A40018CE97 /* PopoverMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811AD2AF092B30018CE97 /* PopoverMenuViewController.swift */,
+			);
+			name = PopoverMenu;
+			sourceTree = "<group>";
+		};
+		1A9811AF2AF096AB0018CE97 /* LabelComponentView */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811B02AF096DE0018CE97 /* LabelComponentViewController.swift */,
+			);
+			name = LabelComponentView;
+			sourceTree = "<group>";
+		};
+		1A9811B22AF0C6CA0018CE97 /* ButtonPadViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811B32AF0C6D40018CE97 /* ButtonPadViewController.swift */,
+			);
+			name = ButtonPadViewController;
+			sourceTree = "<group>";
+		};
+		1A9811B52AF0C9FB0018CE97 /* AllowedCharsTextFieldViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811B62AF0CA060018CE97 /* AllowedCharsTextFieldViewController.swift */,
+			);
+			name = AllowedCharsTextFieldViewController;
+			sourceTree = "<group>";
+		};
+		1A9811B82AF0CA9D0018CE97 /* ScrollViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1A9811B92AF0CB250018CE97 /* ScrollViewController.swift */,
+			);
+			name = ScrollViewController;
+			sourceTree = "<group>";
+		};
 		4D21E7E5150A620298B71497 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +248,19 @@
 		607FACD21AFB9204008FA782 /* Example for CommonUIKitComponents */ = {
 			isa = PBXGroup;
 			children = (
+				1A9811B82AF0CA9D0018CE97 /* ScrollViewController */,
+				1A9811B52AF0C9FB0018CE97 /* AllowedCharsTextFieldViewController */,
+				1A9811B22AF0C6CA0018CE97 /* ButtonPadViewController */,
+				1A9811AF2AF096AB0018CE97 /* LabelComponentView */,
+				1A9811AC2AF092A40018CE97 /* PopoverMenu */,
+				1A9811A92AF080FE0018CE97 /* CustomPopoverMessageView */,
+				1A9811A62AF039B80018CE97 /* PopoverMessageView */,
+				1A9811A32AF0367B0018CE97 /* Indicator */,
+				1A9811A02AF02AF30018CE97 /* SideView */,
+				1A98119D2AF028D90018CE97 /* ToggleView */,
+				1A98119A2AF024500018CE97 /* StepperView */,
+				1A9811992AF01F6C0018CE97 /* AccordionView */,
+				1A0943372A5EF192008E6A44 /* AlertView */,
 				61E1B520293462320016C25E /* DraggableModal */,
 				61AC11C029103AC60065F98B /* UITextFieldOTP */,
 				61EF7C6F28D22E810097979F /* ModalView */,
@@ -388,15 +531,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A98119C2AF024670018CE97 /* StepperViewController.swift in Sources */,
 				61EF7C7128D22E900097979F /* ModalExampleViewController.swift in Sources */,
+				1A9811B72AF0CA060018CE97 /* AllowedCharsTextFieldViewController.swift in Sources */,
 				61E1B54729347A9F0016C25E /* TagsCollectionViewCell.swift in Sources */,
 				61E1B5222934625C0016C25E /* ModalTagsDataSource.swift in Sources */,
 				61E1B51F2934620B0016C25E /* ModalTagsFactory.swift in Sources */,
+				1A9811AE2AF092B30018CE97 /* PopoverMenuViewController.swift in Sources */,
+				1A9811BA2AF0CB250018CE97 /* ScrollViewController.swift in Sources */,
 				61E1B5242934628D0016C25E /* Tag.swift in Sources */,
+				1A9811B12AF096DE0018CE97 /* LabelComponentViewController.swift in Sources */,
+				1A9811AB2AF081830018CE97 /* CustomPopoverMessageController.swift in Sources */,
+				1A9811982AF01F600018CE97 /* AccordionViewController.swift in Sources */,
+				1A98119F2AF0291C0018CE97 /* ToggleViewController.swift in Sources */,
 				61AC11C229103AD10065F98B /* UITextFieldOTPExampleController.swift in Sources */,
+				1A9811B42AF0C6D40018CE97 /* ButtonPadViewController.swift in Sources */,
 				61E1B53A2934679E0016C25E /* ModalTagsCellLayout.swift in Sources */,
+				1A0943392A5EF216008E6A44 /* AlertViewExampleViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1A9811A82AF039D90018CE97 /* PopoverMessageViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				1A9811A22AF02AFD0018CE97 /* SideViewController.swift in Sources */,
+				1A9811A52AF036850018CE97 /* IndicatorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

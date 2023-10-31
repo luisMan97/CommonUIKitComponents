@@ -8,26 +8,26 @@
 import UIKit
 
 private class ClosureSleeve {
-    
+
     let closure: CompletionHandler
     
     init(_ closure: @escaping CompletionHandler) {
         self.closure = closure
     }
-    
+
     @objc
     func invoke() {
         closure()
     }
-    
+
 }
 
 public extension UIControl {
-    
-    func deleteActions(){
+
+    func deleteActions() {
         removeTarget(nil, action: nil, for: .allEvents)
     }
-    
+
     func addTargetAction(for controlEvents: UIControl.Event,
                          deleteFirstActions: Bool = true,
                          _ closure: @escaping CompletionHandler) {

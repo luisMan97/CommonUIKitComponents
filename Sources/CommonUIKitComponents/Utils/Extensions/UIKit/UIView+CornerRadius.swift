@@ -8,7 +8,7 @@
 import UIKit
 
 public extension UIView {
-    
+
     /// - Parameters:
     ///   - conersType:
     ///     layerMaxXMaxYCorner – lower right corner
@@ -26,7 +26,7 @@ public extension UIView {
         if let borderWidth = borderWidth { layer.borderWidth = borderWidth }
         clipsToBounds = true
     }
-    
+
     func roundTopCornersWith(borderColor: UIColor? = nil,
                              borderWidth: CGFloat? = nil,
                              cornerRadius: CGFloat) {
@@ -34,7 +34,7 @@ public extension UIView {
                                            .layerMaxXMinYCorner]
         roundCornersWith(borderColor: borderColor, borderWidth: borderWidth, cornerRadius: cornerRadius, conersType: maskedCorners)
     }
-    
+
     func roundBottomCornersWith(borderColor: UIColor? = nil,
                                 borderWidth: CGFloat? = nil,
                                 cornerRadius: CGFloat) {
@@ -42,18 +42,18 @@ public extension UIView {
                                            .layerMaxXMaxYCorner]
         roundCornersWith(borderColor: borderColor, borderWidth: borderWidth, cornerRadius: cornerRadius, conersType: maskedCorners)
     }
-    
+
     func roundAllCornersWith(borderColor: UIColor? = nil,
                              borderWidth: CGFloat? = nil,
                              cornerRadius: CGFloat) {
         roundCornersWith(borderColor: borderColor, borderWidth: borderWidth, cornerRadius: cornerRadius)
     }
-    
+
     func setupRoundedCorners(radius: CGFloat,
                              corners: UIRectCorner = .allCorners) {
         setupRoundedCorners(radius: radius, corners: corners, smoothCorners: true)
     }
-    
+
     func setupRoundedCorners(radius: CGFloat,
                              corners: UIRectCorner = .allCorners,
                              smoothCorners: Bool) {
@@ -71,7 +71,7 @@ public extension UIView {
             createCachedShadow()
         }
     }
-    
+
     func createCachedShadow() {
         let origin = CGPoint(x: bounds.origin.x + layer.shadowOffset.width,
                              y: bounds.origin.y + layer.shadowOffset.height)
@@ -96,6 +96,6 @@ public extension UIView {
         }
         layer.shadowPath = path.cgPath
     }
-    
+
 }
 
