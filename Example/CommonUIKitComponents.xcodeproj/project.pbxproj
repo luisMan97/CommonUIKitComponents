@@ -23,6 +23,9 @@
 		1A9811BA2AF0CB250018CE97 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9811B92AF0CB250018CE97 /* ScrollViewController.swift */; };
 		1ADFFE5B2AF1E6D700B89E58 /* DraggableModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFFE5A2AF1E6D700B89E58 /* DraggableModalViewController.swift */; };
 		1ADFFE5E2AF1F40100B89E58 /* DynamicHeightCVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFFE5D2AF1F40100B89E58 /* DynamicHeightCVViewController.swift */; };
+		1ADFFE652AF2E19200B89E58 /* BaseButtonComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFFE642AF2E19200B89E58 /* BaseButtonComponentViewController.swift */; };
+		1ADFFE682AF2EB0F00B89E58 /* InteractiveButtonComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFFE672AF2EB0F00B89E58 /* InteractiveButtonComponentViewController.swift */; };
+		1ADFFE6B2AF314CC00B89E58 /* ModalCloseBottomComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFFE6A2AF314CC00B89E58 /* ModalCloseBottomComponentViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -67,6 +70,9 @@
 		1A9811B92AF0CB250018CE97 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		1ADFFE5A2AF1E6D700B89E58 /* DraggableModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableModalViewController.swift; sourceTree = "<group>"; };
 		1ADFFE5D2AF1F40100B89E58 /* DynamicHeightCVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCVViewController.swift; sourceTree = "<group>"; };
+		1ADFFE642AF2E19200B89E58 /* BaseButtonComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonComponentViewController.swift; sourceTree = "<group>"; };
+		1ADFFE672AF2EB0F00B89E58 /* InteractiveButtonComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveButtonComponentViewController.swift; sourceTree = "<group>"; };
+		1ADFFE6A2AF314CC00B89E58 /* ModalCloseBottomComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCloseBottomComponentViewController.swift; sourceTree = "<group>"; };
 		253FDB9DC2F3F2FBC6EF1418 /* Pods-CommonUIKitComponents_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonUIKitComponents_Tests.release.xcconfig"; path = "Target Support Files/Pods-CommonUIKitComponents_Tests/Pods-CommonUIKitComponents_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3D54CC0B6E044735A16ECCE0 /* Pods-CommonUIKitComponents_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonUIKitComponents_Example.debug.xcconfig"; path = "Target Support Files/Pods-CommonUIKitComponents_Example/Pods-CommonUIKitComponents_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5B9F010CB731AE14821C6237 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -219,6 +225,30 @@
 			name = ScrollViewController;
 			sourceTree = "<group>";
 		};
+		1ADFFE632AF2DFA000B89E58 /* BaseButtonComponentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFFE642AF2E19200B89E58 /* BaseButtonComponentViewController.swift */,
+			);
+			name = BaseButtonComponentViewController;
+			sourceTree = "<group>";
+		};
+		1ADFFE662AF2EADE00B89E58 /* InteractiveButtonComponentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFFE672AF2EB0F00B89E58 /* InteractiveButtonComponentViewController.swift */,
+			);
+			name = InteractiveButtonComponentViewController;
+			sourceTree = "<group>";
+		};
+		1ADFFE692AF3149E00B89E58 /* ModalCloseBottomComponentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFFE6A2AF314CC00B89E58 /* ModalCloseBottomComponentViewController.swift */,
+			);
+			name = ModalCloseBottomComponentViewController;
+			sourceTree = "<group>";
+		};
 		4D21E7E5150A620298B71497 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +282,9 @@
 		607FACD21AFB9204008FA782 /* Example for CommonUIKitComponents */ = {
 			isa = PBXGroup;
 			children = (
+				1ADFFE692AF3149E00B89E58 /* ModalCloseBottomComponentViewController */,
+				1ADFFE662AF2EADE00B89E58 /* InteractiveButtonComponentViewController */,
+				1ADFFE632AF2DFA000B89E58 /* BaseButtonComponentViewController */,
 				1A9811B82AF0CA9D0018CE97 /* ScrollViewController */,
 				1A9811B52AF0C9FB0018CE97 /* AllowedCharsTextFieldViewController */,
 				1A9811B22AF0C6CA0018CE97 /* ButtonPadViewController */,
@@ -538,7 +571,9 @@
 				61E1B5222934625C0016C25E /* ModalTagsDataSource.swift in Sources */,
 				61E1B51F2934620B0016C25E /* ModalTagsFactory.swift in Sources */,
 				1A9811AE2AF092B30018CE97 /* PopoverMenuViewController.swift in Sources */,
+				1ADFFE652AF2E19200B89E58 /* BaseButtonComponentViewController.swift in Sources */,
 				1A9811BA2AF0CB250018CE97 /* ScrollViewController.swift in Sources */,
+				1ADFFE6B2AF314CC00B89E58 /* ModalCloseBottomComponentViewController.swift in Sources */,
 				61E1B5242934628D0016C25E /* Tag.swift in Sources */,
 				1A9811B12AF096DE0018CE97 /* LabelComponentViewController.swift in Sources */,
 				1A9811AB2AF081830018CE97 /* CustomPopoverMessageController.swift in Sources */,
@@ -547,6 +582,7 @@
 				1A98119F2AF0291C0018CE97 /* ToggleViewController.swift in Sources */,
 				61AC11C229103AD10065F98B /* UITextFieldOTPExampleController.swift in Sources */,
 				1A9811B42AF0C6D40018CE97 /* ButtonPadViewController.swift in Sources */,
+				1ADFFE682AF2EB0F00B89E58 /* InteractiveButtonComponentViewController.swift in Sources */,
 				1ADFFE5B2AF1E6D700B89E58 /* DraggableModalViewController.swift in Sources */,
 				61E1B53A2934679E0016C25E /* ModalTagsCellLayout.swift in Sources */,
 				1A0943392A5EF216008E6A44 /* AlertViewExampleViewController.swift in Sources */,

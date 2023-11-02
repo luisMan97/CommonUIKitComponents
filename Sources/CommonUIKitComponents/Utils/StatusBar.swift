@@ -12,8 +12,8 @@ final class StatusBar {
     var oldStyle: Style = .black
     var currentStyle: Style = .black
     var isHidden = false
-    var currentTextColor: UIColor = .primaryB
-    var currentBackgroundColors: [UIColor] = [.primaryA]
+    var currentTextColor: UIColor = .black
+    var currentBackgroundColors: [UIColor] = [.white]
 
     static let config = StatusBar()
 
@@ -40,7 +40,7 @@ final class StatusBar {
 
     func setTextColor(color: UIColor) {
         switch color {
-        case UIColor.white, .primaryA:
+        case .white:
             UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
         default:
             UIApplication.shared.setStatusBarStyle(.default, animated: true)
@@ -60,9 +60,9 @@ extension StatusBar {
         var textColor: UIColor {
             switch self {
             case .light:
-                return .primaryA
+                return .white
             case .black, .blackTextWhiteBackground:
-                return .primaryB
+                return .black
             case .custom(let textColor, _):
                 return textColor
             case .automatic:
@@ -75,7 +75,7 @@ extension StatusBar {
             case .light, .black, .automatic:
                 return .clear
             case .blackTextWhiteBackground:
-                return .primaryA
+                return .white
             case .custom(_, let backgroundColor):
                 return backgroundColor
             }

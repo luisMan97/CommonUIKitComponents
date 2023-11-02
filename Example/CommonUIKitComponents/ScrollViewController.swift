@@ -24,7 +24,7 @@ class ScrollViewController: UIViewController {
     }
 
     private let topLabel = UILabel().then {
-        $0.text = "Top Label"
+        $0.text = "Top Label - scroll to bottom"
     }
 
     private let bottomLabel = UILabel().then {

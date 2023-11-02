@@ -38,7 +38,7 @@ class TagsCollectionViewCell: UICollectionViewCell {
             tagLabel.then {
                 $0.font = .systemFont(ofSize: 16)
                 $0.numberOfLines = .zero
-                $0.textColor = .contentA
+                $0.textColor = .black
             }
         }
     }
@@ -48,14 +48,14 @@ class TagsCollectionViewCell: UICollectionViewCell {
                 $0.font = .systemFont(ofSize: 16)
                 $0.numberOfLines = .zero
                 $0.lineBreakMode = .byWordWrapping
-                $0.textColor = .contentA
+                $0.textColor = .black
             }
         }
     }
     @IBOutlet private weak var separatorView: UIView! {
         didSet {
             separatorView.then {
-                $0.backgroundColor = .borderTransparent
+                $0.backgroundColor = .lightGray
             }
         }
     }

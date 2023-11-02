@@ -93,12 +93,14 @@ extension Gradient {
     /// - parameter layer: the layer that will host the gradient.
     /// - parameter direction: the direction of the gradient.
     /// - parameter alpha: the opacity value.
-    public static func accentA(
+    public static func blue(
         layer: CALayer,
         direction: Direction = .left,
         alpha: CGFloat = 1
     ) {
-        Style.accentA.apply(to: layer, direction: direction, alpha: alpha)
+        Style.blue.apply(to: layer,
+                         direction: direction,
+                         alpha: alpha)
     }
 
 }
@@ -113,14 +115,14 @@ public extension Gradient {
 
         private init(_ colorName: String) {
             colors = [
-                .accentAStart,
-                .accentAEnd
+                .systemBlue,
+                .blue
             ]
         }
         
         // MARK: Constants
 
-        public static let accentA = Style("accentA")
+        public static let blue = Style("blue")
     }
 }
 

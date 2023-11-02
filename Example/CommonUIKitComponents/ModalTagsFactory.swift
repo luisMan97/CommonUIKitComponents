@@ -39,7 +39,7 @@ enum ModalTagsFactory {
     static func configModalHeader() -> BaseModalHeaderComponent {
         let toptitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.italicSystemFont(ofSize: 14),
-            .foregroundColor: UIColor.contentA
+            .foregroundColor: UIColor.black
         ]
 
         let toptitleAtt = NSAttributedString(string: "Top title",
@@ -47,7 +47,7 @@ enum ModalTagsFactory {
 
         let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 26),
-            .foregroundColor: UIColor.contentA
+            .foregroundColor: UIColor.black
         ]
 
         let titleAtt = NSAttributedString(string: "Tags large title",
@@ -55,7 +55,7 @@ enum ModalTagsFactory {
 
         let subTitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 16),
-            .foregroundColor: UIColor.contentA
+            .foregroundColor: UIColor.black
         ]
 
         let subTitleAttribute = NSAttributedString(string: "Tags description.",
@@ -70,8 +70,7 @@ enum ModalTagsFactory {
                                                  subtitle: subTitleAttribute,
                                                  toptitle: toptitleAtt,
                                                  contentInsets: contentInsets,
-                                                 style: .large,
-                                                 decoratorColor: .red)
+                                                 style: .large)
 
         let headerComponent = BaseModalHeaderComponent(config: headerConfig)
 
@@ -82,12 +81,12 @@ enum ModalTagsFactory {
 class PromotionsFilterFooterView: UIView, BottomViewComponent {
 
     private lazy var buttonComponent: BaseButtonComponent = {
-        let config = ButtonConfig(buttonColor: .positive,
+        let config = ButtonConfig(buttonColor: .blue,
                                   iconState: .none,
                                   initialState: .enable,
                                   frame: .zero,
                                   size: .medium,
-                                  font: UIFont.systemFont(ofSize: 12),
+                                  font: .systemFont(ofSize: 12),
                                   title: "Aplicar")
         return BaseButtonComponent(config: config)
     }()
@@ -114,9 +113,11 @@ class PromotionsFilterFooterView: UIView, BottomViewComponent {
     }
 
     func viewDidLoad() {
-        transform = CGAffineTransform(translationX: 0, y: height)
+        transform = CGAffineTransform(translationX: .zero,
+                                      y: height)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            UIView.animate(withDuration: 0.3,
+                           animations: { [weak self] in
                 self?.transform = .identity
             })
         })

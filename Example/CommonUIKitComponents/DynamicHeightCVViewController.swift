@@ -200,10 +200,3 @@ class MultilineLabelCell: UICollectionViewCell {
         )
     }
 }
-
-extension NSLayoutConstraint {
-    func isActive(_ active: Bool) -> NSLayoutConstraint {
-        self.isActive = active
-        return self
-    }
-}

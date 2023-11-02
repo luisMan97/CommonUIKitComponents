@@ -75,12 +75,15 @@ public final class ButtonConfig {
     init() {
         title = ""
         font = UIFont(name: "PPObjectSans-Bold", size: 16)
-        textColor = .contentA
-        buttonColor = .accentA
+        textColor = .black
+        buttonColor = .blue
         borderColor = .borderTransparent
         iconAlignment = .none
         state = .enable
-        self.frame = CGRect(x: 0, y: 0, width: 0, height: 60)
+        self.frame = CGRect(x: .zero,
+                            y: .zero,
+                            width: .zero,
+                            height: 60)
         size = .large
         allowHapticFeedback = true
     }

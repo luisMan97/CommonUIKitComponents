@@ -19,10 +19,10 @@ class BaseModalBottomView: UIView {
     init(frame: CGRect = .zero, colors: [UIColor]? = nil) {
         super.init(frame: frame)
         self.colors = colors ?? [
-            .primaryA.withAlphaComponent(0.1),
-            .primaryA.withAlphaComponent(0.3),
-            .primaryA.withAlphaComponent(0.9),
-            .primaryA
+            .white.withAlphaComponent(0.1),
+            .white.withAlphaComponent(0.3),
+            .white.withAlphaComponent(0.9),
+            .white
         ]
 
         setupView()
@@ -31,10 +31,10 @@ class BaseModalBottomView: UIView {
     required init?(coder: NSCoder) {
         super.init(frame: .zero)
         self.colors = [
-            .primaryA.withAlphaComponent(0.1),
-            .primaryA.withAlphaComponent(0.3),
-            .primaryA.withAlphaComponent(0.9),
-            .primaryA
+            .white.withAlphaComponent(0.1),
+            .white.withAlphaComponent(0.3),
+            .white.withAlphaComponent(0.9),
+            .white
         ]
 
         setupView()

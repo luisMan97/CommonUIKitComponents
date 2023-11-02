@@ -130,7 +130,7 @@ private extension SmallTitleHeaderView {
     }
 
     func setupAppearance() {
-        backgroundColor = .primaryA
+        backgroundColor = .white
         let radius: CGFloat = config.isFloating ? 0 : 30.0
         setupRoundedCorners(radius: radius, corners: [.topLeft, .topRight])
 

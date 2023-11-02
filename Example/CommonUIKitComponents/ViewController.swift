@@ -20,12 +20,15 @@ class ViewController: UIViewController {
         case accordionView = "AccordionView"
         case alertView = "AlertView"
         case allowedCharsTextField = "AllowedCharsTextField"
+        case baseButtonComponent = "BaseButtonComponent"
         case buttonPadView = "ButtonPadView"
         case customPopoverMessage = "CustomPopoverMessage"
         case draggableModal = "DraggableModal"
         case indicator = "Indicator"
+        case interactiveButtonComponent = "InteractiveButtonComponent"
         case labelComponentView = "LabelComponentView"
         case modal = "Modal"
+        case ModalCloseBottomComponent = "ModalCloseBottomComponent"
         case popoverMessage = "PopoverMessageView"
         case scrollView = "ScrollView"
         case sideView = "SideView"
@@ -81,50 +84,62 @@ extension ViewController: UITableViewDelegate {
             alertViewExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(alertViewExampleViewController, animated: true)
         case 3:
-            let alertViewExampleViewController = ButtonPadViewController()
+            let alertViewExampleViewController = BaseButtonComponentViewController()
             alertViewExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(alertViewExampleViewController, animated: true)
         case 4:
-            let alertViewExampleViewController = CustomPopoverMessageController()
+            let alertViewExampleViewController = ButtonPadViewController()
             alertViewExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(alertViewExampleViewController, animated: true)
         case 5:
+            let alertViewExampleViewController = CustomPopoverMessageController()
+            alertViewExampleViewController.title = options[indexPath.row].rawValue
+            navigationController?.pushViewController(alertViewExampleViewController, animated: true)
+        case 6:
             let modalExampleViewController = DraggableModalViewController()
             modalExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(modalExampleViewController, animated: true)
-        case 6:
+        case 7:
             let modalExampleViewController = IndicatorViewController()
             modalExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(modalExampleViewController, animated: true)
-        case 7:
-            let modalExampleViewController = LabelComponentViewController()
-            modalExampleViewController.title = options[indexPath.row].rawValue
-            navigationController?.pushViewController(modalExampleViewController, animated: true)
         case 8:
-            let modalExampleViewController = ModalExampleViewController()
+            let modalExampleViewController = InteractiveButtonComponentViewController()
             modalExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(modalExampleViewController, animated: true)
         case 9:
-            let modalExampleViewController = PopoverMessageViewController()
+            let modalExampleViewController = LabelComponentViewController()
             modalExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(modalExampleViewController, animated: true)
         case 10:
-            let modalExampleViewController = ScrollViewController()
+            let modalExampleViewController = ModalExampleViewController()
             modalExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(modalExampleViewController, animated: true)
         case 11:
-            let modalExampleViewController = SideViewController()
+            let modalExampleViewController = ModalCloseBottomViewController()
             modalExampleViewController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(modalExampleViewController, animated: true)
         case 12:
+            let modalExampleViewController = PopoverMessageViewController()
+            modalExampleViewController.title = options[indexPath.row].rawValue
+            navigationController?.pushViewController(modalExampleViewController, animated: true)
+        case 13:
+            let modalExampleViewController = ScrollViewController()
+            modalExampleViewController.title = options[indexPath.row].rawValue
+            navigationController?.pushViewController(modalExampleViewController, animated: true)
+        case 14:
+            let modalExampleViewController = SideViewController()
+            modalExampleViewController.title = options[indexPath.row].rawValue
+            navigationController?.pushViewController(modalExampleViewController, animated: true)
+        case 15:
             let uiTextFieldOTPExampleController = StepperViewController()
             uiTextFieldOTPExampleController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(uiTextFieldOTPExampleController, animated: true)
-        case 13:
+        case 16:
             let uiTextFieldOTPExampleController = UITextFieldOTPExampleController()
             uiTextFieldOTPExampleController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(uiTextFieldOTPExampleController, animated: true)
-        case 14:
+        case 17:
             let uiTextFieldOTPExampleController = ToggleViewController()
             uiTextFieldOTPExampleController.title = options[indexPath.row].rawValue
             navigationController?.pushViewController(uiTextFieldOTPExampleController, animated: true)

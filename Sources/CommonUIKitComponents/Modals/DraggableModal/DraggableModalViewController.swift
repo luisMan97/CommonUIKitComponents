@@ -395,7 +395,7 @@ private extension DraggableModalViewController {
             collectionView.showsVerticalScrollIndicator = false
             collectionView.showsHorizontalScrollIndicator = false
             collectionView.contentInsetAdjustmentBehavior = .never
-            collectionView.backgroundColor = .primaryA
+            collectionView.backgroundColor = .white
             collectionView.contentInset = .init(top: .zero,
                                                 left: .zero,
                                                 bottom: .spacing(30),
@@ -406,7 +406,7 @@ private extension DraggableModalViewController {
                                           corners: [.topLeft, .topRight])
         containerView.transform = CGAffineTransform(translationX: .zero,
                                                     y: view.bounds.height)
-        containerView.backgroundColor = .primaryA
+        containerView.backgroundColor = .white
         bottomComponent?.viewDidLoad()
         view.backgroundColor = .clear
     }
@@ -470,9 +470,9 @@ private extension DraggableModalViewController {
         let isExpanded = state == .expanded
         headerComponent.isHeaderOnTop = isExpanded
         topView.isHidden = isExpanded
-        StatusBar.config.setTextColor(color: isExpanded ? .primaryB : .primaryA)
+        StatusBar.config.setTextColor(color: isExpanded ? .black : .white)
         bottomView?.layer.removeAllAnimations()
-        closeView.backgroundColor = isExpanded ? .primaryA : .overlayB
+        closeView.backgroundColor = isExpanded ? .white : .overlayB
         bottomComponent?.animateAppear(isExpanded)
 
         let cornerRadius: CGFloat = isExpanded ? 0 : 30
@@ -554,7 +554,7 @@ extension DraggableModalViewController {
                                                object: nil)
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShowNotification),
+                                               selector: #selector(keyboardWillHideNotification),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
@@ -576,7 +576,8 @@ extension DraggableModalViewController {
                 return
         }
 
-        self.keyboardWillShow(true, keyboardHeight: frame.height)
+        self.keyboardWillShow(true,
+                              keyboardHeight: frame.height)
     }
 
     @objc
@@ -586,7 +587,8 @@ extension DraggableModalViewController {
                 return
         }
 
-        self.keyboardWillShow(false, keyboardHeight: frame.height)
+        self.keyboardWillShow(false,
+                              keyboardHeight: frame.height)
     }
 
     private func keyboardWillShow(_ show: Bool, keyboardHeight: CGFloat) {
